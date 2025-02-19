@@ -1,0 +1,91 @@
+.border_box {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border: 10px solid red;
+    padding: 10px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.skills {
+    background-color: blue;
+    
+}
+
+:root {
+    padding: 10px;
+    font-family: system-ui;
+
+}
+
+header {
+    border-radius: 10px 10px 0px 0px;
+    border: 0px none rgb(9, 21, 31);
+    padding: 10px;
+    background-color: #64755B;
+    justify-content: space-between;
+    text-align: center;
+}
+
+footer {
+    border-radius: 0px 0px 10px 10px;
+    border: 0px none rgb(9, 21, 31);
+    padding: 10px;
+    background-color: #31382e;
+    color: gainsboro;
+    justify-content: space-between;
+    text-align: center;
+}
+
+img {
+    border-radius: 500%;
+    border: 4px solid white;
+    width: 150px;
+    height: 150px;
+}
+
+body {
+    max-width: 1000px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.header-textbox {
+    color: white;
+    padding: 0pxx;
+    line-height: 0.8rem;
+
+}
+
+.h2-contact {
+    color: white;
+    background-color: #6C5B75;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 0px;
+}
+.contact {
+
+    padding: 10px 0px;
+    margin: 0px;
+    
+}
+
+.h2-skills {
+    color: white;
+    background-color: #6C5B75;
+    border-radius: 6px;
+    padding: 6px;
+    margin: 0px;
+}
+.skills {
+
+    padding: 10px 0px;
+    margin: 0px;
+    
+}
+
+
