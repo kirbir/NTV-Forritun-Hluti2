@@ -26,12 +26,6 @@ header {
     background-color: #64755B;
     justify-content: space-between;
     text-align: center;
-    margin-bottom: 14px;
-}
-
-.sub-heading {
-    font-size : 1.2em;
-    font-weight: 400;
 }
 
 footer {
@@ -45,11 +39,10 @@ footer {
 }
 
 img {
-    border-radius: 50%;
+    border-radius: 500%;
     border: 4px solid white;
-    width: 125px;
-    height: 125px;
-    padding: 10px;
+    width: 150px;
+    height: 150px;
 }
 
 body {
@@ -67,65 +60,56 @@ body {
 
 }
 
-.h3-contact {
-    box-sizing: border-box;
-    color: white;
-    background-color: #6C5B75;
-    border-radius: 6px;
-    padding: 6px;
-    margin: 0px 0px 10px 0px;
-}
-
-
-.h3-skills {
-    box-sizing: border-box;
+.h2-contact {
     color: white;
     background-color: #6C5B75;
     border-radius: 6px;
     padding: 6px;
     margin: 0px;
 }
+.contact {
 
-
-.h3-experience {
-    box-sizing: border-box;
-    color: white;
-    background-color: #6C5B75;
-    border-radius: 6px;
-    padding: 6px;
-    margin:0px;
+    padding: 10px 0px;
+    margin: 0px;
+    
 }
 
-
-.h3-education {
-    box-sizing: border-box;
+.h2-skills {
     color: white;
     background-color: #6C5B75;
     border-radius: 6px;
     padding: 6px;
     margin: 0px;
 }
+.skills {
 
-ul {
-    padding-inline-start: 22px;
-}
-
-.swamp-text {
+    padding: 10px 0px;
+    margin: 0px;
     
-    margin-top:0px;
-    line-height: 0.5rem;
-    padding-bottom: 2px;
-}
-.hero-text {
-    
-    margin-top:0px;
-    line-height: 0.5rem;
 }
 
-.education-text {
+
+
+.new-container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    border: 1px solid black;
+    width: 50%;
     
-    margin-top:0px;
-    line-height: 0.5rem;
-    padding-bottom: 2px;
 }
 
+.first-p {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+    background-color: blue;
+
+}
+
+.second-p {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+    background-color: red;
+}
