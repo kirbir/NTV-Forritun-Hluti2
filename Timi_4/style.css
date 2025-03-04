@@ -1,0 +1,30 @@
+.container {
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: auto;;
+}
+
+.orange{
+    grid-area: header;
+    background-color: orange;
+}
+
+
+.blue{
+    grid-area: main;
+    background-color: blue;
+}
+.red{
+    grid-area: sidebar;
+    background-color: red;
+}
+.green{
+    grid-area: footer;
+    background-color: green;
+}

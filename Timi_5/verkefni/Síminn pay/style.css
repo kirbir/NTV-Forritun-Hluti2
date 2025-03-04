@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    flex: 1;
+}
+
+.left-column {
+    width: 50%;
+
+    background-color: white;
+    padding-right: 20%;
+    padding-top: 30px;
+    padding-left: 5%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.h3-header::before {
+
+    content: "";
+    position: absolute;
+    left: -100vw;
+    top: 50%;
+    width: 100vw;
+    height: 2px;
+    background-color: rgb(83, 164, 244);
+    transform: translateY(-50%);
+}
+
+.h3-header {
+    color: rgb(83, 164, 244);
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+}
+
+.right-column {
+    width: 50%;
+    background-image: url('siminn_1.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.button-wrapper {
+    padding-top: 15px;
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-text {
+    padding-top: 30px;
+}
+
+.button1 {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: rgb(83, 164, 244);
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(83, 164, 244);
+    box-shadow: 0px 1px 4px 0px rgba(45, 45, 45, 0.281);
+}
+
+.button2 {
+    color: white;
+    background-color: rgb(83, 164, 244);
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(83, 164, 244);
+    box-shadow: 0px 1px 4px 0px rgba(45, 45, 45, 0.281);
+}
+
+
+h1 {
+    color: rgb(0, 0, 0);
+}
+
+button {
+    font-weight: 800;
+    border-style: solid;
+
+    border-radius: 130px;
+    height: 36px;
+    color: white;
+    border-style: none;
+    /* padding: 10px; */
+    width: 130px;
+    font-size: 0.8em;
+    cursor: pointer;
+
+}
+
+:root {
+    font-family: system-ui;
+}
