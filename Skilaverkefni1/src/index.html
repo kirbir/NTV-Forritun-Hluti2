@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="m-0 p-0 overflow-x-hidden h-full">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+    <!-- <style type="text/tailwindcss">
+        @theme {
+        --color-background: #FFEAD1;
+        --color-dark-bg: #2c2c2c;
+      }
+    </style> -->
+    <link href="./output.css" rel="stylesheet">
+    <title>Hungry Lama Restaurant</title>
+</head>
+
+
+<body class="bg-background mx-auto p-0 overflow-x-hidden flex flex-col min-h-screen min-w-[340px]">
+    <!-- Main content wrapper - will grow to push footer down -->
+    <div class="flex-grow">
+        <!-- Wrapper div for content with max-width -->
+        <div class="max-w-screen-lg mx-auto px-4 w-full">
+            <header class="flex flex-row  py-4 md:flex justify-between items-center border-b-2 border-red-300">
+
+                <div class="flex flex-row items-center">
+                    <img class=" w-[120px] " src="./images/hl_logo1.png" alt="Hungry lama logo">
+                    <h1 class="ml-2 text-xl font-bold ">
+                        <span class="font-bold">HUNGRY</span> <span class="font-extralight">LAMA</span>
+                    </h1>
+                </div>
+
+                <nav class="hidden md:flex items-center">
+                    <ul class="flex space-x-4 mr-4">
+                        <li>
+                            <a href="#" class="hover:text-[#d4b45e]">
+                                HOME
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-[#d4b45e]">
+                                ABOUT US
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-[#d4b45e]">
+                                MENU
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-[#d4b45e]">
+                                CONTACT
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+
+                <!-- Mobile Menu  -->
+                <input type="checkbox" id="menu-toggle" class="hidden">
+                <label for="menu-toggle" class="md:hidden flex flex-col space-y-1 cursor-pointer">
+                    <span class="w-6 h-0.5 bg-dark-bg"></span>
+                    <span class="w-6 h-0.5 bg-dark-bg"></span>
+                    <span class="w-6 h-0.5 bg-dark-bg"></span>
+                </label>
+
+                <button class="hidden md:block md:bg-[#3c3c3c] text-white px-4 py-2 rounded text-sm">Order
+                    table</button>
+            </header>
+
+
+            <!-- Cover photo -->
+            <div
+                class="relative w-full h-12 md:h-48 overflow-hidden mb-4 mt-4 bg-[url(images/staff_kitchen.webp)] bg-cover bg-center">
+            </div>
+            <!-- Cover photo -->
+
+            <div class="">
+
+                <div class="flex items-center mb-6">
+                    <h2 class="text-3xl text-[#8c6e5c] font-light mr-4">Welcome</h2>
+                    <div class="flex-grow h-px bg-gradient-to-r from-[#d4b45e] to-[#f9f3e6] relative">
+                        <div
+                            class="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 rounded-full bg-[#d4b45e]">
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[#5c5c5c] max-w-2xl text-2xl ">
+                    Welcome to The Hungry Lama, a family-owned restaurant that offers a unique and unforgettable
+                    dining
+                    experience. Our restaurant is inspired by the bold flavors and warm hospitality of South
+                    America, and we
+                    pride ourselves on serving fresh and locally sourced ingredients.
+                </p>
+            </div>
+
+            <!-- CTA  -->
+            <div class="flex flex-row gap-14 p-10 container justify-evenly items-center bg-[rgb(83,119,92)]/[0.47]  rounded-tr-[70px] rounded-bl-[70px]">
+                <div class="sm:max-w-[50%]">
+                    <h1 class="text-[2em] mb-5 sm:text-white text-[3em]">Where Good Food Meets Great Company</h1>
+                    <h3 class="text-hero-text text-3xl mb-14">- The Hungry Lama</h3>
+                    <div class="flex flex-row gap-5">
+                        <button
+                            class="bg-[#F2F4B7] text-black hover:bg-[#4c4c4c] p-3 rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 ">The
+                                Menu</button>
+                        <button
+                            class="bg-transparent text-black hover:bg-[#4c4c4c] p-3 rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 border-2 border-[#F2F4B7]">Reservation</button>
+                    </div>
+                </div>
+                <div>
+                    <img class="object-contain w-[400px]  " src="./images/cta.jpg" alt="">
+                </div>
+            </div>
+            <!-- CTA  -->
+
+        </div>
+    </div>
+
+    <!-- Footer  -->
+    <footer class=" bg-dark-bg text-white py-12 overflow-x-hidden mt-10">
+        <div class="display flex-row justify-between max-w-screen-lg mx-auto px-4">
+
+            <!-- Social Icons  -->
+            <div class="flex justify-center gap-3  sm:justify-start mb-8">
+                <a href="#" class="text-[#3b5998] hover:text-blue-400">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 6.016 4.432 10.984 10.206 11.852V15.18h-3.008V12h3.008V9.577c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874V12h3.328l-.532 3.18h-2.796v8.672C19.568 22.984 24 18.016 24 12c0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+                <a href="#" class="text-[#e1306c] hover:text-pink-400">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                    </svg>
+                </a>
+            </div>
+            <!-- Social Icons  -->
+
+            <!-- Company Info  -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center mb-2">
+                        <!-- Phone icon -->
+                        <svg class="text-[#d4b45e] mr-2" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z">
+                            </path>
+                        </svg>
+                        <span class="text-sm">555-3212</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <!-- Map Pin icon -->
+                        <svg class="text-[#d4b45e] mr-2" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span class="text-sm">1404 - Food road</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <!-- Mail icon -->
+                        <svg class="text-[#d4b45e] mr-2" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span class="text-sm">frontdesk@hungrylama.com</span>
+                    </div>
+                </div>
+                <!-- Company Info  -->
+
+                <div>
+                    <a href=""></a>
+                </div>
+
+
+
+            </div>
+            <!-- Copyright  -->
+            <div class="flex-col h-full">
+                <div class="border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+                    © Hungry Lama - All rights reserved
+                </div>
+            </div>
+            <!-- Copyright  -->
+    </footer>
+</body>
+
+</html>
