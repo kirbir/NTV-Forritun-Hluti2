@@ -4,10 +4,10 @@
 
 @theme {
     --color-foreground: #5a8a76;
-    --color-background: #FFEAD1;
+    --color-background: hsl(172.26deg 79.49% 7.65% / 32.94%);
     --color-dark-bg: #2c2c2c;
-    --color-hero-bg: rgb(83 119 92 / 47%);
-    --color-hero-text: 3E5A38;
+    --color-cta-bg: rgb(83 119 92 / 47%);
+    --color-hero-text: #3E5A38;
 
     --font-heading: "Playfair Display", serif;
     --font-body: "Poppins", sans-serif;
@@ -27,8 +27,14 @@
     }
 
     nav {
-        font-weight: 700;
+        font-weight:500;
         font-size:larger;
+    }
+
+    nav ul li:not(:last-child)::after {
+        content: "•";
+        margin: 0 0.5rem;
+        color: #f3817f;
     }
 }
 
