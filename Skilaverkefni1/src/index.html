@@ -17,8 +17,21 @@
 
 
 <body class="bg-background mx-auto p-0 overflow-x-hidden flex flex-col min-h-screen min-w-[340px]">
-    <!-- Main content wrapper - will grow to push footer down -->
-    <div class="flex-grow">
+    <!-- Flyout Menu - Positioned at the beginning of body -->
+    <div id="menu" class="hidden fixed inset-0 bg-white shadow-lg p-6 z-[100]">
+        <button id="close-menu" class="absolute top-4 right-4 p-2 text-gray-700 text-sm">
+            ✖
+        </button>
+        <div class="pt-12">
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Home</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">About</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Menu</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main content wrapper - -->
+
         <!-- Wrapper div for content with max-width -->
         <div class="max-w-screen-lg mx-auto px-4 w-full">
             <header class="flex flex-row  py-4 md:flex justify-between items-end border-b-2 border-red-300">
@@ -63,38 +76,13 @@
 
                 </nav>
 
-                <!-- Mobile Menu  -->
-                <div class="md:hidden flex items-center ml-auto">
-                    <input type="checkbox" id="menu-toggle" class="hidden">
-                    <label for="menu-toggle"
-                        class="md:hidden flex flex-col space-y-1 cursor-pointer bg-[#f3817f] p-3 rounded">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                <div class="fixed right-4 top-4 z-50 md:hidden">
+                    <!-- Hamburger Button -->
+                    <button id="menu-button" class="p-2 text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
-                    </label>
-                </div>
-
-                 <!-- Mobile Menu Dropdown -->
-                 <div id="mobile-menu" class="hidden md:hidden fixed top-[72px] right-0 left-0 z-50 bg-white shadow-md mt-2 mx-4 rounded-lg overflow-auto">
-                    <ul class="py-2 px-4">
-                        <li class="py-2 border-b border-gray-200">
-                            <a href="#" class="block hover:text-[#f3817f]">Home</a>
-                        </li>
-                        <li class="py-2 border-b border-gray-200">
-                            <a href="#" class="block hover:text-[#f3817f]">About us</a>
-                        </li>
-                        <li class="py-2 border-b border-gray-200">
-                            <a href="#" class="block hover:text-[#f3817f]">Menu</a>
-                        </li>
-                        <li class="py-2">
-                            <a href="#" class="block hover:text-[#f3817f]">Contact</a>
-                        </li>
-                        <li class="py-3 mt-2">
-                            <button class="bg-[#f3817f] hover:bg-orange-700 text-white px-4 py-2 rounded-[50px] text-sm w-full">Order table</button>
-                        </li>
-                    </ul>
+                    </button>
                 </div>
 
                 <button
@@ -102,6 +90,7 @@
                     table
                 </button>
             </header>
+            
 
 
             <!-- HERO  -->
@@ -172,7 +161,7 @@
             </section>
 
         </div>
-    </div>
+
 
     <!-- Footer  -->
     <footer class=" bg-dark-bg text-white py-12 overflow-x-hidden mt-10">
@@ -248,7 +237,13 @@
             <!-- Menu toggle script  -->
             <script>
                 document.getElementById('menu-button').addEventListener('click', function() {
-                    document.getElementById('menu').classList.toggle('hidden');
+                    document.getElementById('menu').classList.remove('hidden');
+                    document.body.classList.add('overflow-hidden'); // Prevent scrolling when menu is open
+                });
+
+                document.getElementById('close-menu').addEventListener('click', function() {
+                    document.getElementById('menu').classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden'); // Re-enable scrolling when menu is closed
                 });
             </script>
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Ákvað að taka inline vanilla CSS til að æfa mig í því líka. <script src="https://cdn.tailwindcss.com"></script> -->
+  <title>BoOM Button</title>
+</head>
+
+
+<body style="display:flex; justify-content: center; margin: auto; padding-top: 200px;">
+  <div style="display:flex; flex-flow: column; gap: 10px; max-width: max-content;">
+
+    <h1 text-[3rem]>BoOM Button</h1><br>
+    <p id="counter" style="font-size: 35px; margin-bottom: 50px;text-align: center;">0</p>
+
+    <form action="/url" method="GET" style="display:flex;flex-flow:column; align-self: center;">
+      <p style="text-align: center;">Increment by:</p>
+      <input type="number" id="increment" value="5">
+      <br>
+      <p style="text-align: center;">Boom level:</p>
+      <input type="number" id="boomLevel" value="35">
+    </form>
+    <br>
+    <div style="display:flex;flex-flow: row; gap: 15px;">
+      <button id="takkiPlus" style="background-color: green; padding:40px; border-radius: 50%;cursor: pointer;">
+        <h1 style="font-size: 25px;">+</h1>
+      </button>
+      <button id="takkiMinus" style="background-color: red; padding:40px; border-radius: 50%;cursor: pointer;">
+        <h1 style="font-size: 25px;">-</h1>
+      </button>
+    </div>
+    <br>
+    <button id="takkiReset"
+      style="background-color: rgb(250, 110, 224); padding:40px; border-radius: 50%;cursor: pointer;">
+      RESET Le BoOM
+    </button>
+    <br>
+
+
+
+    <div id="boomBox" style="display:none;">
+      <p style="font-size: 55px; margin-bottom: 50px;background-color: blue; color:aliceblue">
+        BoOM!!
+      </p>
+      <br>
+
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
