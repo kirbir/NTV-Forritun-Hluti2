@@ -4,163 +4,93 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
-    <!-- <style type="text/tailwindcss">
-        @theme {
-        --color-background: #FFEAD1;
-        --color-dark-bg: #2c2c2c;
-      }
-    </style> -->
     <link href="./output.css" rel="stylesheet">
     <title>Hungry Lama Restaurant</title>
 </head>
 
 
 <body class="bg-background mx-auto p-0 overflow-x-hidden flex flex-col min-h-screen min-w-[340px]">
-    <!-- Flyout Menu - Positioned at the beginning of body -->
-    <div id="menu" class="hidden fixed inset-0 bg-white shadow-lg p-6 z-[100]">
-        <button id="close-menu" class="absolute top-4 right-4 p-2 text-gray-700 text-sm">
-            ✖
-        </button>
-        <div class="pt-12">
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Home</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">About</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Menu</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 rounded">Contact</a>
-        </div>
-    </div>
+    <!-- Mobile Menu  -->
+    <div id="mobile-nav-container"></div>
+    <!-- Wrapper div for main content -->
+    <div class="max-w-screen-lg mx-auto px-4 w-full">
 
-    <!-- Main content wrapper - -->
+        <div id="header-container"></div>
 
-        <!-- Wrapper div for content with max-width -->
-        <div class="max-w-screen-lg mx-auto px-4 w-full">
-            <header class="flex flex-row  py-4 md:flex justify-between items-end border-b-2 border-red-300">
 
-                <div class="flex flex-row items-end">
-                    <a href="index.html"><img class=" w-[120px] " src="./images/hl_logo1.png"
-                            alt="Hungry lama logo"></a>
+        <!-- HERO  -->
+        <section
+            class="flex flex-col my-10 md:flex-row gap-8 md:gap-14 p-6 md:p-14 container justify-evenly items-center bg-cta-bg rounded-tr-[123px] rounded-bl-[123px]">
+            <div class="w-full md:max-w-[50%] text-center md:text-left">
 
-                    <h1 class="flex ml-2 text-[1.5em] font-bold items-end py-0">
-                        <span class="font-bold">HUNGRY</span> <span class="font-extralight">LAMA</span>
+                <blockquote class="mb-4 md:mb-20">
+                    <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                        <path
+                            d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                    </svg>
+                    <h1 class="mt-3 text-2xl md:text-[2em] lg:text-[3em] mb-3 md:mb-1 text-white">"Where Good Food
+                        Meets
+                        Great Company"
                     </h1>
-
-                </div>
-
-                <nav class="hidden md:flex items-center">
-                    <ul class="flex space-x-4 mr-4">
-                        <li>
-                            <a href="#"
-                                class="relative after:bg-white after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="relative after:bg-white after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
-                                About us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="relative after:bg-white after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
-                                Menu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="relative after:bg-white after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">
-                                Contact
-                            </a>
-                        </li>
-                    </ul>
-
-                </nav>
-
-                <div class="fixed right-4 top-4 z-50 md:hidden">
-                    <!-- Hamburger Button -->
-                    <button id="menu-button" class="p-2 text-gray-700 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <button
-                    class="hidden sm:block bg-[#f3817f] hover:bg-orange-700 text-white px-4 py-2 rounded-[50px] text-sm">Order
-                    table
-                </button>
-            </header>
-            
+                    <svg class="relative w-8 h-8 text-gray-400 dark:text-gray-600 mb-4 ml-auto" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                        <path
+                            d="M12 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H12V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2h-1a5.006 5.006 0 0 0-5 5v7a2 2 0 0 0 2 2ZM2 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H2V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2H5a5.006 5.006 0 0 0-5 5v7a2 2 0 0 0 2 2Z" />
+                    </svg>
+                    <span class="text-hero-text text-xl md:text-4xl"> - The Hungry Lama</span>
+                </blockquote>
 
 
-            <!-- HERO  -->
-            <section
-                class="flex flex-col my-10 md:flex-row gap-8 md:gap-14 p-6 md:p-14 container justify-evenly items-center bg-[rgb(83,119,92)]/[0.47] rounded-tr-[123px] rounded-bl-[123px]">
-                <div class="w-full md:max-w-[50%] text-center md:text-left">
-
-                    <blockquote class="mb-4 md:mb-20">
-                        <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
-                            <path
-                                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
-                        </svg>
-                        <h1 class="mt-3 text-2xl md:text-[2em] lg:text-[3em] mb-3 md:mb-1 text-white">"Where Good Food
-                            Meets
-                            Great Company"
-                        </h1>
-                        <span class="text-hero-text text-xl md:text-4xl"> - The Hungry Lama</span>
-                    </blockquote>
-
-
-                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center md:justify-start">
-                        <button
-                            class="bg-[#F2F4B7] text-[20px] text-black hover:bg-[#4c4c4c] p-3 rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 w-full sm:w-auto">The
-                            Menu</button>
-                        <button
-                            class="bg-transparent text-[20px] text-black hover:bg-[#4c4c4c] p-3 rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 border-1 border-[#F2F4B7] w-full sm:w-auto">Reservation</button>
-                    </div>
-                </div>
-                <div class="w-full md:w-auto">
-                    <img class="rounded-bl-[123px] rounded-tr-[123px] object-contain w-full max-w-[400px] mx-auto md:rounded-tr-[123px] shadow-lg shadow-gray-700/30"
-                        src="./images/cta.jpg" alt="Restaurant ambiance">
-                </div>
-            </section>
-            <!-- HERO  -->
-
-            <!-- Cover photo -->
-            <div
-                class="relative w-full h-12 md:h-48 overflow-hidden mb-4 mt-4 bg-[url(images/staff_kitchen.webp)] bg-cover bg-center">
-                <div class="flex items-center mb-6">
-                    <h2 class="text-3xl text-[#ffffff] font-bold mr-4 p-4">Welcome</h2>
-                    <div class="flex-grow h-[2px] bg-gradient-to-r from-[#ffffff] to-[rgb(255,101,101)] relative">
-
-                    </div>
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center md:justify-start">
+                    <button
+                        class="bg-button-primary text-[20px] text-white hover:bg-[#4c4c4c] px-4 py-2 rounded-[40px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 w-full sm:w-auto">The
+                        Menu</button>
+                    <button
+                        class="bg-transparent text-[20px] text-white hover:bg-[#4c4c4c] px-3 py2 rounded-[40px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 border-1 border-button-primary w-full sm:w-auto">Reservation</button>
                 </div>
             </div>
-
-
-            <div class="py-8">
-                <p class="text-[#5c5c5c] max-w-2xl text-2xl ">
-                    Welcome to The Hungry Lama, a family-owned restaurant that offers a unique and unforgettable
-                    dining
-                    experience. Our restaurant is inspired by the bold flavors and warm hospitality of South
-                    America, and we
-                    pride ourselves on serving fresh and locally sourced ingredients.
-                </p>
+            <div class="w-full md:w-auto">
+                <img class="rounded-bl-[123px] rounded-tr-[123px] object-contain w-full max-w-[400px] mx-auto md:rounded-tr-[123px] shadow-lg shadow-gray-700/30"
+                    src="./images/cta.jpg" alt="Restaurant ambiance">
             </div>
+        </section>
+        <!-- HERO  -->
 
+        <!-- Cover photo -->
+        <div
+            class="relative w-full h-12 md:h-48 overflow-hidden mb-4 mt-4 bg-[url(images/staff_kitchen.webp)] bg-cover bg-center">
+            <div class="flex items-center mb-6">
+                <h2 class="text-3xl text-[#ffffff] font-bold mr-4 p-4">Welcome</h2>
+                <div class="flex-grow h-[2px] bg-gradient-to-r from-[#ffffff] to-[rgb(255,101,101)] relative">
 
-            <!-- Newsletter Section -->
-            <section class="container mx-auto px-4 py-16 text-center">
-                <h2 class="text-brown text-2xl font-light mb-6">Join our newsletter</h2>
-                <form class="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
-                    <input type="email" placeholder="Email address"
-                        class="px-4 py-2 border border-[#3c3c3c] rounded-md mb-2 sm:mb-0 sm:mr-2 flex-grow">
-                    <button type="submit" class="bg-[#3c3c3c] text-white px-4 py-2 rounded-md">Subscribe</button>
-                </form>
-            </section>
-
+                </div>
+            </div>
         </div>
+
+
+        <div class="py-8">
+            <p class="text-[#5c5c5c] max-w-2xl text-2xl ">
+                Welcome to The Hungry Lama, a family-owned restaurant that offers a unique and unforgettable
+                dining
+                experience. Our restaurant is inspired by the bold flavors and warm hospitality of South
+                America, and we
+                pride ourselves on serving fresh and locally sourced ingredients.
+            </p>
+        </div>
+
+
+        <!-- Newsletter Section -->
+        <section class="container mx-auto px-4 py-16 text-center">
+            <h2 class="text-brown text-2xl font-light mb-6">Join our newsletter</h2>
+            <form class="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
+                <input type="email" placeholder="Email address"
+                    class="px-4 py-2 border border-[#3c3c3c] rounded-md mb-2 sm:mb-0 sm:mr-2 flex-grow">
+                <button type="submit" class="bg-[#3c3c3c] text-white px-4 py-2 rounded-md">Subscribe</button>
+            </form>
+        </section>
+
+    </div>
 
 
     <!-- Footer  -->
@@ -234,20 +164,54 @@
                 </div>
             </div>
 
-            <!-- Menu toggle script  -->
-            <script>
-                document.getElementById('menu-button').addEventListener('click', function() {
-                    document.getElementById('menu').classList.remove('hidden');
-                    document.body.classList.add('overflow-hidden'); // Prevent scrolling when menu is open
-                });
 
-                document.getElementById('close-menu').addEventListener('click', function() {
-                    document.getElementById('menu').classList.add('hidden');
-                    document.body.classList.remove('overflow-hidden'); // Re-enable scrolling when menu is closed
-                });
-            </script>
 
     </footer>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load the header component
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    loadMobileNav(); // Load mobile nav after header is loaded
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
+
+        // Function to load mobile nav after header
+        function loadMobileNav() {
+            fetch('mobile_nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('mobile-nav-container').innerHTML = data;
+                    // Now that both components are loaded, attach event listeners
+                    setupMenuHandlers();
+                })
+                .catch(error => console.error('Error loading mobile nav:', error));
+        }
+
+        // Function to set up menu handlers after all components are loaded
+        function setupMenuHandlers() {
+            // Now these elements exist in the DOM
+            if (document.getElementById('menu-button')) {
+                document.getElementById('menu-button').addEventListener('click', function () {
+                    document.getElementById('menu').classList.remove('hidden');
+                    document.body.classList.add('overflow-hidden');
+                });
+            }
+
+            if (document.getElementById('close-menu')) {
+                document.getElementById('close-menu').addEventListener('click', function () {
+                    document.getElementById('menu').classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>

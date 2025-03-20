@@ -4,10 +4,11 @@
 
 @theme {
     --color-foreground: #5a8a76;
-    --color-background: hsl(172.26deg 79.49% 7.65% / 32.94%);
+    --color-background: hsl(270.69deg 86.53% 9.37% / 43%);
     --color-dark-bg: #2c2c2c;
-    --color-cta-bg: rgb(83 119 92 / 47%);
+    --color-cta-bg: color-mix(in oklab, hsl(191.6deg 41.4% 53.22%) 47%, transparent);
     --color-hero-text: #3E5A38;
+    --color-button-primary:#009cb3a3;
 
     --font-heading: "Playfair Display", serif;
     --font-body: "Poppins", sans-serif;
