@@ -5,88 +5,169 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./output.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/hl_logo1.png">
     <title>Hungry Lama Restaurant</title>
 </head>
 
 
-<body class="bg-background mx-auto p-0 overflow-x-hidden flex flex-col min-h-screen min-w-[340px]">
-    <!-- Mobile Menu  -->
+<body class="bg-background mx-auto p-0 overflow-x-hidden flex flex-col min-h-screen min-w-[390px]">
+    <!-- Mobile Menu Injects here  -->
     <div id="mobile-nav-container"></div>
-    <!-- Wrapper div for main content -->
+    <!-- Wrapper for main content -->
     <div class="max-w-screen-lg mx-auto px-4 w-full">
-
+    <!-- Header Injects here  -->
         <div id="header-container"></div>
 
+        <!-- Hero / Cover photo -->
+        <div class="relative w-full overflow-hidden mt-8 mb-30 rounded-lg shadow-xl">
 
-        <!-- HERO  -->
-        <section
-            class="flex flex-col my-10 md:flex-row gap-8 md:gap-14 p-6 md:p-14 container justify-evenly items-center bg-cta-bg rounded-tr-[123px] rounded-bl-[123px]">
-            <div class="w-full md:max-w-[50%] text-center md:text-left">
+            <div class="absolute inset-0 bg-[url(images/staff_kitchen.webp)] bg-cover bg-center ">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+            </div>
+            <!-- Content over background -->
+            <div class="relative py-10 md:py-20 px-6 md:px-12">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-6">Welcome</h2>
+                    <!-- <div class="h-1 w-24 bg-gradient-to-r from-[#ffffff] to-[rgb(255,101,101)] mb-6"></div> -->
 
-                <blockquote class="mb-4 md:mb-20">
-                    <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true"
+                    <svg class="w-8 h-8 text-heading-secondary mb-4" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
                         <path
                             d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
                     </svg>
-                    <h1 class="mt-3 text-2xl md:text-[2em] lg:text-[3em] mb-3 md:mb-1 text-white">"Where Good Food
+                    <p class="text-white/90 text-2xl md:text-3xl ">
+                        Where Good Food
                         Meets
-                        Great Company"
-                    </h1>
-                    <svg class="relative w-8 h-8 text-gray-400 dark:text-gray-600 mb-4 ml-auto" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
-                        <path
-                            d="M12 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H12V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2h-1a5.006 5.006 0 0 0-5 5v7a2 2 0 0 0 2 2ZM2 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H2V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2H5a5.006 5.006 0 0 0-5 5v7a2 2 0 0 0 2 2Z" />
-                    </svg>
-                    <span class="text-hero-text text-xl md:text-4xl"> - The Hungry Lama</span>
-                </blockquote>
+                        Great Company
+
+                    <div class="flex justify-end">
+                        <svg class="w-8 h-8 text-heading-secondary mb-4" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                            <path
+                                d="M12 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2h-1a5.006 5.006 0 0 0-5 5v8a2 2 0 0 0 2 2ZM2 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H2V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2H5a5.006 5.006 0 0 0-5 5v8a2 2 0 0 0 2 2Z" />
+                        </svg>
+                    </div>
+                    </p>
+                    <br>
+                    <p class="text-heading-secondary mb-10 text-xl md:text-2xl"> &mdash; The Hungry Lama</p>
 
 
-                <div class="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center md:justify-start">
-                    <button
-                        class="bg-button-primary text-[20px] text-white hover:bg-[#4c4c4c] px-4 py-2 rounded-[40px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 w-full sm:w-auto">The
-                        Menu</button>
-                    <button
-                        class="bg-transparent text-[20px] text-white hover:bg-[#4c4c4c] px-3 py2 rounded-[40px] shadow-[0_4px_4px_rgba(0,0,0,0.15)] shadow-gray-700/30 border-1 border-button-primary w-full sm:w-auto">Reservation</button>
+
+                    <a href="menu.html">
+                        <button
+                            class="bg-button-primary text-white hover:scale-95 hover:bg-button-hover cursor-pointer  px-6 py-3 rounded-[40px] shadow-lg transition duration-300">
+                            The Menu
+                        </button>
+                    </a>
+                    <a href="about.html">
+                        <button
+                            class="bg-transparent border-1 border-button-primary text-white hover:scale-95 hover:bg-button-hover cursor-pointer  px-6 py-3 rounded-[40px] shadow-lg transition duration-300">
+                            Our Story
+                        </button>
+                    </a>
                 </div>
             </div>
-            <div class="w-full md:w-auto">
-                <img class="rounded-bl-[123px] rounded-tr-[123px] object-contain w-full max-w-[400px] mx-auto md:rounded-tr-[123px] shadow-lg shadow-gray-700/30"
-                    src="./images/cta.jpg" alt="Restaurant ambiance">
+        </div>
+
+        <!-- SANDWICHES SECTION -->
+        <section class="mb-16">
+            <div class="flex items-center justify-center mb-8">
+                <div class="h-0.5 bg-[#f3817f] w-16 mr-4"></div>
+                <h2 class="text-2xl md:text-3xl font-bold text-heading-secondary text-center">BEST SANDWICHES IN THE WORLD</h2>
+                <div class="h-0.5 bg-[#f3817f] w-16 ml-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Sandwich Item 1 -->
+                <div
+                    class="bg-white rounded-lg border-2 border-dashed border-button-action hover:border-button-action-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/429785983_930985044972314_4779316177836784773_n.png"
+                            alt="Grilled Chicken Panini"
+                            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#383838] mb-2">Grilled Chicken Panini</h3>
+                        <p class="text-gray-600 text-sm mb-3">Mozzarella Cheese, Roasted Red Peppers, and Pesto Mayo
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#f3817f] font-bold">$13.99</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sandwich Item 2 -->
+                <div
+                    class="bg-white rounded-lg border-2 border-dashed border-button-action hover:border-button-action-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/429885557_328150343563361_2512034469401537760_n.png"
+                            alt="Chicken Salad Sandwich"
+                            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#383838] mb-2">Chicken Salad Sandwich</h3>
+                        <p class="text-gray-600 text-sm mb-3">Shredded Chicken, Grapes, Almonds, and Lettuce on
+                            Whole Wheat Bread</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#f3817f] font-bold">$12.99</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sandwich Item 3 -->
+                <div
+                    class="bg-white rounded-lg border-2 border-dashed border-button-action hover:border-button-action-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/429833760_360971990243135_5902013048052412173_n.png" alt="Buffalo Chicken Wrap"
+                            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-[#383838] mb-2">Buffalo Chicken Wrap</h3>
+                        <p class="text-gray-600 text-sm mb-3">Crispy Chicken Tenders, Mixed Greens, Blue Cheese
+                            Crumbles, and Buffalo Ranch Dressing in a Flour Tortilla</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#f3817f] font-bold">$14.99</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <a href="menu.html">
+                    <button
+                        class="bg-button-action mt-8 text-white hover:scale-95 hover:bg-button-hover cursor-pointer  w-[150px] px-8 py-3 rounded-[40px] shadow-lg transition duration-300 display block">
+                        <svg fill="#000000" width="h-48" height="48px" viewBox="-3.2 -3.2 38.40 38.40"
+                            xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"
+                                stroke="#CCCCCC" stroke-width="0.256"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path
+                                    d="M 5 5 L 5 27 L 27 27 L 27 5 Z M 7 7 L 25 7 L 25 25 L 7 25 Z M 13 10 L 13 12 L 18.5625 12 L 9.28125 21.28125 L 10.71875 22.71875 L 20 13.4375 L 20 19 L 22 19 L 22 10 Z">
+                                </path>
+                            </g>
+                        </svg>
+                        See menu
+                    </button>
+                </a>
             </div>
         </section>
-        <!-- HERO  -->
-
-        <!-- Cover photo -->
-        <div
-            class="relative w-full h-12 md:h-48 overflow-hidden mb-4 mt-4 bg-[url(images/staff_kitchen.webp)] bg-cover bg-center">
-            <div class="flex items-center mb-6">
-                <h2 class="text-3xl text-[#ffffff] font-bold mr-4 p-4">Welcome</h2>
-                <div class="flex-grow h-[2px] bg-gradient-to-r from-[#ffffff] to-[rgb(255,101,101)] relative">
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="py-8">
-            <p class="text-[#5c5c5c] max-w-2xl text-2xl ">
-                Welcome to The Hungry Lama, a family-owned restaurant that offers a unique and unforgettable
-                dining
-                experience. Our restaurant is inspired by the bold flavors and warm hospitality of South
-                America, and we
-                pride ourselves on serving fresh and locally sourced ingredients.
-            </p>
-        </div>
 
 
         <!-- Newsletter Section -->
-        <section class="container mx-auto px-4 py-16 text-center">
-            <h2 class="text-brown text-2xl font-light mb-6">Join our newsletter</h2>
-            <form class="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
+        <section class="max-w-[50%] mx-auto  py-30 text-center ">
+            <div class="flex items-center justify-center mb-8">
+                <div class="h-0.5 bg-[#f3817f] w-16 mr-4"></div>
+                <h2 class="text-2xl md:text-3xl font-bold text-heading-secondary">NEWSLETTER</h2>
+                <div class="h-0.5 bg-[#f3817f] w-16 ml-4"></div>
+            </div>
+            <form class="flex flex-col sm:flex-row justify-center  max-w-md mx-auto">
                 <input type="email" placeholder="Email address"
-                    class="px-4 py-2 border border-[#3c3c3c] rounded-md mb-2 sm:mb-0 sm:mr-2 flex-grow">
-                <button type="submit" class="bg-[#3c3c3c] text-white px-4 py-2 rounded-md">Subscribe</button>
+                    class="px-4 py-2 border black rounded-md mb-2 sm:mb-0 sm:mr-2 flex-grow placeholder-gray-400">
+                <button type="submit" class="bg-black text-white px-4 py-2 rounded-md">Subscribe</button>
             </form>
         </section>
 
@@ -170,48 +251,7 @@
 
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Load the header component
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-container').innerHTML = data;
-                    loadMobileNav(); // Load mobile nav after header is loaded
-                })
-                .catch(error => console.error('Error loading header:', error));
-        });
-
-        // Function to load mobile nav after header
-        function loadMobileNav() {
-            fetch('mobile_nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('mobile-nav-container').innerHTML = data;
-                    // Now that both components are loaded, attach event listeners
-                    setupMenuHandlers();
-                })
-                .catch(error => console.error('Error loading mobile nav:', error));
-        }
-
-        // Function to set up menu handlers after all components are loaded
-        function setupMenuHandlers() {
-            // Now these elements exist in the DOM
-            if (document.getElementById('menu-button')) {
-                document.getElementById('menu-button').addEventListener('click', function () {
-                    document.getElementById('menu').classList.remove('hidden');
-                    document.body.classList.add('overflow-hidden');
-                });
-            }
-
-            if (document.getElementById('close-menu')) {
-                document.getElementById('close-menu').addEventListener('click', function () {
-                    document.getElementById('menu').classList.add('hidden');
-                    document.body.classList.remove('overflow-hidden');
-                });
-            }
-        }
-    </script>
+    <script src="nav_script.js"></script>
 </body>
 
 </html>

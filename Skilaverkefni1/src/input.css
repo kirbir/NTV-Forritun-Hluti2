@@ -3,12 +3,23 @@
 @import "tailwindcss";
 
 @theme {
-    --color-foreground: #5a8a76;
-    --color-background: hsl(270.69deg 86.53% 9.37% / 43%);
+    --color-foreground: white;
+    --color-background: #630e15d1;
+    --color-background-alt: #3b0f29a3;
     --color-dark-bg: #2c2c2c;
     --color-cta-bg: color-mix(in oklab, hsl(191.6deg 41.4% 53.22%) 47%, transparent);
     --color-hero-text: #3E5A38;
-    --color-button-primary:#009cb3a3;
+    --color-logo-text: #cda846;
+    --color-button-primary: #009cb3a3;
+    --color-button-hover: hsl(187.71deg 100% 35.1%);
+    --color-button-action: #e66e6c;
+    --color-button-action-hover: #ff7f7c;
+    --color-border1:#677275;
+    
+    
+    --color-heading-secondary: hsl(42.06deg 85.06% 85.18% / 76%);
+    --color-heading-primary: #f5e2a7;
+    --color-paragraph: #d5d5d5;
 
     --font-heading: "Playfair Display", serif;
     --font-body: "Poppins", sans-serif;
@@ -19,23 +30,32 @@
 } */
 
 @layer base {
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-family: var(--font-heading);
     }
 
-    p, nav, a {
+    p,
+    nav,
+    a {
         font-family: var(--font-body);
+        color: antiquewhite;
     }
 
     nav {
-        font-weight:500;
-        font-size:larger;
+        font-weight: 500;
+        font-size: larger;
+        color: #99bdbce3;
     }
 
     nav ul li:not(:last-child)::after {
-        content: "•";
+        content: "|";
         margin: 0 0.5rem;
         color: #f3817f;
     }
 }
-
