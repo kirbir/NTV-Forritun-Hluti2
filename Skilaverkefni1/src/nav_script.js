@@ -35,6 +35,7 @@ function setupEventHandlers() {
         menuButton.addEventListener('click', function() {
             document.getElementById('menu').classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
+
         });
     }
 
