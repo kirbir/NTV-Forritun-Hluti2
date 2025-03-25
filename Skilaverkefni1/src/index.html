@@ -11,69 +11,69 @@
 
 
 <body class="bg-background mx-auto p-0 overflow-x-hidden flex flex-col min-h-screen min-w-[390px]">
-    <!-- Mobile Menu Injects here  -->
-    <div id="mobile-nav-container"></div>
+
     <!-- Wrapper for main content -->
     <div class="max-w-screen-lg mx-auto px-4 w-full">
-    <!-- Header Injects here  -->
+        <!-- Mobile Menu Injects here  -->
+        <div id="mobile-nav-container"></div>
+        <!-- Header Injects here  -->
         <div id="header-container"></div>
 
         <!-- Hero / Cover photo -->
-        <div class="relative w-full overflow-hidden mt-8 mb-30 rounded-lg shadow-xl">
+        <section class="relative w-full overflow-hidden mt-8 mb-30 rounded-3xl group shadow-xl">
 
             <div class="absolute inset-0 bg-[url(images/staff_kitchen.webp)] bg-cover bg-center ">
                 <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
             </div>
             <!-- Content over background -->
             <div class="relative py-10 md:py-20 px-6 md:px-12">
-                <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-6">Welcome</h2>
+                <div class="max-w-full">
+                    <h2 class="text-2xl  md:text-2xl lg:text-2xl text-white font-bold ">WELCOME</h2>
+                    <div class="w-[100%] h-[3px] bg-[#f3817f] mb-10 transform transition-all duration-300 group">
+                    </div>
                     <!-- <div class="h-1 w-24 bg-gradient-to-r from-[#ffffff] to-[rgb(255,101,101)] mb-6"></div> -->
-
-                    <svg class="w-8 h-8 text-heading-secondary mb-4" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
-                        <path
-                            d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
-                    </svg>
-                    <p class="text-white/90 text-2xl md:text-3xl ">
-                        Where Good Food
-                        Meets
-                        Great Company
-
-                    <div class="flex justify-end">
-                        <svg class="w-8 h-8 text-heading-secondary mb-4" aria-hidden="true"
+                    <div class="relative">
+                        <svg class="w-8 h-8 text-quote mb-4 float-left mr-2" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
                             <path
-                                d="M12 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2h-1a5.006 5.006 0 0 0-5 5v8a2 2 0 0 0 2 2ZM2 14h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H2V5a3 3 0 0 1 3-3h1a1 1 0 0 0 0-2H5a5.006 5.006 0 0 0-5 5v8a2 2 0 0 0 2 2Z" />
+                                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
                         </svg>
+                        <p class="text-white text-4xl/8 md:text-[40px]/relaxed font-extrabold ml-10 mr-10">
+                            Where Good Food<br>
+                            Meets
+                            Great Company
+                        </p>
+
+                        <div class="clear-both"></div>
                     </div>
-                    </p>
                     <br>
-                    <p class="text-heading-secondary mb-10 text-xl md:text-2xl"> &mdash; The Hungry Lama</p>
+                    <p class="text-quote -mt-4 ml-10 mb-10 text-xl md:text-2xl"> &mdash;The Hungry Lama</p>
 
 
-
-                    <a href="menu.html">
-                        <button
-                            class="bg-button-primary text-white hover:scale-95 hover:bg-button-hover cursor-pointer  px-6 py-3 rounded-[40px] shadow-lg transition duration-300">
-                            The Menu
-                        </button>
-                    </a>
-                    <a href="about.html">
-                        <button
-                            class="bg-transparent border-1 border-button-primary text-white hover:scale-95 hover:bg-button-hover cursor-pointer  px-6 py-3 rounded-[40px] shadow-lg transition duration-300">
-                            Our Story
-                        </button>
-                    </a>
+                    <div class="flex row gap-3 ml-10">
+                        <a href="menu.html">
+                            <button
+                                class="bg-button-primary text-white hover:scale-95 hover:bg-button-hover cursor-pointer  px-6 py-3 rounded-[40px] shadow-lg transition duration-300">
+                                The Menu
+                            </button>
+                        </a>
+                        <a href="about.html">
+                            <button
+                                class="bg-transparent border border-white text-white hover:scale-95 hover:bg-button-hover cursor-pointer px-6 py-3 rounded-[40px] shadow-white/30 transition duration-300">
+                                Our Story
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- SANDWICHES SECTION -->
         <section class="mb-16">
-            <div class="flex items-center justify-center mb-8">
+            <div class="flex items-center justify-center mb-20">
                 <div class="h-0.5 bg-[#f3817f] w-16 mr-4"></div>
-                <h2 class="text-2xl md:text-3xl font-bold text-heading-secondary text-center">BEST SANDWICHES IN THE WORLD</h2>
+                <h2 class="text-2xl md:text-3xl font-bold text-heading-secondary text-center">BEST SANDWICHES IN THE
+                    WORLD</h2>
                 <div class="h-0.5 bg-[#f3817f] w-16 ml-4"></div>
             </div>
 
@@ -120,8 +120,9 @@
                 <div
                     class="bg-white rounded-lg border-2 border-dashed border-button-action hover:border-button-action-hover">
                     <div class="h-48 overflow-hidden">
-                        <img src="images/429833760_360971990243135_5902013048052412173_n.png" alt="Buffalo Chicken Wrap"
-                            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <div class="flex items-center justify-center align-middle">
+
+                        </div>
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-lg text-[#383838] mb-2">Buffalo Chicken Wrap</h3>
@@ -135,25 +136,20 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-center">
+            <div class="flex flex-row justify-end mt-2">
                 <a href="menu.html">
-                    <button
-                        class="bg-button-action mt-8 text-white hover:scale-95 hover:bg-button-hover cursor-pointer  w-[150px] px-8 py-3 rounded-[40px] shadow-lg transition duration-300 display block">
-                        <svg fill="#000000" width="h-48" height="48px" viewBox="-3.2 -3.2 38.40 38.40"
-                            xmlns="http://www.w3.org/2000/svg" transform="rotate(0)">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"
-                                stroke="#CCCCCC" stroke-width="0.256"></g>
+                    <button class="bg-button-primary m-2 text-white hover:scale-95 hover:bg-button-hover cursor-pointer px-10 py-4 mt-2 rounded-[10px] shadow-lg transition duration-300 flex items-center gap-2">
+                        <svg fill="#ffffff" width="24" height="24" viewBox="-3.2 -3.2 38.40 38.40" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_iconCarrier">
-                                <path
-                                    d="M 5 5 L 5 27 L 27 27 L 27 5 Z M 7 7 L 25 7 L 25 25 L 7 25 Z M 13 10 L 13 12 L 18.5625 12 L 9.28125 21.28125 L 10.71875 22.71875 L 20 13.4375 L 20 19 L 22 19 L 22 10 Z">
-                                </path>
+                                <path d="M 5 5 L 5 27 L 27 27 L 27 5 Z M 7 7 L 25 7 L 25 25 L 7 25 Z M 13 10 L 13 12 L 18.5625 12 L 9.28125 21.28125 L 10.71875 22.71875 L 20 13.4375 L 20 19 L 22 19 L 22 10 Z"></path>
                             </g>
                         </svg>
                         See menu
                     </button>
                 </a>
             </div>
+
+
         </section>
 
 
@@ -166,7 +162,7 @@
             </div>
             <form class="flex flex-col sm:flex-row justify-center  max-w-md mx-auto">
                 <input type="email" placeholder="Email address"
-                    class="px-4 py-2 border black rounded-md mb-2 sm:mb-0 sm:mr-2 flex-grow placeholder-gray-400">
+                    class="px-4 py-2 border black rounded-md focus:border-button-action mb-2 sm:mb-0 sm:mr-2 flex-grow placeholder-gray-400">
                 <button type="submit" class="bg-black text-white px-4 py-2 rounded-md">Subscribe</button>
             </form>
         </section>
@@ -179,7 +175,7 @@
         <div class="display flex-row justify-between max-w-screen-lg mx-auto px-4">
 
             <!-- Social Icons  -->
-            <div class="flex justify-center gap-3  sm:justify-start mb-8">
+            <div class="flex justify-center gap-3  sm:justify-center mb-8 md:justify-start">
                 <a href="#" class="text-[#3b5998] hover:text-blue-400">
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
                         <path

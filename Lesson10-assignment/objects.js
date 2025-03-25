@@ -3,6 +3,8 @@
 // In other words, it should not be null or undefined or false
 // Return false otherwise
 const checkIfPropertyExistsAndTruthy = (a, b) => {
+
+  return a[b] ? true : false;
 };
 
 /*
@@ -18,6 +20,7 @@ myFunction({x:'a',b:'b',z:undefined},'z') Expected false
 // It should return the value of the property with key country
 
 const getCountry = (obj) => {
+  return obj['country']
 };
 
 
@@ -33,6 +36,7 @@ myFunction({ country: 'Sweden', continent: 'Europe' }) Expected 'Sweden'
 // It should return the value of the property with key 'prop-2'
 // Tip: you might want to use the square brackets to access the property
 const getWeirdKeyValue = (obj) => {
+  return obj['prop-2']
 };
 
 
@@ -48,6 +52,7 @@ myFunction({  'prop-2': 'two',  prop: 'test'}) Expected 'two'
 // It should return the value of the property with key equal to the value of the string
 
 const getPropertyByString = (obj, key) => {
+  return obj[key]
 };
 
 
@@ -64,6 +69,7 @@ myFunction({  country: 'Sweden',  continent: 'Europe'}, 'country') Expected 'Swe
 // Return false otherwise
 // NOTE: Test case 3 is a bit tricky because the value of property 'z' is undefined, but the property itself exists
 const checkIfPropertyExists = (a, b) => {
+  return b in a ? true : false 
 };
 
 
@@ -81,6 +87,11 @@ myFunction({x:'a',y:'b',z:undefined},'z') Expected true
 // Create an object that has a property with key 'key' and a value equal to the string
 // Return the object
 const createObjectWithKeyValue = (a) => {
+  obj = {
+    key: a
+  }
+
+  return obj
 };
 
 
@@ -97,6 +108,10 @@ myFunction('b') Expected {key:'b'}
 // Create an object that has a property with key 'a' and a value of 'b'
 // Return the object
 const createObjectWithKeyAndValue = (a, b) => {
+  obj = {
+    [a]:b
+  }
+  return obj
 };
 
 
@@ -113,6 +128,11 @@ myFunction('b','w') Expected {b:'w'}
 // Create an object that has properties with keys 'a' and corresponding values 'b'
 // Return the object
 const createObjectFromArrays = (a, b) => {
+const obj = {};
+for(let i=0; i< a.length; i++) {
+  obj[a[i]] = b[i];
+}
+return obj
 };
 
 /*
@@ -127,6 +147,8 @@ myFunction([1,'b'],['a',2]) Expected {1:'a',b:2}
 // Return an array with all object keys
 // Tip: Object.keys()
 const extractKeysFromObject = (a) => {
+
+  return Object.keys(a)
 };
 
 /*
@@ -142,6 +164,11 @@ myFunction({w:15,x:22,y:13}) Expected ['w','x','y']
 // Return the property 'b' of object 'a' inside the original object if it exists
 // If not, return undefined
 const getNestedProperty = (obj) => {
+    // Check if obj has property 'a' and if obj.a has property 'b'
+    if (obj.a && obj.a.b !== undefined) {
+      return obj.a.b;
+    }
+    return undefined;
 };
 
 /*
@@ -157,6 +184,12 @@ myFunction({a:{b:2}}) Expected 2
 // Return the sum of all object values
 // Tip: Object.values()
 const calcSumOfAllObjectValues = (a) => {
+  const aValues = Object.values(a)
+  let sum = 0
+  for(let i=0; i < aValues.length; i++) {
+  sum = sum + aValues[i]
+  }
+  return sum
 };
 
 /*
@@ -172,6 +205,10 @@ myFunction({w:15,x:22,y:13}) Expected 50
 // except for the property with key 'b'
 // Tip: Spread syntax
 const removePropertyB = (obj) => {
+  objectCopy = {...obj}
+  delete objectCopy.b
+  return objectCopy
+
 };
 
 /*

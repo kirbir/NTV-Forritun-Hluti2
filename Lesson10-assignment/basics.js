@@ -106,7 +106,7 @@ myFunction('gedcba') Expected 'ged'
 // Remove the last 3 characters of a
 // Return the result
 const removeLastNChractersOfString = (a) => {
-  const lastThree = a.substring(0, a.length-3)
+  const lastThree = a.substring(0, a.length - 3)
   return lastThree
 }
 
@@ -124,8 +124,7 @@ myFunction('fgedcba') Expected 'fged'
 // Otherwise, return false
 // Tip: How does the % operator work?
 const checkIfNumberIsEven = (a) => {
-  oddOrEven 
-  return
+   return a % 2 == 0
 }
 
 /*
@@ -141,6 +140,7 @@ myFunction(-111) Expected false
 // Write a function that takes two numbers (a and b) as argument
 // Return b percent of a
 const getPercentageOfNumber = (a, b) => {
+  return (b / a) * 100
 }
 
 /*
@@ -162,7 +162,7 @@ myFunction(500,25) Expected 5
 // - Power operator is either Math.pow or **
 //   - e.g. 2**2 = 4
 const useAllTheOperators = (a, b, c, d, e, f) => {
-
+return (((a + b -c) * d) /e **f) 
 }
 
 /*

@@ -180,4 +180,20 @@ const removeLastNChractersOfString = (a) => {
     return lastThree
   }
 
-console.log(removeLastNChractersOfString('hallgerdur'));
+  const checkIfNumberIsEven = (a) => {
+    return a % 2 == 0
+ }
+
+a = {
+    name: 'biggi',
+    aldur: 20
+}
+
+b = 'name'
+
+shitFunction = (a,b) => {
+    return  a[b]
+   
+}
+
+console.log('True false?: ' + shitFunction(a,b));
