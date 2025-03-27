@@ -1,7 +1,8 @@
 // Write a function that takes an array (a) and a value (n) as argument
 // Return the nth element of 'a'
 const getNthCharacterInArray = (a, n) => {
-
+const result = a[n-1]
+return result
 }
 
 
@@ -19,7 +20,7 @@ myFunction([7,2,1,6,3],1) Expected 7
 // Return the result
 // Tip: use the array prototype function slice()
 const removeFirstThreeElements = (a) => {
-
+return a.slice(3)
 }
 
 
@@ -36,7 +37,7 @@ myFunction([99,1,1]) Expected []
 // It should return the last n elements of a
 // Tip: use the array prototype function slice()
 const removeLastNElements = (a, n) => {
-
+return a.slice(-n)
 }
 
 
@@ -52,6 +53,7 @@ myFunction([1, 2, 3, 4, 5, 6, 7, 8], 3) Expected [ 6, 7, 8 ]
 // Return the number of elements in a
 // Tip: How do you find the length of an array?
 const countNumberOfElements = (a) => {
+  return a.length
 }
 
 /*
@@ -69,7 +71,8 @@ myFunction([4,3,2,1,0]) Expected 5
 // - Use .filter() to filter only negative numbers, and count them
 // - Use .forEach() to iterate through all numbers and count negatives
 const countNumberOfNegativeValues = (a) => {
-
+result= a.filter(number => number <0)
+return result.length
 }
 
 
@@ -86,7 +89,13 @@ myFunction([4,-3,2,1,0]) Expected 1
 // It should return the sum of the numbers
 // Tip: forEach, c-style loop (or even .reduce() for the brave)
 const calcSumOfArrayOfNumbers = (a) => {
+  let sum = 0
 
+    a.forEach((element) => {
+    sum += element
+});
+
+return sum
 }
 
 
@@ -103,7 +112,14 @@ myFunction([-50,0,50,200]) Expected 200
 // Tip: forEach, c-style loop (or even .reduce() for the brave)
 // to get the sum, then divide by number of elements in array
 const calcAvgOfArrayOfNumbers = (arr) => {
+  let average = 0
+  let sum = 0
 
+    arr.forEach((element) => {
+    sum += element
+});
+average = sum / arr.length  
+return average
 }
 
 
@@ -121,6 +137,8 @@ myFunction([-50,0,50,200]) Expected 50
 // E.g. 'Gunnsteinn'.length = 10
 const getLongestStringFromArray = (arr) => {
 
+  return arr.reduce((longest,current) => current.length > longest.length ? current : longest)
+
 }
 
 
@@ -136,7 +154,7 @@ myFunction(['I', 'need', 'candy']) Expected 'candy'
 // It should return false otherwise
 // Tip: STRICTLY equal, ====
 const areAllEqual = (arr) => {
-
+return arr.every(v => v === arr[0])
 }
 
 
@@ -153,6 +171,7 @@ myFunction(['10',10,10,10]) Expected false
 // It should return an array containing the values of all arrays
 // Tip: Make use of the spread syntax (...), as the parameters suggest
 const mergeAllArrays = (...arrays) => {
+  return [].concat(...arrays)
 }
 
 

@@ -228,6 +228,9 @@ myFunction({ e: 6, f: 4, b: 5, a: 3 }) Expected { e: 6, f: 4, a: 3 }
 // It should have the properties 'a', 'b', 'c', 'd', and 'e'
 // Tip: Spread syntax
 const mergeAndFixObjects = (x, y) => {
+  const {b: wrongB, ...restOfY} = y;
+
+  return {...x, ...restOfY, d:wrongB};
 };
 /*
 Test cases:
@@ -241,6 +244,14 @@ myFunction({ a: 5, b: 4 }, { c: 3, b: 1, e: 2 }) Expected { a: 5, b: 4, c: 3, e:
 // Multiply all values of 'a' by 'b'
 // Return the resulting object
 const multipyAllValuesByB = (a, b) => {
+  const results = {}
+
+  for (let item in a) {
+    results[item] =  a[item] * b
+  }
+
+  return results
+
 };
 
 /*

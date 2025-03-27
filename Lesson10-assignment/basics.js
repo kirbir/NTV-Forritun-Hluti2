@@ -33,7 +33,7 @@ strictEquality('10', '10') Expected true
 // Write a function that takes a value as argument
 // Return the type of the value
 const getTypeOfValue = (a) => {
-  return
+  return typeof a
 }
 
 /*
@@ -69,8 +69,7 @@ myFunction('gfedcba') Expected 'g'
 // Return the nth character of 'a'
 // Tip: look up the string prototype function slice() or split()
 const getNthChar = (a, n) => {
-  const firstLetter = a.slice(0, n)
-  return firstLetter
+return a[n-1]
   
 }
 
@@ -162,7 +161,7 @@ myFunction(500,25) Expected 5
 // - Power operator is either Math.pow or **
 //   - e.g. 2**2 = 4
 const useAllTheOperators = (a, b, c, d, e, f) => {
-return (((a + b -c) * d) /e **f) 
+return ((((a + b -c) * d) /e) **f) 
 }
 
 /*
