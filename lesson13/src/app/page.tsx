@@ -10,8 +10,8 @@ const Home = () => {
         <Image
           className="rounded-full mb-4 relative -top-10 border-4 border-solid border-amber-600"
           src="/birkirvPortrait.jpg"
-          width="300"
-          height="300"
+          width="200"
+          height="200"
           alt=""
         />
         <h1 className="text-3xl">{Sections[0].header.title}</h1>
@@ -74,10 +74,31 @@ const Home = () => {
           <h3 className="">Website: {Sections[1].contact.web}</h3>
         </div>
       </section>
-
-      <section className="flex flex-col p-6 bg-blue-500">
-        <h2 className="font-extrabold">Um mig</h2>
-        <p>{Sections[2].about.text}</p>
+      {/* About section*/}
+      <section className="flex flex-row gap-4 p-6 bg-blue-500/40">
+        <div className="w-[50%]">
+          <h2 className="font-extrabold">Um mig</h2>
+          <p>{Sections[2].about.text}</p>
+        </div>
+        {/* Skill section*/}
+        <div className="w-[50%]">
+          {Sections[6].skills.map((skill) => (
+            <div key={skill.skillName}>
+              <div className="flex justify-between text-sm font-medium mb-1">
+                <span className="text-lg">{skill.skillName}</span>
+                <span className="text-lg">{skill.level}%</span>
+              </div>
+              <div className="w-full bg-gray-700 rounded-full h-2.5">
+                <motion.div
+                  className="bg-blue-500 h-2.5 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${skill.level}%` }}
+                  transition={{ duration: 1 }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="flex flex-col gap-4 p-6 bg-blue-400">
@@ -117,25 +138,6 @@ const Home = () => {
           >
             {d.strengthName}
           </p>
-        ))}
-      </section>
-      {/* Skill section*/}
-      <section className="flex flex-col gap-4">
-      {Sections[6].skills.map((skill) => (
-          <div key={skill.skillName}>
-            <div className="flex justify-between text-sm font-medium mb-1">
-              <span className="text-lg">{skill.skillName}</span>
-              <span className="text-lg">{skill.level}%</span>
-            </div>
-            <div className="w-full bg-gray-700 rounded-full h-2.5">
-              <motion.div
-                className="bg-blue-500 h-2.5 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${skill.level}%` }}
-                transition={{ duration: 1 }}
-              />
-            </div>
-          </div>
         ))}
       </section>
     </div>
