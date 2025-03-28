@@ -60,19 +60,48 @@ export const Sections = [
       ],
   },
   {
+    strengths: [
+        {
+          strengthName: "Frumkvæði",
+        },
+        {
+          strengthName: "Vinalegur"
+        },
+        {
+            strengthName:"Vinna í teymi"
+        },
+        {
+            strengthName:"Húmor"
+        }
+      ],
+  },
+  {
     skills: [
         {
-          skillName: "Frumkvæði",
+          skillName: "Dart/Flutter",
+          level:100
         },
         {
-          skillName: "Vinalegur"
+          skillName: "Javascript",
+          level:80
         },
         {
-            skillName:"Vinna í teymi"
+          skillName: "React",
+          level:80
         },
         {
-            skillName:"Húmor"
-        }
+          skillName: "HTML",
+          level:100
+        },
+        {
+          skillName: "C#",
+          level:70
+        },
+        {
+          skillName: "CSS/Tailwind",
+          level:90
+        },
+
       ],
   }
   
