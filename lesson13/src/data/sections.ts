@@ -14,7 +14,7 @@ export const Sections = [
   },
   {
     about: {
-      text: "Í dag er ég að bæta við mig forritunarþekkingu á annarri önn af þremmur á forritunarbraut hjá NTV. Gervigreind, veflausnir, öpp og tölvuleikir þar er framtíðin mín.",
+      text: "Í dag er ég að bæta við mig forritunarþekkingu í námi. Ég er að ljúka annari önn af þremmur á Forritunarbraut hjá Nýja tölvu og viðskiptaskólanum. Ég hef fjölbreytta reynslu á sviði upplýsingatækni í gegnum atvinnu og áhugamál frá unga aldri. Er með góða þekkingu á: netkerfum, viðmóts hönnun og notendaupplifun, vefsíðugerð, vefforritun, netþjónum og hýsingalausnum svo einhvað sé nefnt. Áhugamál eru líkamsrækt, raftónlistargerð, kvikmyndir, andleg málefni, hönnun, forritun og hugleiðsla. ",
       title: "Um mig",
     },
   },
@@ -48,14 +48,24 @@ export const Sections = [
   {
     menntun: [
         {
-          skoli: "NTV",
+          skoli: "Nýji tölvu og viðskiptaskólinn",
           namsbraut: "Forritunarbraut Diplómanám",
           year:"2024-2025",
         },
         {
-          skoli: "NTV",
+          skoli: "Nýji tölvu og viðskiptaskólinn",
           namsbraut: "Microsoft MCSA/MCP & Comptia A++",
           year:"2006-2007",
+        },
+        {
+          skoli: "Tækniskólinn",
+          namsbraut: "Tölvufræðibraut / Upplýsingatækni",
+          year:"2000-2003",
+        },
+        {
+          skoli: "Tækniskólinn / Raunfærnimat",
+          namsbraut: "Tölvufræðibraut / Upplýsingatækni",
+          year:"2019",
         },
       ],
   },
