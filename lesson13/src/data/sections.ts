@@ -2,7 +2,7 @@ export const Sections = [
   {
     header: {
       title: "Birkir Viðar Reynisson",
-      subTitle: "Forritari",
+      subTitle: "1012842129",
     },
   },
   {
@@ -82,6 +82,18 @@ export const Sections = [
         },
         {
             strengthName:"Húmor"
+        },
+        {
+            strengthName:"Skapandi"
+        },
+        {
+            strengthName:"Andleg vitund"
+        },
+        {
+            strengthName:"Lærdómsfús"
+        },
+        {
+            strengthName:"Auðmýkt"
         }
       ],
   },

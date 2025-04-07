@@ -1,0 +1,1 @@
+export const BOOM_MESSAGE= "BOOM! YOU HAVE BOOMED"; 

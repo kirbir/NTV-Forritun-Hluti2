@@ -8,13 +8,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-geist: var(--font-geist);
-  --font-roboto: var(--font-roboto);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(0deg, rgba(33,33,33,1) 0%, rgba(18,54,53,0.969152626871061) 100%);
+    --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
@@ -23,19 +23,4 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-h1,h2 {
-  font-family: var(--font-geist);
-  foint-size:22px;
-}
-
-h3 {
-
-  font-weight: 500;
-  color:rgb(0, 40, 34)
-}
-
-p {
-  font-family: var(--font-roboto)
 }
