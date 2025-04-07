@@ -15,7 +15,7 @@ const RandomQuote = () => {
       <div className="w-200">
           <p className="w-[100%] inline-block text-3xl text-center">"{currentQuote}"</p>
       </div>
-      <button className=" bg-emerald-700 text-lg font-extrabold text-black rounded-md w-100 p-5 border-2 border-emerald-100" onClick={handleButtonClick}>
+      <button className=" bg-emerald-500 hover:bg-emerald-300 text-lg font-extrabold text-black rounded-md w-100 p-5 " onClick={handleButtonClick}>
             Click me for a random Shrek Quote!!
           </button>
     </div>
