@@ -25,9 +25,9 @@ const InputTyper = () => {
       />
       <p className="text-emerald-950 text-2xl">
         you typed:{" "}
-        <span className="text-emerald-300 font-semibold">{outputTyping}</span><br></br>
+        <span className="text-emerald-200 font-semibold">{outputTyping}</span><br></br>
         You just pressed the key:{" "}
-        <span className="text-emerald-300 font-semibold">{keyPressed}</span>
+        <span className="text-emerald-200 font-semibold">{keyPressed}</span>
       </p>
     </div>
   );
