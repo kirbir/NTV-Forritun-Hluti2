@@ -1,5 +1,6 @@
 "use client";
 import Expense from "@/types/expense";
+import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 
 export default function Home() {
@@ -105,6 +106,7 @@ export default function Home() {
         >
           ADD
         </button>
+        <Link href={"/test"}>link to test page</Link>
         <h1 className="font-bold text-3xl">TOTAL</h1>
         <h1 className="font-bold text-3xl text-emerald-500">{totalCost}</h1>
       </div>
