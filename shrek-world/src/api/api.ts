@@ -1,127 +1,31 @@
-import type { Expense } from "@/types/types";
 
-type RequestMethod = "POST" | "GET" | "DELETE";
 
-type ServerResponse<T> =
-	| {
-			success: true;
-			response: T;
-	  }
-	| {
-			success: false;
-			error: string;
-	  };
-
-type RequestParams<R extends RequestMethod> = R extends "GET"
-	? [url: string, method: R, body?: undefined]
-	: [url: string, method: R, body?: Record<string, unknown>];
-
-const requestResponse = async <T, R extends RequestMethod = RequestMethod>(
-	...args: RequestParams<R>
-) => {
-	const [url, method, body] = args;
-
-	const response = await fetch(`http://localhost:3001${url}`, {
-		method,
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: body ? JSON.stringify(body) : undefined,
-	});
-
-	if (response.status !== 200) {
-		console.log("here");
-		throw new Error(`Response status: ${response.status}`);
-	}
-
-	const json: ServerResponse<T> = await response.json();
-
-	if (!json.success) {
-		console.log("there");
-		throw new Error(json.error);
-	}
-
-	return json;
-};
-
-const getExpenses = async () => {
-	const response = await requestResponse<Expense[]>("/api/expenses", "GET");
-	console.log(response.response);
-	return response.response;
-};
-
-const createExpense = async ({
-	name,
-	cost,
-}: Pick<Expense, "cost" | "name">) => {
-	const response = await requestResponse<Expense>(
-		"/api/create-expense",
-		"POST",
-		{
-			name,
-			cost,
-		},
-	);
-	return response.response;
-};
-
-const getExpenseById = async (id: number) => {
-	const response = await requestResponse<Expense>(`/api/expense/${id}`, "GET");
-	return response.response;
-};
-
-const deleteExpenseById = async (id: number) => {
-	const response = await requestResponse<Expense[]>(
-		`/api/expense/${id}`,
-		"DELETE",
-	);
-	return response.response;
-};
-
-const api = {
-	getExpenses,
-	createExpense,
-	getExpenseById,
-	deleteExpenseById,
-};
 
 const users = [
 	{
 		id: 0,
-		name: "Gunnsteinn",
-		role: "Lead Developer",
-		bio: "Focused on scalable architecture and clean code. Leads the backend systems with a passion for performance.",
-		location: "Reykjavík, Iceland",
-		skills: ["Node.js", "TypeScript", "PostgreSQL"],
-		avatar: "https://example.com/avatars/gunnsteinn.jpg",
+		name: "Shrek",
+		bio: "Shrek is a large, green-skinned, physically intimidating ogre with a Scottish accent. In Shrek Forever After, however, it is revealed that he is much smaller than the average ogre. Even though his background is something of a mystery, according to Shrek the Musical, it is revealed that on his seventh birthday, Shrek was sent away by his parents, because it was an ogre tradition. (The original book also has his parents evicting him from their swamp.) He is seen traveling alone, being either screamed at or teased by passers-by. The only time he receives a pleasant greeting is a wave from a young Fiona, who is promptly led away by her parents. In the book, his parents threw him into a dark hole that leads to the real world.",
+		voice: "Mike Myers",
+		species: "Ogre, human briefly",
+		image: "/shrek.png"
 	},
 	{
 		id: 1,
-		name: "Darri",
-		role: "UX Designer",
-		bio: "Designs intuitive user experiences with a data-informed approach. Loves prototyping and user testing.",
-		location: "Akureyri, Iceland",
-		skills: ["Figma", "User Research", "Accessibility"],
-		avatar: "https://example.com/avatars/darri.jpg",
+		name: "Fiona",
+		bio: "Princess Fiona is a fictional character in DreamWorks Shrek franchise. One of the film series main characters, Fiona first appears in Shrek (2001) as a beautiful princess cursed to transform into an ogre at night. She is initially determined to break the enchantment by kissing a prince, only to meet and fall in love with Shrek, an ogre, instead. The character's origins and relationships with other characters are further explored in subsequent films: she introduces her new husband, Shrek, to her parents in Shrek 2 (2004); becomes a mother by Shrek the Third (2007); and is an empowered warrior in Shrek Forever After (2010), much of which takes place in an alternate reality in which Fiona and Shrek never meet.",
+		voice: "Cameron Diaz",
+		species: "Ogre, human originally",
+		image: "/fiona.png"
 	},
 	{
 		id: 2,
-		name: "Breki",
-		role: "Frontend Developer",
-		bio: "Writes clean, responsive UI with React and Tailwind. Obsessed with performance and pixel-perfect design.",
-		location: "Selfoss, Iceland",
-		skills: ["React", "Tailwind CSS", "JavaScript"],
-		avatar: "https://example.com/avatars/breki.jpg",
-	},
-	{
-		id: 3,
-		name: "Númi",
-		role: "Full-stack Developer",
-		bio: "Bridges the gap between frontend and backend. Enjoys tackling complex problems with simple solutions.",
-		location: "Kópavogur, Iceland",
-		skills: ["Vue.js", "Express", "MongoDB"],
-		avatar: "https://example.com/avatars/numi.jpg",
-	},
+		name: "Puss",
+		voice: "Antonio Banderas",
+		bio: "Puss in Boots (or simply Puss) is a main fictional character in the Shrek franchise. He made his first appearance in the film Shrek 2 (2004). He is also the title character and protagonist in the 2011 spin-off film Puss in Boots (in which his origins are described) and its 2022 sequel, Puss in Boots: The Last Wish (set sometime after Shrek Forever After). Puss also appears in the Netflix television series centered on him, The Adventures of Puss in Boots (2015–2018).",
+		species: "Cat",
+		image: "/puss.png"
+	}
 ];
 
 export type User = (typeof users)[number];
@@ -142,14 +46,15 @@ export const fakeGetAllUsers = async (): Promise<User[]> => {
 };
 
 export const fakeGetUserFunction = async (
-	id: number,
+	name: string,
 ): Promise<User | string> => {
 	await sleep(1000);
-	const user = users.find((user) => user.id === id);
+	const user = users.find((user) => 
+		user.name.toLowerCase() === name.toLowerCase()
+	);
 	if (user) {
 		return user;
 	}
 	return "No user";
 };
 
-export default api;
