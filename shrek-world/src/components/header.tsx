@@ -17,8 +17,8 @@ const Header = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center">
-            <Link href="/" className="text-4xl font-bold text-green-800 font-chicle">
-              Shreks World
+            <Link href="/" className="text-[4rem] font-bold text-green-800 font-chicle">
+              Shrek&apos;s World
             </Link>
           </div>
           
