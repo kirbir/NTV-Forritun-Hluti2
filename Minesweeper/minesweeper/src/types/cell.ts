@@ -1,10 +1,11 @@
 type CellType =  {
     row: number;
-    cell: number;
+    col: number;
     hasBomb:boolean;
     isRevealed: boolean;
     isFlagged:boolean;
     neighborBombs: number; 
+    disarmed:boolean;
 }
 
 export default CellType;

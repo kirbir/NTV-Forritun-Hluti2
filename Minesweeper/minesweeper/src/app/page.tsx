@@ -1,194 +1,268 @@
 "use client";
 
-import { useState } from "react";
-import  CellType from "@/types/cell";
-
-const BOARD_SIZE = 10;
-const BOMB_COUNT = 10;
-
-
-const recursivelyCountToZero = (startingNumber: number) => {
-  console.log(startingNumber);
-  if (startingNumber == 0) {
-    return;
-  }
-
-  return recursivelyCountToZero(startingNumber -1);
-};
-
-// Generate bomb positions randomly
-const generateBombs = (size: number, count: number) => {
-  const bombs: number[] = [];
-  while (bombs.length < count) {
-
-    const position = Math.floor(Math.random() * size * size);
-    if (!bombs.includes(position)) {
-      bombs.push(position);
-    }
-  }
-
-  return bombs;
-};
-
-const generateCells = (): CellType[] => {
-  const cells: CellType[] = [];
-  for (let row = 0; row < BOARD_SIZE; row++) {
-    for (let col = 0; col < BOARD_SIZE; col++) {
-      const cell: CellType = {
-        row: row,
-        cell: col,
-        hasBomb: false,      // Initially, no bombs
-        isRevealed: false,   // Initially, not revealed
-        isFlagged: false,    // Initially, not flagged
-        neighborBombs: 0     // Initially, no neighboring bombs
-      };
-      cells.push(cell);
-    }
-  }
-  return cells;
-};
-
-
-
-
-
-
-
-
+import { useEffect, useRef, useState } from "react";
+import CellType from "@/types/cell";
+import StopWatch from "@/components/Stopwatch";
+import LEVELS from "@/constants/settings";
+import { Cell } from "@/components/ui/Cell";
+import Confetti from "@/components/ui/Confetti";
 
 const MineSweeper = () => {
-  const [gameBoard, setGameBoard] = useState<CellType[][]>([]);
-  const [bombPositions, setBombPositions] = useState<number[]>([]);
-  const [gameEnded, setGameEnded] = useState(true);
+  // 1. Game Level and Constants
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [gameLevel, setGameLevel] = useState<keyof typeof LEVELS>("NORMAL");
+  const { BOARD_SIZE, BOMB_COUNT, FLAG_COUNT } = LEVELS[gameLevel];
+  const [isConfettiVisible, setIsConfettiVisible] = useState(false);
 
-  const initGame = () => {
-    recursivelyCountToZero(2);
+  function generateCells(): CellType[][] {
+    const board: CellType[][] = [];
+
+    // Create empty board
+    for (let row = 0; row < BOARD_SIZE; row++) {
+      const currentRow: CellType[] = [];
+      for (let col = 0; col < BOARD_SIZE; col++) {
+        currentRow.push({
+          row,
+          col,
+          hasBomb: false,
+          isRevealed: false,
+          isFlagged: false,
+          neighborBombs: 0,
+          disarmed: false,
+        });
+      }
+      board.push(currentRow);
+    }
+
+    // Place bombs
+    let bombsPlaced = 0;
+    while (bombsPlaced < BOMB_COUNT) {
+      const randomRow = Math.floor(Math.random() * BOARD_SIZE);
+      const randomCol = Math.floor(Math.random() * BOARD_SIZE);
+      if (!board[randomRow][randomCol].hasBomb) {
+        board[randomRow][randomCol].hasBomb = true;
+        bombsPlaced++;
+      }
+    }
+
+    // Calculate neighbor bombs
+    for (let row = 0; row < BOARD_SIZE; row++) {
+      for (let col = 0; col < BOARD_SIZE; col++) {
+        if (!board[row][col].hasBomb) {
+          let bombCount = 0;
+          for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+              const newRow = row + i;
+              const newCol = col + j;
+              if (
+                newRow >= 0 &&
+                newRow < BOARD_SIZE &&
+                newCol >= 0 &&
+                newCol < BOARD_SIZE &&
+                board[newRow][newCol].hasBomb
+              ) {
+                bombCount++;
+              }
+            }
+          }
+          board[row][col].neighborBombs = bombCount;
+        }
+      }
+    }
+    return board;
+  }
+
+  // 3. State Declarations (after helper functions)
+  const [gameBoard, setGameBoard] = useState<CellType[][]>(generateCells);
+  const [gameEnded, setGameEnded] = useState(false);
+  const [gameStatus, setGameStatus] = useState("");
+  const [totalDisarmed, setTotalDisarmed] = useState(0);
+  const [availableFlags, setAvailableFlags] = useState<number>(10);
+  const stopwatchRef = useRef<{ start: () => void; stop: () => void }>(null);
+
+  // 4. Game Logic Functions
+  function revealAllBombs() {
+    setGameBoard((prev) => {
+      const newBoard = prev.map((row) => [...row]);
+      for (let row = 0; row < BOARD_SIZE; row++) {
+        for (let col = 0; col < BOARD_SIZE; col++) {
+          if (newBoard[row][col].hasBomb) {
+            newBoard[row][col].isRevealed = true;
+          }
+        }
+      }
+      console.log(`Total disarmed is: ${totalDisarmed}`);
+      return newBoard;
+    });
+  }
+
+  useEffect(() => {
+    const countDisarmedBombs = () => {
+      let disarmedCount = 0;
+      const currentBoardSize = LEVELS[gameLevel].BOARD_SIZE;
+      for (let row = 0; row < currentBoardSize; row++) {
+        for (let col = 0; col < currentBoardSize; col++) {
+          if (gameBoard[row][col].hasBomb && gameBoard[row][col].isFlagged) {
+            disarmedCount++;
+
+            console.log(`counting disarmed is now: ${disarmedCount}`);
+          }
+        }
+      }
+      return disarmedCount;
+    };
+
+    const newCount = countDisarmedBombs();
+    console.log(`Newcount var is: ${newCount}`);
+    const currentBombCount = LEVELS[gameLevel].BOMB_COUNT;
+    setTotalDisarmed(newCount);
+    console.log(`totalDisarmed is: ${totalDisarmed}`);
+
+    if (newCount === currentBombCount && !gameEnded) {
+      endGame(newCount);
+    }
+  }, [gameBoard, endGame, gameLevel]);
+
+
+  function endGame(currentCount = totalDisarmed) {
     setGameEnded(true);
+    stopwatchRef.current?.stop();
+    revealAllBombs();
 
-    setBombPositions(generateBombs(BOARD_SIZE, BOMB_COUNT));
-
-    const cellArray = generateCells();
-
-    setGameBoard(cellArray);
-    console.log(cellArray);
-    console.log(bombPositions);
-  };
-
-
-  const revealCell = (colIndex: number, rowIndex: number) => {
-    const linearIndex = rowIndex * BOARD_SIZE + colIndex;
-    console.log(colIndex, rowIndex);
-    
-    if (bombPositions.includes(linearIndex)) {
-      endGame(false);
-    }
-  };
-
-  const Cell = (flag:boolean) => {
-    if (flag) {
-      return <div className="bg-red-300 h-[40px] w-[40px]" />;
+    if (currentCount === BOMB_COUNT) {
+      setIsConfettiVisible(true);
+      setGameStatus(
+        `😎YOU WIN!! You disarmed ALL bombs: ${currentCount} out of ${BOMB_COUNT}😎`
+      );
     } else {
-    return <div className="bg-gray-400 h-[40px] w-[40px]" />;
+      setGameStatus(
+        `Game Over!! You disarmed ${totalDisarmed} out of ${BOMB_COUNT}`
+      );
     }
-  };
+  }
 
-  const CellColumn = ({
-    row,
-    rowIndex,
-  }: {
-    row: CellType[];
-    rowIndex: number;
-  }) => (
-    <div className="gap-4 flex flex-row">
-      {row.map((cell, colIndex) => (
-        <button
-          key={`${rowIndex}, ${colIndex.toString()}`}
-          type="button"
-          onClick={() => {
-            revealCell(colIndex, rowIndex);
-            console.log(`bombs around the cell: ${countBombsAround(rowIndex, colIndex)}`);
-          }}
-          onContextMenu={(e) => {
-            e.preventDefault();
-            toggleFlag(colIndex, rowIndex);
-          }}
-        >
-          <Cell cell={cell} />
-        </button>
-      ))}
-    </div>
-  );
+  function toggleFlag(colIndex: number, rowIndex: number) {
+    if (gameEnded) return;
 
-  // Count bombs around a cell
-  const countBombsAround = (row: number, col: number) => {
-     let count  =  0;
+    const newBoard = gameBoard.map((row) => [...row]);
+    const cell = newBoard[rowIndex][colIndex];
 
-    for (let r = row - 1; r <= row + 1; r++) {
-      for (let c = col - 1; c <= col + 1; c++) {
-        if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE) {
+    if (cell) {
+      if (!cell.isFlagged && availableFlags === 0) {
+        return;
+      }
 
-          const index = r * BOARD_SIZE + c;
-          if (bombPositions.includes(index)) {
-            count++;
+      cell.isFlagged = !cell.isFlagged;
+      setGameBoard(newBoard);
+
+      if (cell.isFlagged) {
+        setAvailableFlags((prev) => (prev - 1) as typeof FLAG_COUNT);
+      } else {
+        setAvailableFlags((prev) => (prev + 1) as typeof FLAG_COUNT);
+      }
+    }
+  }
+
+  function revealCell(colIndex: number, rowIndex: number) {
+    if (
+      gameEnded ||
+      gameBoard[rowIndex][colIndex].isRevealed ||
+      gameBoard[rowIndex][colIndex].isFlagged
+    ) {
+      return;
+    }
+
+    const newBoard = gameBoard.map((row) => [...row]);
+
+    if (newBoard[rowIndex][colIndex].hasBomb) {
+      endGame();
+      return;
+    }
+
+    function revealAdjacentCells(row: number, col: number) {
+      if (row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE) {
+        return;
+      }
+
+      const cell = newBoard[row][col];
+      if (cell.isRevealed || cell.isFlagged || cell.hasBomb) {
+        return;
+      }
+
+      cell.isRevealed = true;
+
+      if (cell.neighborBombs === 0) {
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
+            if (i === 0 && j === 0) continue;
+            revealAdjacentCells(row + i, col + j);
           }
         }
       }
     }
 
-    return count;
-  };
-
-  // "Recursively" reveal all empty cells around a cell with no bombs - see towards the end of recording for explanation
-  const revealEmptyCells = (row, col) => {};
-
-  // Toggle flagging on a cell
-  const toggleFlag = (colIndex: number, rowIndex: number) => {
-    const newBoard = [...gameBoard]; // Create a copy of the board
-    const position = rowIndex * BOARD_SIZE + colIndex; // Calculate the position in the flat array
-    const cell = newBoard[position]; // Access the specific cell
-
-    if (cell) { // Check if the cell is defined
-      cell.isFlagged = !cell.isFlagged; // Toggle the flag state
-      setGameBoard(newBoard); // Update the game board state
-    } else {
-      console.error("Cell not found at position:", position);
-    }
-  };
-
-  // Reveal all bombs when the game is over
-  const revealAllBombs = () => {};
-
-  // Check if the player has won
-  const checkWinCondition = () => {};
-
-  // Reset the game
-  function resetGame() {
-    initGame();
+    revealAdjacentCells(rowIndex, colIndex);
+    setGameBoard(newBoard);
   }
 
-  // End the game (either won or lost)
-  const endGame = (won: boolean) => {
-    setGameEnded(true);
-    if (won) {
-      alert("Congratulations, You Win!");
-    } else {
-      alert("Game Over! You clicked on a bomb!");
-      revealAllBombs();
-    }
-  };
+  function initGame() {
+    const newBoard = generateCells();
+    setGameBoard(newBoard);
+    setGameEnded(false);
+    setGameStatus("");
+    setTotalDisarmed(0);
+    setIsConfettiVisible(false);
+    setAvailableFlags(FLAG_COUNT);
+    stopwatchRef.current?.start();
+  }
 
   return (
-    <div className="p-20">
-      <button
-        type="button"
-        onClick={initGame}
-        className="border border-red-600 p-4 rounded"
-      >
-        Initialize board
-      </button>
-      <div className="gap-4 flex flex-col">
+    <div className="flex flex-col p-20 justify-center items-center">
+      <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500 bg-[length:200%] animate-[gradientMove_6s_ease-in-out_infinite]">
+        MEINE-SWEEPAH
+      </h1>
+      <div className="border-2 p-4 m-2 to-red-950 border-dashed">
+        <StopWatch ref={stopwatchRef} />
+      </div>
+      <div>
+        <h1 className="animate-spin"></h1>
+        <h1 className="m-2 text-3xl animate-pulse ease-in-out transition-opacity transform-fill fill-amber-300">{gameStatus}</h1>
+      </div>
+      <div className="flex flex-row p-5 gap-4 items-center">
+        <button
+          type="button"
+          onClick={initGame}
+          className=" bg-red-600 hover:border-red-100 hover:border-2 p-4 rounded cursor-crosshair"
+        >
+          New Game
+        </button>
+        <p className="text-2xl">🚩</p>
+        <p className="border-2 border-red-600 p-3 rounded">
+          {availableFlags}
+        </p>
+      </div>
+
+      {isConfettiVisible && <Confetti />}
+
+      {/* render the gameBoard */} 
+      <div className="gap-0 flex flex-col ">
         {gameBoard.map((row, rowIndex) => (
-          <CellColumn row={row} rowIndex={rowIndex} key={rowIndex.toString()} />
+          <div key={rowIndex} className="gap-0 flex flex-row ">
+            {row.map((cell, colIndex) => (
+              <button
+              className="hover:cursor-cell"
+                key={`${rowIndex},${colIndex}`}
+                type="button"
+                onClick={() => revealCell(colIndex, rowIndex)}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  toggleFlag(colIndex, rowIndex);
+                }}
+              >
+                <Cell cell={cell} gameEnded={gameEnded} />
+              </button>
+            ))}
+          </div>
         ))}
       </div>
     </div>
