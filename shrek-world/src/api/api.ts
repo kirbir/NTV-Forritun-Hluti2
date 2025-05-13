@@ -1,7 +1,7 @@
 
 
 
-const users = [
+const characters = [
 	{
 		id: 0,
 		name: "Shrek",
@@ -28,7 +28,7 @@ const users = [
 	}
 ];
 
-export type User = (typeof users)[number];
+export type Character = (typeof characters)[number];
 
 const sleep = async (durationInMs: number) => {
 	const coinFlipPromise = new Promise((resolve) => {
@@ -40,20 +40,20 @@ const sleep = async (durationInMs: number) => {
 	console.log("done sleeping");
 };
 
-export const fakeGetAllUsers = async (): Promise<User[]> => {
+export const fakeGetAllUsers = async (): Promise<Character[]> => {
 	await sleep(1000);
-	return users;
+	return characters;
 };
 
 export const fakeGetUserFunction = async (
 	name: string,
-): Promise<User | string> => {
+): Promise<Character | string> => {
 	await sleep(1000);
-	const user = users.find((user) => 
-		user.name.toLowerCase() === name.toLowerCase()
+	const character = characters.find((Character) => 
+		Character.name.toLowerCase() === name.toLowerCase()
 	);
-	if (user) {
-		return user;
+	if (character) {
+		return character;
 	}
 	return "No user";
 };
