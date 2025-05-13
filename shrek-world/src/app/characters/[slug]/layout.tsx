@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "Shrek Characters",
