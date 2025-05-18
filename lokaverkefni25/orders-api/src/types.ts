@@ -15,7 +15,7 @@ export type Drink = Provision & {
 	brewer: string;
 };
 
-export type Order = {
+export type OrderData = {
 	id: number;
 	email: string;
 	dish: Dish;

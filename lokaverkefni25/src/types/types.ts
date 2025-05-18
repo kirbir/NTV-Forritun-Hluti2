@@ -1,4 +1,4 @@
-export type Order = {
+export type OrderData = {
   id: number,
   email: string,
   count: number,

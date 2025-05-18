@@ -52,7 +52,7 @@ export default function Home() {
     getOrders();
     getRandomDIsh();
     getCocktails();
-  },[getOrders,    getRandomDIsh]);
+  },[getOrders,    getRandomDIsh, getCocktails]);
 
   const handleClick = () => {
     
@@ -63,38 +63,42 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col gap-5 justify-center items-center mt-20 border border-red-400">
-      <div className="w-auto h-auto">
+    <div className="flex w-full mx-auto px-10">
+      {/* Left side - Swiper */}
+      <div className="w-1/2">
         <SwiperComponent />
       </div>
-      <button onClick={handleClick}>PUSH ME</button>
-      <div>
-        {orders && orders.length > 0 ? (
-       <div>
-         <p>{orders?.[0].email }</p>
-         <p>{randomDish?.strMeal}</p>
-         <p>Cocktails</p>
-         <p>Name: {cocktails?.strDrink}</p>
-         <img src={cocktails?.strDrinkThumb} alt="cocktail api image" />
-       </div>
-        ) : (
-        <p>Loading orders...</p>
-       )}
-        {/* {showOrders &&
-          orders?.map((orderItem,index) => (
-            <div key={orderItem[index].id}>
-              <p>{orderItem.}</p>
-              <br></br>
-              {user.age}
-              <br />
+
+      {/* Right side - Content */}
+      <div className="w-1/2 p-4 border-l border-red-500">
+        <div className="mb-4">
+          {orders && orders.length > 0 ? (
+            <div>
+              <p>{orders?.[0].email}</p>
+    ðas
+    
+              <p>Cocktails</p>
+              <p>Name: {cocktails?.strDrink}</p>
+              <img src={cocktails?.strDrinkThumb} alt="cocktail api image" />
             </div>
-          ))} */}
+          ) : (
+            <p>Loading orders...</p>
+          )}
+        </div>
+
+        <button
+          onClick={handleClick}
+          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >
+          PUSH ME
+        </button>
+        <input
+          placeholder="Input e-mail address"
+          onChange={() => {}}
+          type="text"
+          className="w-full p-2 border rounded mt-4"
+        />
       </div>
-      <input
-        placeholder={'Input e-mail address'}
-        onChange={() => {}}
-        type="text"
-      />
     </div>
   );
 }

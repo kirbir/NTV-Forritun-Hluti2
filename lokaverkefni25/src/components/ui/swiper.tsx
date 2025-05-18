@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 const SwiperComponent = () => {
   return (
-    <div className="w-[500px]">
+    <div className="">
         <Swiper
           setWrapperSize={true}
           autoplay={{

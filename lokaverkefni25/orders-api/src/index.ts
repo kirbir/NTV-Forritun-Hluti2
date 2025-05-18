@@ -1,11 +1,11 @@
 import express, { type Express, type Request } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import type { Order } from "./types";
+import type { OrderData } from "./types";
 
 // Initialize default orders and id
 let nextId = 2;
-let orders: Order[] = [
+let orders: OrderData[] = [
   {
     id: 1,
     drinks: [
@@ -54,7 +54,7 @@ api.get("/api/orders", (_, res) => {
 });
 
 // Validation function for order - note that the object validation might not be entirely accurate and might need some modification
-const isOrder = (body: Order | Record<string, unknown>): body is Order => {
+const isOrder = (body: OrderData | Record<string, unknown>): body is OrderData => {
   if (
     "name" in body &&
     typeof body.name === "string" &&
@@ -69,7 +69,7 @@ const isOrder = (body: Order | Record<string, unknown>): body is Order => {
 };
 
 // POST endpoint for creating an order
-api.post("/api/create-order", (req: Request<Order>, res) => {
+api.post("/api/create-order", (req: Request<OrderData>, res) => {
   const emailAlreadyTaken = () => {
     if (!req.body.email) {
       return false;
@@ -94,7 +94,7 @@ api.post("/api/create-order", (req: Request<Order>, res) => {
     return;
   }
 
-  const order: Order = {
+  const order:  OrderData = {
     ...req.body,
     id: nextId,
   };
@@ -109,7 +109,7 @@ api.post("/api/create-order", (req: Request<Order>, res) => {
 });
 
 // PUT endpoint to update orders
-api.put("/api/update-order", (req: Request<Order>, res) => {
+api.put("/api/update-order", (req: Request<OrderData>, res) => {
   const emailDoesNotExist = () => {
     if (!req.body.email) {
       return false;

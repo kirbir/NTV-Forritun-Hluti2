@@ -21,12 +21,20 @@ export default function Header() {
     <header className="container w-screen h-[80px] max-w-6xl flex flex-col items-center justify-evenly mx-auto px-4">
       <nav className="flex flex-row mx-auto px-6 py-4 gap-10 border-red-400 border">
           <Link
-            href="/order"
+            href="/"
             className={`${isActive(
               "/"
             )} transition-colors duration-200 text-2xl`}
           >
             Home
+          </Link>
+          <Link
+            href="/order"
+            className={`${isActive(
+              "/order"
+            )} transition-colors duration-200 text-2xl`}
+          >
+            Order
           </Link>
           <Link
             href="/"
