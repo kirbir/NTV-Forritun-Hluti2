@@ -5,7 +5,7 @@ const Logo = () => (
   <div className='h-[50px]'>
     <Image
       alt="logo"
-      width={50}
+      width={200}
       height={50}
       src="/lil_bits_logo_ landscape.png"
    

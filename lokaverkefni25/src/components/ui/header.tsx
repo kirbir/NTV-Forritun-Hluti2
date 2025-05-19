@@ -18,7 +18,7 @@ export default function Header() {
   };
 
   return (
-    <header className="container w-screen h-[80px] max-w-6xl flex flex-col items-center justify-evenly mx-auto px-4">
+    <header className="container w-screen h-[80px] max-w-6xl flex flex-col items-center justify-evenly mx-auto px-4 mb-6">
       <nav className="flex flex-row mx-auto px-6 py-4 gap-10 border-red-400 border">
           <Link
             href="/"
