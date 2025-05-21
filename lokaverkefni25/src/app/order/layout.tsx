@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import OrderStatus from "@/components/order-status";
+import Sidebar from "@/components/sidebar";
 import { OrderProvider } from "../providers";
 
 export const metadata: Metadata = {
@@ -7,24 +7,21 @@ export const metadata: Metadata = {
   description: "Lil' bits",
 };
 
-export default function RootLayout({
+export default function OrderLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={``}
-      >
-
-        <OrderProvider>
-        <div className="flex flex-row w-full justify-center items-center">
-            <div className="w-[20%] border border-green-500"><OrderStatus/></div>
-            <div className="w-[50%] border border-red-500">{children}</div>
+    <OrderProvider>
+      <div className="flex flex-col md:flex-row md:justify-center md:items-start pt-5 w-full justify-start items-center">
+        <div className="w-[100%] md:w-[20%] border border-gray-300 rounded-lg bg-white drop-shadow-sm p-4">
+          <Sidebar/>
         </div>
-        </OrderProvider>
-      </body>
-    </html>
+        <div className="w-[100%] md:w-[50%] ">
+          {children}
+        </div>
+      </div>
+    </OrderProvider>
   );
 }

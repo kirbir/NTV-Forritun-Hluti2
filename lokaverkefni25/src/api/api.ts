@@ -54,7 +54,7 @@ const getRandomDish = async () => {
 const getCocktails = async () => {
     const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail');
     const data = await response.json();
-    return data.drinks[0]; 
+    return data.drinks; 
 }
 
 const getOrders = async () => {

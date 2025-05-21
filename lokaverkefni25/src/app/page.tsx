@@ -4,7 +4,7 @@ import SwiperComponent from "@/components/ui/swiper";
 import Image from "next/image";
 import { useEffect, useState, useRef, useCallback } from "react";
 import api from "@/api/api";
-import { Cocktails,Dish, Order } from "@/types/types";
+import type { Cocktails, Dish, Order } from "@/types/types";
 
 
 export default function Home() {
@@ -51,7 +51,6 @@ export default function Home() {
     console.log('running useEffect for getOrders')
     getOrders();
     getRandomDIsh();
-    getCocktails();
   },[getOrders,    getRandomDIsh, getCocktails]);
 
   const handleClick = () => {
@@ -59,7 +58,6 @@ export default function Home() {
     setShowOrders(true);
     getOrders();
     getRandomDIsh();
-    getCocktails();
   };
 
   return (

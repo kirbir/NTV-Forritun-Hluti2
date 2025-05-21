@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F6FEEC;
   --foreground: #171717;
+  --button-primary: #3E6053;
 }
 
 @theme inline {
@@ -12,9 +13,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
+.button-primary {
+  @apply bg-[var(--button-primary)];
+}
+
+
+
+@theme {
+    --color-button-primary: #3E6053;
+    --color-button-delete: #C16757;
+  }
+
+
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
+    --background: F6FEEC;
     --foreground: #ededed;
   }
 }
