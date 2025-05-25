@@ -1,13 +1,12 @@
 "use client";
-import { OrderContext, OrderStage } from "../app/providers";
-import { useContext } from "react";
+import { OrderStage, useOrder } from "../app/providers";
 import ActionButton from "./ui/action-button";
 import FilterCocktails from "./filter-cocktails";
 
 const Sidebar = () => {
   // Get global variables from context component.
   const { currentOrder, setCurrentOrder, currentStage, setCurrentStage } =
-    useContext(OrderContext);
+    useOrder();
 
   return (
     <div>
@@ -16,7 +15,7 @@ const Sidebar = () => {
       {currentStage === OrderStage.SELECTING_DISH && (
         <ActionButton
           stage={OrderStage.SELECTING_COCKTAILS}
-          variant={'navigation'}
+          variant={"navigation"}
           text="Select Cocktails"
         />
       )}
@@ -26,7 +25,7 @@ const Sidebar = () => {
           <FilterCocktails />
           <ActionButton
             stage={OrderStage.CONFIRM_ORDER}
-            variant={'navigation'}
+            variant={"navigation"}
             text="Confirm Order"
           />
         </div>
@@ -35,7 +34,7 @@ const Sidebar = () => {
       {currentStage === OrderStage.CONFIRM_ORDER && (
         <ActionButton
           stage={OrderStage.RECEIPT_SCREEN}
-          variant={'navigation'}
+          variant={"navigation"}
           text="Confirm and get Receipt"
         />
       )}

@@ -1,6 +1,7 @@
 import type { Cocktails } from "@/types/types";
 import api from "@/api/api";
 import { useCallback, useEffect, useState } from "react";
+import { useOrder } from "../app/providers";
 import SelectionIcon from "./ui/icons/selection-icon";
 
 type SelectedCocktail = {
@@ -9,6 +10,8 @@ type SelectedCocktail = {
 };
 
 const CocktailSelect = () => {
+  const { searchValue, setSearchValue, searchIngredient, setSearchIngredient } =
+    useOrder();
   const [cocktails, setCocktails] = useState<Cocktails[] | null>([]);
   const [selectedCocktails, setSelectedCocktails] = useState<
     Record<string, SelectedCocktail>
@@ -18,7 +21,6 @@ const CocktailSelect = () => {
     try {
       const cocktailsResponse = await api.getCocktails();
       setCocktails(cocktailsResponse);
-      console.log("Cocktails API Response:", cocktailsResponse);
     } catch (error) {
       console.error("Error in Cocktails API call: ", error);
       window.alert(error);
@@ -28,6 +30,7 @@ const CocktailSelect = () => {
   useEffect(() => {
     console.log("running useEffect for getCocktails");
     getCocktails();
+    console.log("Local cocktails array:", cocktails);
   }, []);
 
   const handleCocktailSelect = (cocktail: Cocktails) => {
@@ -39,6 +42,21 @@ const CocktailSelect = () => {
       },
     }));
   };
+
+  const filterCocktails = cocktails?.filter(cocktail => {
+    // Name filter
+    const nameMatch = searchValue === "" || 
+      cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase());
+    
+    // Ingredient filter - 
+    const ingredientMatch = searchIngredient === "" || 
+      Array.from({ length: 15 }, (_, i) => cocktail[`strIngredient${i + 1}`])
+        .some(ingredient => 
+          ingredient?.toLowerCase().includes(searchIngredient.toLowerCase())
+        );
+    
+    return nameMatch && ingredientMatch;
+  }) ?? [];
 
   const handleQuantityChange = (cocktailId: string, newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -56,7 +74,7 @@ const CocktailSelect = () => {
     <div>
       {cocktails && cocktails.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 pl-5">
-          {cocktails.map((cocktail) => (
+          {filterCocktails?.map((cocktail) => (
             <div
               key={cocktail.idDrink}
               className="relative max-w-sm border border-gray-300 bg-white rounded-lg shadow-md p-4 shadow-black/20"
@@ -69,6 +87,17 @@ const CocktailSelect = () => {
               <h3 className="mt-2 text-sm font-semibold">
                 {cocktail.strDrink}
               </h3>
+              <div>
+                  <p className="font-light text-sm">
+                    {Array.from(
+                      { length: 15 },
+                      (_, i) =>
+                        cocktail[`strIngredient${i + 1}`] && (
+                          <p key={i}>{cocktail[`strIngredient${i + 1}`]}</p>
+                        )
+                    )}
+                  </p>
+                </div>
 
               <div className="flex items-center justify-between mt-4">
                 {/* Selection Icon on the left */}

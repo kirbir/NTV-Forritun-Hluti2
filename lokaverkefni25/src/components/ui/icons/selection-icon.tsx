@@ -35,7 +35,7 @@ const SelectionIcon = ({isSelected}: SelectionIconProps) => {
           fill=""
         />
       </g>
-        </svg><button className="bg-button-delete text-white  px-4 rounded-sm">Remove</button>
+        </svg><span className="bg-button-delete text-white  px-4 rounded-sm">Remove</span>
     </div>
    : 
     <div className="flex flex-row space-x-1">
@@ -68,7 +68,7 @@ const SelectionIcon = ({isSelected}: SelectionIconProps) => {
         />
       </g>
         </svg>
-        <button className="bg-button-primary text-white  px-4 rounded-sm">Order</button>
+        <span className="bg-button-primary text-white  px-4 rounded-sm">Order</span>
     </div>
   );
 };

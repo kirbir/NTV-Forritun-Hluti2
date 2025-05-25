@@ -10,16 +10,22 @@ export enum OrderStage {
   CONFIRMATION = "CONFIRMATION",
 }
 
-interface OrderContextType {
+type OrderContextType = {
   currentOrder: Order | null;
   setCurrentOrder: (order: Order | null) => void;
   currentStage: OrderStage;
   setCurrentStage: (stage: OrderStage) => void;
+  searchValue: string;
+  setSearchValue: (search: string) => void;
+  searchIngredient: string;
+  setSearchIngredient: (search: string) => void;
 }
 
 export const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export function OrderProvider({ children }: { children: ReactNode }) {
+  const [searchValue, setSearchValue] = useState("");
+  const [searchIngredient, setSearchIngredient] = useState("");
   const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
   const [currentStage, setCurrentStage] = useState<OrderStage>(
     OrderStage.SELECTING_DISH
@@ -27,7 +33,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
 
   return (
     <OrderContext.Provider
-      value={{ currentOrder, setCurrentOrder, currentStage, setCurrentStage }}
+      value={{ currentOrder, setCurrentOrder, currentStage, setCurrentStage, searchValue, setSearchValue, searchIngredient,setSearchIngredient }}
     >
       {children}
     </OrderContext.Provider>

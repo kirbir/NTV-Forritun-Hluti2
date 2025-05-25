@@ -37,4 +37,6 @@ export type Cocktails = {
     idDrink: string,
     strDrink: string,
     strDrinkThumb: string
+    [key: `strIngredient${number}`]: string | null;
+    ingredients: string[];
 }
