@@ -1,8 +1,9 @@
 import type { Cocktails } from "@/types/types";
 import api from "@/api/api";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useOrder } from "../app/providers";
 import SelectionIcon from "./ui/icons/selection-icon";
+import { OrderContext } from "../app/providers";
 
 type SelectedCocktail = {
   quantity: number;
@@ -16,6 +17,39 @@ const CocktailSelect = () => {
   const [selectedCocktails, setSelectedCocktails] = useState<
     Record<string, SelectedCocktail>
   >({});
+  const { currentOrder, setCurrentOrder } = useContext(OrderContext)!;
+
+  const updateOrderWithDrinks = useCallback((
+    updatedSelectedCocktails: Record<string, SelectedCocktail>
+  ) => {
+    if (!currentOrder) return;
+
+    const selectedDrinks = Object.entries(updatedSelectedCocktails)
+      .filter(([_, value]) => value.isSelected)
+      .map(([id, value]) => {
+        const cocktail = cocktails?.find((c) => c.idDrink === id);
+        if (!cocktail) return null;
+
+        return {
+          id: cocktail.idDrink,
+          name: cocktail.strDrink,
+          imageSource: cocktail.strDrinkThumb,
+          price: 0,
+          quantity: value.quantity,
+        };
+      })
+      .filter((drink): drink is NonNullable<typeof drink> => drink !== null);
+
+    setCurrentOrder({
+      ...currentOrder,
+      drinks: selectedDrinks,
+    });
+      console.log("Complete order with dish and drinks:", {
+      ...currentOrder,
+      drinks: selectedDrinks
+    });
+    
+  }, [currentOrder, cocktails, setCurrentOrder]);
 
   const getCocktails = useCallback(async () => {
     try {
@@ -30,44 +64,57 @@ const CocktailSelect = () => {
   useEffect(() => {
     console.log("running useEffect for getCocktails");
     getCocktails();
-    console.log("Local cocktails array:", cocktails);
-  }, []);
 
-  const handleCocktailSelect = (cocktail: Cocktails) => {
-    setSelectedCocktails((prev) => ({
-      ...prev,
-      [cocktail.idDrink]: {
-        quantity: prev[cocktail.idDrink]?.quantity || 1,
-        isSelected: !prev[cocktail.idDrink]?.isSelected,
-      },
-    }));
-  };
+  }, [getCocktails]);
 
-  const filterCocktails = cocktails?.filter(cocktail => {
-    // Name filter
-    const nameMatch = searchValue === "" || 
-      cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase());
-    
-    // Ingredient filter - 
-    const ingredientMatch = searchIngredient === "" || 
-      Array.from({ length: 15 }, (_, i) => cocktail[`strIngredient${i + 1}`])
-        .some(ingredient => 
+  const handleCocktailSelect = useCallback((cocktail: Cocktails) => {
+    setSelectedCocktails((prev) => {
+      const updated = {
+        ...prev,
+        [cocktail.idDrink]: {
+          quantity: prev[cocktail.idDrink]?.quantity || 1,
+          isSelected: !prev[cocktail.idDrink]?.isSelected,
+        },
+      };
+      updateOrderWithDrinks(updated);
+      return updated;
+    });
+  }, [updateOrderWithDrinks]);
+
+  const filterCocktails =
+    cocktails?.filter((cocktail) => {
+      // Name filter
+      const nameMatch =
+        searchValue === "" ||
+        cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase());
+
+      // Ingredient filter -
+      const ingredientMatch =
+        searchIngredient === "" ||
+        Array.from(
+          { length: 15 },
+          (_, i) => cocktail[`strIngredient${i + 1}`]
+        ).some((ingredient) =>
           ingredient?.toLowerCase().includes(searchIngredient.toLowerCase())
         );
-    
-    return nameMatch && ingredientMatch;
-  }) ?? [];
+
+      return nameMatch && ingredientMatch;
+    }) ?? [];
 
   const handleQuantityChange = (cocktailId: string, newQuantity: number) => {
     if (newQuantity < 1) return;
 
-    setSelectedCocktails((prev) => ({
-      ...prev,
-      [cocktailId]: {
-        ...prev[cocktailId],
-        quantity: newQuantity,
-      },
-    }));
+    setSelectedCocktails((prev) => {
+      const updated = {
+        ...prev,
+        [cocktailId]: {
+          ...prev[cocktailId],
+          quantity: newQuantity,
+        },
+      };
+      updateOrderWithDrinks(updated);
+      return updated;
+    });
   };
 
   return (
@@ -88,16 +135,15 @@ const CocktailSelect = () => {
                 {cocktail.strDrink}
               </h3>
               <div>
-                  <p className="font-light text-sm">
-                    {Array.from(
-                      { length: 15 },
-                      (_, i) =>
-                        cocktail[`strIngredient${i + 1}`] && (
-                          <p key={i}>{cocktail[`strIngredient${i + 1}`]}</p>
-                        )
-                    )}
-                  </p>
-                </div>
+                  {Array.from(
+                    { length: 15 },
+                    (_, i) =>
+                      cocktail[`strIngredient${i + 1}`] && (
+                        <span className="font-light text-sm" key={i}>{cocktail[`strIngredient${i + 1}`]}</span>
+                      )
+                  )}
+           
+              </div>
 
               <div className="flex items-center justify-between mt-4">
                 {/* Selection Icon on the left */}

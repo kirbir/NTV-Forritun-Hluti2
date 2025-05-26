@@ -4,13 +4,9 @@ export type Order = {
   count: number,
   date: Date,
   drinks: {
-    brewer: string;
-    category: string;
-    description: string;
     id: string;
     imageSource: string;
     name: string;
-    price: number;
   }[];
 
   dish: {

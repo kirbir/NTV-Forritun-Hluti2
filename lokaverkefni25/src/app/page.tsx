@@ -61,7 +61,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex w-full mx-auto px-10">
+    <div className="flex max-w-[1200px] mx-auto px-10">
       {/* Left side - Swiper */}
       <div className="w-1/2">
         <SwiperComponent />
