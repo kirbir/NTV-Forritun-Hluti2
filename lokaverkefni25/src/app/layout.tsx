@@ -30,15 +30,10 @@ export default function RootLayout({
         className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
       >
         <div className="w-full min-w-full">
-          {" "}
           <Header />
         </div>
-
-        <div className="flex flex-row w-full max-w-[1280px] justify-center items-center mx-auto space-x-2">
-          <div className="h-full w-[45%]">{children}</div>
-          <div className="w-[45%] max-w-[45%]">
-            <Swiper />
-          </div>
+        <div className="w-full">
+          {children}
         </div>
       </body>
     </html>

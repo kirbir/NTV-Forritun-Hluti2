@@ -14,11 +14,11 @@ export default function OrderLayout({
 }) {
   return (
     <OrderProvider>
-      <div className="flex flex-col gap-4 mx-auto md:flex-row md:justify-center md:items-center pt-5 w-full justify-center items-center">
+      <div className="flex flex-row gap-4 mx-auto justify-center items-start pt-5 w-full max-w-[1200px]">
         <div className="w-[100%] md:w-[20%] border border-gray-300 rounded-lg bg-white drop-shadow-sm p-4">
           <Sidebar/>
         </div>
-        <div className="w-[100%] md:w-[70%] ">
+        <div className="w-[100%] md:w-[70%]">
           {children}
         </div>
       </div>
