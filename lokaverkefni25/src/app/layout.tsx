@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/header";
+import Swiper from "@/components/ui/swiper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +25,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
       >
-        <Header />
+        <div className="w-full min-w-full">
+          {" "}
+          <Header />
+        </div>
 
-        {children}
+        <div className="flex flex-row w-full max-w-[1280px] justify-center items-center mx-auto space-x-2">
+          <div className="h-full w-[45%]">{children}</div>
+          <div className="w-[45%] max-w-[45%]">
+            <Swiper />
+          </div>
+        </div>
       </body>
     </html>
   );

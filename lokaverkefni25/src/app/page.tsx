@@ -6,12 +6,11 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import api from "@/api/api";
 import type { Cocktails, Dish, Order } from "@/types/types";
 
-
 export default function Home() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [showOrders, setShowOrders] = useState(false);
-  const [randomDish, setRandomDish] = useState<Dish | null>(null)
-  const [cocktails, setCocktails] = useState<Cocktails | null>(null)
+  const [randomDish, setRandomDish] = useState<Dish | null>(null);
+  const [cocktails, setCocktails] = useState<Cocktails | null>(null);
 
   const getOrders = useCallback(async () => {
     try {
@@ -45,57 +44,39 @@ export default function Home() {
     }
   }, []);
 
-
-
   useEffect(() => {
-    console.log('running useEffect for getOrders')
+    console.log("running useEffect for getOrders");
     getOrders();
     getRandomDIsh();
-  },[getOrders,    getRandomDIsh, getCocktails]);
+  }, [getOrders, getRandomDIsh, getCocktails]);
 
   const handleClick = () => {
-    
     setShowOrders(true);
     getOrders();
     getRandomDIsh();
   };
 
   return (
-    <div className="flex max-w-[1200px] mx-auto px-10">
-      {/* Left side - Swiper */}
-      <div className="w-1/2">
-        <SwiperComponent />
+    <div className="flex-col justify-between h-full min-h-full">
+      <div className="bg-card py-5 px-2 rounded-md">
+      <h1>Order now</h1>
+      <p>Make it a night to remember — book your table and indulge in our curated food and cocktail menu.</p>
       </div>
 
-      {/* Right side - Content */}
-      <div className="w-1/2 p-4 border-l border-red-500">
-        <div className="mb-4">
-          {orders && orders.length > 0 ? (
-            <div>
-              <p>{orders?.[0].email}</p>
-    ðas
-    
-              <p>Cocktails</p>
-              <p>Name: {cocktails?.strDrink}</p>
-              <img src={cocktails?.strDrinkThumb} alt="cocktail api image" />
-            </div>
-          ) : (
-            <p>Loading orders...</p>
-          )}
-        </div>
-
-        <button
-          onClick={handleClick}
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          PUSH ME
-        </button>
+      <div className=" bg-card py-5 px-2 rounded-md">
+        <h1>Already have an order?</h1>
         <input
           placeholder="Input e-mail address"
           onChange={() => {}}
           type="text"
           className="w-full p-2 border rounded mt-4"
         />
+        <button
+          onClick={handleClick}
+          className="w-full bg-button-primary text-white py-2 px-4 rounded hover:bg-button-primary/50"
+        >
+          PUSH ME
+        </button>
       </div>
     </div>
   );
