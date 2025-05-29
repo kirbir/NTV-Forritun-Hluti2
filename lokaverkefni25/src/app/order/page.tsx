@@ -5,6 +5,7 @@ import { useEffect, useCallback, useState, useContext } from "react";
 import { OrderContext, OrderStage } from "../../app/providers";
 import CocktailSelect from "@/components/cocktail-select";
 import ConfirmOrder from "@/components/confirm-order";
+import Receipt from "@/components/receipt-screen";
 
 const Order = () => {
   const [randomDish, setRandomDish] = useState<Dish | null>(null);
@@ -64,7 +65,7 @@ const Order = () => {
       )}
       {currentStage === "SELECTING_COCKTAILS" && <div><CocktailSelect/></div>}
       {currentStage === "CONFIRM_ORDER" && <ConfirmOrder/>}
-      {currentStage === "RECEIPT_SCREEN" && <div>Receipt Page</div>}
+      {currentStage === "RECEIPT_SCREEN" && <Receipt/>}
     </div>
   );
 };

@@ -2,8 +2,9 @@ import type { Cocktails } from "@/types/types";
 import api from "@/api/api";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useOrder } from "../app/providers";
-import SelectionIcon from "./ui/icons/selection-icon";
 import { OrderContext } from "../app/providers";
+import SelectionIcon from "./ui/icons/selection-icon";
+
 
 type SelectedCocktail = {
   quantity: number;

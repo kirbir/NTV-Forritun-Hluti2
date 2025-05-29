@@ -1,8 +1,8 @@
 "use client"
-import { OrderContext, OrderStage } from '../../app/providers';
+import { OrderContext, OrderStage, useOrder } from '../../app/providers';
 import { useContext } from "react"
 
-type ButtonVariant = 'primary' | 'navigation' | 'delete' | 'filter';
+type ButtonVariant = 'primary' | 'navigation' | 'delete' | 'filter' | 'place-order';
 
 type ButtonProps = {
     text: string;
@@ -11,20 +11,30 @@ type ButtonProps = {
 }
 
 export default function ActionButton({text, variant, stage}: ButtonProps) {
-const context = useContext(OrderContext)
-if (!context) return null;
+    const { submitOrderForm, setCurrentStage } = useOrder();
+    const context = useContext(OrderContext)
+    if (!context) return null;
 
-const {setCurrentStage} = context;
+    const handleClick = () => {
+        if (variant === 'place-order' && submitOrderForm) {
+            // Handle form submission for place order
+            submitOrderForm();
+        } else if (stage) {
+            // Handle normal navigation
+            setCurrentStage(stage);
+        }
+    };
 
     return (
         <button 
-            onClick={() => stage && setCurrentStage(stage)} 
+            onClick={handleClick}
             className={`
                 rounded-lg p-2
                 ${variant === 'primary' && 'bg-button-primary text-white hover:bg-green-500'}
                 ${variant === 'filter' && 'bg-button-primary text-white hover:bg-green-500'}
                 ${variant === 'navigation' && 'bg-button-primary border text-white hover:bg-green-500'}
                 ${variant === 'delete' && 'bg-button-delete text-white hover:bg-red-600'}
+                ${variant === 'place-order' && 'bg-button-primary text-white hover:bg-green-500'}
             `}
         >
             {text}

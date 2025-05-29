@@ -9,10 +9,20 @@ import { Progress } from "./ui/progress";
 
 const Sidebar = () => {
   // Get global variables from context component.
-  const { currentOrder, setCurrentOrder, currentStage, setCurrentStage } =
+  const { orderDate,setOrderDate, currentOrder, setCurrentOrder, currentStage, setCurrentStage, submitOrderForm } =
     useOrder();
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const [orderProgress, setOrderProgress] = useState(0);
+
+  const handlePlaceOrder = () => {
+    if (submitOrderForm) {
+      submitOrderForm();
+    }
+  };
+
+  const handleDateSelect = (date: Date | undefined) => {
+    setOrderDate(date || null);
+  }
 
   useEffect(() => {
     switch (currentStage) {
@@ -32,7 +42,7 @@ const Sidebar = () => {
   }, [currentStage]);
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <p>Order Status - {currentStage}</p>
 
       {currentStage === OrderStage.SELECTING_DISH && (
@@ -72,14 +82,14 @@ const Sidebar = () => {
         <div>
           <Calendar
             mode="single"
-            selected={date}
-            onSelect={setDate}
+            selected={orderDate || new Date()}
+            onSelect={handleDateSelect}
             className="rounded-md border shadow"
           />
           <ActionButton
             stage={OrderStage.RECEIPT_SCREEN}
-            variant={"navigation"}
-            text="Confirm and get Receipt"
+            variant={"place-order"}
+            text="Place Order"
           />
           <div className="flex flex-row mt-2 items-center space-x-1.5">
             <p>

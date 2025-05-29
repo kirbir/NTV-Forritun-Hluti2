@@ -15,11 +15,15 @@ type OrderContextType = {
   setCurrentOrder: (order: Order | null) => void;
   currentStage: OrderStage;
   setCurrentStage: (stage: OrderStage) => void;
-  initializeOrder: (dish:Dish) => void;
+  initializeOrder: (dish: Dish) => void;
   searchValue: string;
   setSearchValue: (search: string) => void;
   searchIngredient: string;
   setSearchIngredient: (search: string) => void;
+  submitOrderForm: () => void | null;
+  setSubmitOrderForm: (fn: () => void | null) => void;
+  orderDate: Date | null;
+  setOrderDate: (date: Date | null) => void;
   // orderProgress: number;
   // setOrderProgress: (value:number) => void;
 };
@@ -36,6 +40,9 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   const [currentStage, setCurrentStage] = useState<OrderStage>(
     OrderStage.SELECTING_DISH
   );
+  const [orderDate, setOrderDate] = useState<Date | null>(null);
+  const [submitOrderForm, setSubmitOrderForm] = useState<() => void>(() => {});
+
   const initializeOrder = (dish: Dish) => {
     const newOrder: Order = {
       id: 0,
@@ -54,7 +61,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       },
     };
     setCurrentOrder(newOrder);
-    console.log('Current order status:', currentOrder)
+    console.log("Current order status:", currentOrder);
   };
 
   return (
@@ -69,9 +76,13 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         setSearchValue,
         searchIngredient,
         setSearchIngredient,
+        submitOrderForm,
+        setSubmitOrderForm,
+        orderDate,
+        setOrderDate
         // orderProgress,
         // setOrderProgress(value) {
-            
+
         // },
       }}
     >
