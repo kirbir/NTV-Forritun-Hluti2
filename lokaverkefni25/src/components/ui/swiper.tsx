@@ -28,7 +28,7 @@ const SwiperComponent = () => {
         >
           <SwiperSlide>
             <Image
-              className="object-contain h-auto w-full"
+              className="object-contain h-auto w-full rounded-lg"
               src="/swiper/1.png"
               alt="sss"
               layout="responsive"
@@ -38,7 +38,7 @@ const SwiperComponent = () => {
           </SwiperSlide>
           <SwiperSlide>
             <Image
-              className="object-contain h-auto w-full"
+              className="object-contain h-auto w-full rounded-lg"
               src="/swiper/2.png"
               alt="sss"
               layout="responsive"
@@ -48,7 +48,7 @@ const SwiperComponent = () => {
           </SwiperSlide>
           <SwiperSlide>
             <Image
-              className="object-contain h-auto w-full"
+              className="object-contain h-auto w-full rounded-lg"
               src="/swiper/3.png"
               alt="sss"
               layout="responsive"

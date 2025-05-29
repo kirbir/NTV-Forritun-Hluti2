@@ -1,8 +1,9 @@
 "use client";
-import { Cocktails, Dish, } from "@/types/types";
+import {  Dish } from "@/types/types";
 import api from "@/api/api";
-import { useEffect, useCallback, useState, useContext } from "react";
-import { OrderContext, OrderStage } from "../../app/providers";
+import Image from "next/image";
+import { useEffect, useCallback, useState } from "react";
+import { useOrder } from "../../app/providers";
 import CocktailSelect from "@/components/cocktail-select";
 import ConfirmOrder from "@/components/confirm-order";
 import Receipt from "@/components/receipt-screen";
@@ -11,8 +12,7 @@ const Order = () => {
   const [randomDish, setRandomDish] = useState<Dish | null>(null);
 
   // Get global variables from context component.
-  const { currentOrder, setCurrentOrder, currentStage, initializeOrder } =
-    useContext(OrderContext);
+  const {  currentStage, initializeOrder } = useOrder();
 
   const getRandomDish = useCallback(async () => {
     try {
@@ -50,7 +50,7 @@ const Order = () => {
   return (
     <div>
       {currentStage === "SELECTING_DISH" && (
-        <div>
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
           <p>Your dish</p>
           <p>{randomDish?.strMeal}</p>
           <button onClick={getRandomDish} className="border p-2 bg-green-600">
@@ -59,7 +59,7 @@ const Order = () => {
 
           <div>
             <h2>{randomDish?.strInstructions.slice(0, 100)}</h2>
-            <img src={randomDish?.strMealThumb} alt="Random dish from api" />
+            <Image width={300} height={300} src={randomDish?.strMealThumb || "/placeholder-dish.png"} alt="Random dish from api" />
           </div>
         </div>
       )}

@@ -1,5 +1,4 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { useOrder } from "../app/providers";
 import { OrderContext } from "../app/providers";
 
 const ConfirmOrder = () => {
@@ -7,6 +6,7 @@ const ConfirmOrder = () => {
   const [formData, setFormData] = useState({
     guestCount: 1,
     email: "",
+    date:new Date()
   });
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState({

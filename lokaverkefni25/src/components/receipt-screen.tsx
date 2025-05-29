@@ -1,6 +1,7 @@
 "use client";
 import { useOrder } from "../app/providers";
 import { format } from "date-fns";
+import Image from "next/image";
 
 const Receipt = () => {
   const { currentOrder, orderDate } = useOrder();
@@ -30,11 +31,15 @@ const Receipt = () => {
         <div className="border-b pb-4">
           <h2 className="text-lg font-semibold mb-2">Main Dish</h2>
           <div className="flex items-center space-x-4">
-            <img 
-              src={currentOrder.dish.imageSource} 
-              alt={currentOrder.dish.name}
-              className="w-24 h-24 object-cover rounded-lg"
-            />
+            <div className="relative w-24 h-24">
+              <Image 
+                src={currentOrder.dish.imageSource} 
+                alt={currentOrder.dish.name}
+                fill
+                className="object-cover rounded-lg"
+                sizes="(max-width: 96px) 100vw, 96px"
+              />
+            </div>
             <div>
               <h3 className="font-medium">{currentOrder.dish.name}</h3>
               <p className="text-sm text-gray-600">{currentOrder.dish.category} - {currentOrder.dish.cousine}</p>
@@ -49,11 +54,15 @@ const Receipt = () => {
             <div className="space-y-3">
               {currentOrder.drinks.map((drink) => (
                 <div key={drink.id} className="flex items-center space-x-4">
-                  <img 
-                    src={drink.imageSource} 
-                    alt={drink.name}
-                    className="w-16 h-16 object-cover rounded-lg"
-                  />
+                  <div className="relative w-16 h-16">
+                    <Image 
+                      src={drink.imageSource} 
+                      alt={drink.name}
+                      fill
+                      className="object-cover rounded-lg"
+                      sizes="(max-width: 64px) 100vw, 64px"
+                    />
+                  </div>
                   <p className="font-medium">{drink.name}</p>
                 </div>
               ))}
