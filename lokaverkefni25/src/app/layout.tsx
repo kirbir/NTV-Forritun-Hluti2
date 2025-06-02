@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/header";
 import Swiper from "@/components/ui/swiper";
+import { OrderProvider } from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,12 @@ export default function RootLayout({
       <body
         className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
       >
-        <div className="w-full min-w-full">
-          <Header />
-        </div>
-        <div className="w-full">
-          {children}
-        </div>
+        <OrderProvider>
+          <div className="w-full min-w-full">
+            <Header />
+          </div>
+          <div className="w-full">{children}</div>
+        </OrderProvider>
       </body>
     </html>
   );

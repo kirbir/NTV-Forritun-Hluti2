@@ -150,9 +150,17 @@ api.put("/api/update-order", (req: Request<OrderData>, res) => {
 
 // GET endpoint to get order by email
 api.get("/api/order/:email", (req, res) => {
+  console.log("Searching for email:", req.params.email);
+  console.log("Current orders:", orders);
+  
   const order = orders.find((order) => order.email === req.params.email);
+  console.log("Found order:", order);
+  
   if (order) {
-    return res.json(order);
+    return res.json({
+      success: true,
+      response:order
+    });
   }
 
   res.json({

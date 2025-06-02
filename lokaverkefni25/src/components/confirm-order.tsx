@@ -1,12 +1,14 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { OrderContext } from "../app/providers";
+import { OrderContext, OrderStage } from "../app/providers";
+import api from "@/api/api";
 
 const ConfirmOrder = () => {
-  const { currentOrder, setCurrentOrder, setSubmitOrderForm,setCurrentStage } = useContext(OrderContext)!;
+  const { currentOrder, setCurrentOrder, setSubmitOrderForm, setCurrentStage } =
+    useContext(OrderContext)!;
   const [formData, setFormData] = useState({
     guestCount: 1,
     email: "",
-    date:new Date()
+    date: new Date(),
   });
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState({
@@ -28,7 +30,6 @@ const ConfirmOrder = () => {
     }
   }, []);
 
-  
   useEffect(() => {
     setSubmitOrderForm(submitForm);
     return;
@@ -58,7 +59,7 @@ const ConfirmOrder = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) return;
@@ -69,18 +70,24 @@ const ConfirmOrder = () => {
       ...currentOrder,
       count: formData.guestCount,
       email: formData.email,
-      date: formData.date
+      date: formData.date,
     };
-
-    setCurrentOrder(updatedOrder);
-    setCurrentStage(OrderStage.RECEIPT_SCREEN);
+    try {
+      const response = await api.updateOrder(updatedOrder);
+      console.log("Order updated successfully: ", response); // Verify the api update
+      setCurrentOrder(updatedOrder);
+      setCurrentStage(OrderStage.RECEIPT_SCREEN);
+    } catch (error) {
+      console.error("Failed to update order: ", error);
+    }
   };
 
+  // TODO: Remove if i don't use it anymore
   const updateDate = (newDate: Date | undefined) => {
     if (newDate) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        date: newDate
+        date: newDate,
       }));
     }
   };
