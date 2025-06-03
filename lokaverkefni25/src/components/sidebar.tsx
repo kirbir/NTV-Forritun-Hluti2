@@ -6,23 +6,48 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "./ui/calendar";
 import React, { useEffect, useState } from "react";
 import { Progress } from "./ui/progress";
+import api from "@/api/api";
 
 const Sidebar = () => {
   // Get global variables from context component.
-  const { orderDate,setOrderDate, currentOrder, setCurrentOrder, currentStage, setCurrentStage, submitOrderForm } =
-    useOrder();
+  const {
+    orderDate,
+    setOrderDate,
+    currentOrder,
+    setCurrentOrder,
+    currentStage,
+    setCurrentStage,
+    orderEmail,
+    guestCount,
+  } = useOrder();
+
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const [orderProgress, setOrderProgress] = useState(0);
 
-  const handlePlaceOrder = () => {
-    if (submitOrderForm) {
-      submitOrderForm();
+  const handlePlaceOrder = async () => {
+    if (!currentOrder || !orderEmail || !orderDate) return;
+
+    try {
+      const createOrder = {
+        ...currentOrder,
+        email: orderEmail,
+        count: guestCount,
+        date: orderDate,
+      };
+
+      const createdOrder = await api.createOrder(createOrder);
+      if (createdOrder) {
+        setCurrentOrder(createdOrder);
+        setCurrentStage(OrderStage.RECEIPT_SCREEN);
+      }
+    } catch (error) {
+      console.error("Failed to create order:", error);
     }
   };
 
   const handleDateSelect = (date: Date | undefined) => {
     setOrderDate(date || null);
-  }
+  };
 
   useEffect(() => {
     switch (currentStage) {
@@ -86,11 +111,18 @@ const Sidebar = () => {
             onSelect={handleDateSelect}
             className="rounded-md border shadow"
           />
-          <ActionButton
+          {/* <ActionButton
             stage={OrderStage.RECEIPT_SCREEN}
             variant={"place-order"}
             text="Place Order"
-          />
+          /> */}
+          <button
+            onClick={handlePlaceOrder}
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
+            disabled={!orderEmail || !currentOrder}
+          >
+            Place Order
+          </button>
           <div className="flex flex-row mt-2 items-center space-x-1.5">
             <p>
               <strong>3/4</strong>
@@ -104,11 +136,11 @@ const Sidebar = () => {
         <div>
           <p>Thank you for your order!</p>
           <div className="flex flex-row mt-2 items-center space-x-1.5">
-        <p>
-          <strong>4/4</strong>
-        </p>
-        <Progress value={orderProgress} />
-      </div>
+            <p>
+              <strong>4/4</strong>
+            </p>
+            <Progress value={orderProgress} />
+          </div>
         </div>
       )}
     </div>

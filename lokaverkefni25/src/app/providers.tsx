@@ -20,12 +20,13 @@ type OrderContextType = {
   setSearchValue: (search: string) => void;
   searchIngredient: string;
   setSearchIngredient: (search: string) => void;
-  submitOrderForm: () => void | null;
-  setSubmitOrderForm: (fn: () => void | null) => void;
   orderDate: Date | null;
   setOrderDate: (date: Date | null) => void;
-  // orderProgress: number;
-  // setOrderProgress: (value:number) => void;
+  // New form state
+  orderEmail: string;
+  setOrderEmail: (email: string) => void;
+  guestCount: number;
+  setGuestCount: (count: number) => void;
 };
 
 export const OrderContext = createContext<OrderContextType | undefined>(
@@ -35,13 +36,14 @@ export const OrderContext = createContext<OrderContextType | undefined>(
 export function OrderProvider({ children }: { children: ReactNode }) {
   const [searchValue, setSearchValue] = useState("");
   const [searchIngredient, setSearchIngredient] = useState("");
-  // const [orderProgress, setOrderProgress] = useState(0);
   const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
   const [currentStage, setCurrentStage] = useState<OrderStage>(
     OrderStage.SELECTING_DISH
   );
   const [orderDate, setOrderDate] = useState<Date | null>(null);
-  const [submitOrderForm, setSubmitOrderForm] = useState<() => void>(() => {});
+  // New form state
+  const [orderEmail, setOrderEmail] = useState("");
+  const [guestCount, setGuestCount] = useState(1);
 
   const initializeOrder = (dish: Dish) => {
     const newOrder: Order = {
@@ -51,17 +53,16 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       date: new Date(),
       drinks: [],
       dish: {
-        id: Number(dish.idMeal),
+        id: dish.idMeal,
+        name: dish.strMeal,
         category: dish.strCategory,
-        cousine: dish.strArea,
         description: dish.strInstructions,
         imageSource: dish.strMealThumb,
-        name: dish.strMeal,
         price: 0,
+        area: dish.strArea
       },
     };
     setCurrentOrder(newOrder);
-    console.log("Current order status:", currentOrder);
   };
 
   return (
@@ -76,14 +77,13 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         setSearchValue,
         searchIngredient,
         setSearchIngredient,
-        submitOrderForm,
-        setSubmitOrderForm,
         orderDate,
-        setOrderDate
-        // orderProgress,
-        // setOrderProgress(value) {
-
-        // },
+        setOrderDate,
+        // New form state
+        orderEmail,
+        setOrderEmail,
+        guestCount,
+        setGuestCount
       }}
     >
       {children}

@@ -53,17 +53,17 @@ const Receipt = () => {
             <h2 className="text-lg font-semibold mb-2">Selected Cocktails</h2>
             <div className="space-y-3">
               {currentOrder.drinks.map((drink) => (
-                <div key={drink.id} className="flex items-center space-x-4">
+                <div key={drink.idDrink} className="flex items-center space-x-4">
                   <div className="relative w-16 h-16">
                     <Image 
-                      src={drink.imageSource} 
-                      alt={drink.name}
+                      src={drink.strDrinkThumb} 
+                      alt={drink.strDrink}
                       fill
                       className="object-cover rounded-lg"
                       sizes="(max-width: 64px) 100vw, 64px"
                     />
                   </div>
-                  <p className="font-medium">{drink.name}</p>
+                  <p className="font-medium">{drink.strDrink}</p>
                 </div>
               ))}
             </div>

@@ -1,4 +1,4 @@
-import { Dish, Order } from "@/types/types";
+import { Order } from "@/types/types";
 
 type RequestMethod = "POST" | "GET" | "DELETE" | "PUT";
 
@@ -83,13 +83,14 @@ const updateOrder = async (order: Order) => {
   return response.response;
 };
 
-const createOrder = async ({ name, cost }: Pick<Order, "cost" | "name">) => {
-  const response = await requestResponse<Order>("/api/create-order", "POST", {
-    name,
-    cost,
-  });
-  return response.response;
-};
+const createOrder = async (order: Order) => {
+	const response = await requestResponse<Order>(
+	  "/api/create-order",
+	  "POST",
+	  order
+	);
+	return response.response;
+  };
 
 const getExpenseById = async (id: number) => {
   const response = await requestResponse<Order>(`/api/expense/${id}`, "GET");

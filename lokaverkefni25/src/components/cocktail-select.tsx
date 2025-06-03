@@ -32,10 +32,10 @@ const CocktailSelect = () => {
         if (!cocktail) return null;
 
         return {
-          id: cocktail.idDrink,
-          name: cocktail.strDrink,
-          imageSource: cocktail.strDrinkThumb,
-          price: 0,
+          idDrink: cocktail.idDrink,
+          strDrink: cocktail.strDrink,
+          strDrinkThumb: cocktail.strDrinkThumb,
+          strIngredients: [],
           quantity: value.quantity,
         };
       })
@@ -45,7 +45,7 @@ const CocktailSelect = () => {
       ...currentOrder,
       drinks: selectedDrinks,
     });
-      console.log("Complete order with dish and drinks:", {
+      console.log("Global Order object with selected Dish and Cocktails:", {
       ...currentOrder,
       drinks: selectedDrinks
     });

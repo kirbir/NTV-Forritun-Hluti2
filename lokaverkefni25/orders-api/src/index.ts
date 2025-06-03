@@ -10,30 +10,29 @@ let orders: OrderData[] = [
     id: 1,
     drinks: [
       {
-        brewer: "vifilfell",
-        category: "beer",
-        description: "tasty beer",
-        id: "some-uuid",
-        imageSource:
-          "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
-        name: "Gylltur",
-        price: 2500,
-      },
+        idDrink: "some-uuid",
+        strDrink: "Gylltur",
+        strDrinkThumb: "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
+        strIngredients: [],
+        quantity: 1,
+        strIngredient1: "beer",
+        strIngredient2: "sugar",
+
+      }
     ],
     email: "gunnsteinnskula@gmail.com",
     count: 10,
     date: new Date(),
     dish: {
-      id: "53051",
-      category: "seafood",
-      cousine: "Malaysian",
-      description:
-        "In a medium saucepan over medium heat, stir together coconut milk, water, ground ginger, ginger root, salt, bay leaf, and rice. Cover, and bring to a boil. Reduce heat, and simmer for 20 to 30 minutes, or until done.\r\n\r\n Step 2\r\nPlace eggs in a saucepan, and cover with cold water. Bring water to a boil, and immediately remove from heat. Cover, and let eggs stand in hot water for 10 to 12 minutes. Remove eggs from hot water, cool, peel and slice in half. Slice cucumber.\r\n\r\n Step 3\r\nMeanwhile, in a large skillet or wok, heat 1 cup vegetable oil over medium-high heat. Stir in peanuts and cook briefly, until lightly browned. Remove peanuts with a slotted spoon and place on paper towels to soak up excess grease. Return skillet to stove. Stir in the contents of one package anchovies; cook briefly, turning, until crisp. Remove with a slotted spoon and place on paper towels. Discard oil. Wipe out skillet.\r\n\r\n Step 4\r\nHeat 2 tablespoons oil in the skillet. Stir in the onion, garlic, and shallots; cook until fragrant, about 1 or 2 minutes. Mix in the chile paste, and cook for 10 minutes, stirring occasionally. If the chile paste is too dry, add a small amount of water. Stir in remaining anchovies; cook for 5 minutes. Stir in salt, sugar, and tamarind juice; simmer until sauce is thick, about 5 minutes.\r\n\r\n Step 5\r\nServe the onion and garlic sauce over the warm rice, and top with peanuts, fried anchovies, cucumbers, and eggs.",
-      imageSource:
-        "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
-      name: "Nasi lemak",
-      price: 2500,
+      idMeal: "53051",
+      strMeal: "Nasi lemak",
+      strCategory: "seafood",
+      strArea: "fuckery",
+      strInstructions: "In a medium saucepan over medium heat...",
+      strMealThumb: "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
+      price: 2500
     },
+    
   },
 ];
 
@@ -49,19 +48,25 @@ api.get("/api/orders", (_, res) => {
   console.log("Getting orders:", orders);
   return res.json({
     success: true,
-    response: orders
+    response: orders,
   });
 });
 
 // Validation function for order - note that the object validation might not be entirely accurate and might need some modification
-const isOrder = (body: OrderData | Record<string, unknown>): body is OrderData => {
+const isOrder = (
+  body: OrderData | Record<string, unknown>
+): body is OrderData => {
   if (
-    "name" in body &&
-    typeof body.name === "string" &&
     "email" in body &&
     typeof body.email === "string" &&
+    "count" in body &&
+    typeof body.count === "number" &&
+    "date" in body &&
+    (body.date instanceof Date || typeof body.date === "string") && // Allow string dates
     "dish" in body &&
-    typeof body.dish === "object"
+    typeof body.dish === "object" &&
+    "drinks" in body &&
+    Array.isArray(body.drinks)
   ) {
     return true;
   }
@@ -83,6 +88,7 @@ api.post("/api/create-order", (req: Request<OrderData>, res) => {
       success: false,
       error: "Must supply all properties of an order",
     });
+    console.log("Error in creating order");
     return;
   }
 
@@ -94,7 +100,7 @@ api.post("/api/create-order", (req: Request<OrderData>, res) => {
     return;
   }
 
-  const order:  OrderData = {
+  const order: OrderData = {
     ...req.body,
     id: nextId,
   };
@@ -150,16 +156,11 @@ api.put("/api/update-order", (req: Request<OrderData>, res) => {
 
 // GET endpoint to get order by email
 api.get("/api/order/:email", (req, res) => {
-  console.log("Searching for email:", req.params.email);
-  console.log("Current orders:", orders);
-  
   const order = orders.find((order) => order.email === req.params.email);
-  console.log("Found order:", order);
-  
   if (order) {
     return res.json({
       success: true,
-      response:order
+      response: order,
     });
   }
 

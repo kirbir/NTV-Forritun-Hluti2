@@ -44,7 +44,7 @@ const Order = () => {
     };
     
     fetchInitialDish();
-    console.log("Initial dish fetch running");
+
   }, []);
   
   return (

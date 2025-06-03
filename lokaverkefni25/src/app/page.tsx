@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import {  useState, useRef } from "react";
 import api from "@/api/api";
-import type { Cocktails, Dish, Order } from "@/types/types";
 import Swiper from "@/components/ui/swiper";
 import { OrderStage, useOrder } from "./providers";
-import router from "next/router";
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter();
+
   const { setCurrentOrder, setCurrentStage } = useOrder();
   const emailRef = useRef<HTMLInputElement>(null);
 
@@ -87,7 +88,6 @@ export default function Home() {
             curated food and cocktail menu.
           </p>
           <button
-            // onClick={}
             className="w-full bg-button-card text-white mt-auto py-2 px-4 rounded hover:bg-button-primary/50"
           >
             Order Now
@@ -102,7 +102,6 @@ export default function Home() {
           <input
             placeholder="Input e-mail address"
             ref={emailRef}
-            onChange={(e) => {}}
             type="text"
             className="w-full p-2 border rounded mt-4"
           />
