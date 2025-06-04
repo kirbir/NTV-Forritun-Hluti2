@@ -37,8 +37,10 @@ const Sidebar = () => {
 
       const createdOrder = await api.createOrder(createOrder);
       if (createdOrder) {
+        console.log('Success in confirming order');
         setCurrentOrder(createdOrder);
         setCurrentStage(OrderStage.RECEIPT_SCREEN);
+
       }
     } catch (error) {
       console.error("Failed to create order:", error);

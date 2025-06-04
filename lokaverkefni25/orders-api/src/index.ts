@@ -110,7 +110,7 @@ api.post("/api/create-order", (req: Request<OrderData>, res) => {
 
   return res.json({
     success: true,
-    order,
+    response: order
   });
 });
 

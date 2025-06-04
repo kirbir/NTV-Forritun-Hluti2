@@ -6,6 +6,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Import fro
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Link from "next/link";
 
 const SwiperComponent = () => {
   return (
@@ -28,7 +29,7 @@ const SwiperComponent = () => {
       >
         <SwiperSlide>
           <Image
-            className="object-contain h-auto w-full rounded-lg"
+            className="object-contain h-auto w-full md:rounded-lg"
             src="/swiper/1.png"
             alt="sss"
             layout="responsive"
@@ -38,7 +39,7 @@ const SwiperComponent = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="object-contain h-auto w-full rounded-lg"
+            className="object-contain h-auto w-full md:rounded-lg"
             src="/swiper/2.png"
             alt="sss"
             layout="responsive"
@@ -48,7 +49,7 @@ const SwiperComponent = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            className="object-contain h-auto w-full rounded-lg"
+            className="object-contain h-auto w-full md:rounded-lg"
             src="/swiper/3.png"
             alt="sss"
             layout="responsive"
@@ -58,18 +59,22 @@ const SwiperComponent = () => {
         </SwiperSlide>
       </Swiper>
 
-      {/* Overlay content - now at bottom with more space */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 text-center p-4 rounded-b-lg backdrop-blur-sm">
+      {/* Overlay content*/}
+      <div className="absolute bottom-0 left-0 right-0 z-10 text-center p-4 rounded-b-lg ">
         {/* <h1 className="text-[2rem] font-extrabold text-white">Order now</h1> */}
-        <p className="text-white mt-2 text-lg max-w-2xl mx-auto">
+        <p className="text-white mt-2 text-xl md:text-3xl font-extrabold max-w-2xl mx-auto">
           Make it a night to remember — book your table and indulge in our
           curated food and cocktail menu.
         </p>
+        <div >
+        <Link href="/order">
         <button
-          className="w-full max-w-md mx-auto bg-button-card text-white mt-8 py-3 px-6 rounded-lg hover:bg-button-primary/50 text-lg font-semibold"
-        >
-          Order Now
+          className="w-full max-w-md mx-auto  bg-button-card text-white mt-8 py-3 px-6 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer"
+        >Order Now
+         
         </button>
+        </Link>
+        </div>
       </div>
     </div>
   );

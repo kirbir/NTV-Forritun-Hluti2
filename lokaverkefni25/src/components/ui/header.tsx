@@ -16,13 +16,13 @@ export default function Header() {
   };
 
   return (
-    <header className="container w-screen h-[80px] max-w-6xl flex flex-col items-center justify-evenly mx-auto px-4 mb-20">
-      <nav className="flex flex-row mx-auto px-6 py-4 gap-10 text-black">
+    <header className="container w-screen h-[50px] max-w-6xl flex flex-col items-center justify-evenly mx-auto px-2 mb-10">
+      <nav className="flex flex-row backdrop-blur-sm z-100  mx-auto px-6 py-4 gap-4 md:gap-10 text-black">
           <Link
             href="/"
             className={`${isActive(
               "/"
-            )} transition-colors duration-200 text-2xl`}
+            )} transition-colors duration-200 text-md`}
           >
             Home
           </Link>
@@ -30,7 +30,7 @@ export default function Header() {
             href="/order"
             className={`${isActive(
               "/order"
-            )} transition-colors duration-200 text-2xl`}
+            )} transition-colors duration-200 text-md`}
           >
             Order
           </Link>
@@ -41,12 +41,20 @@ export default function Header() {
             <Logo />
           </Link>
           <Link
-            href="/characters"
+            href="/my-orders"
+            className={`${isActive(
+              "/my-orders"
+            )} transition-colors duration-200 text-md`}
+          >
+            My orders
+          </Link>
+          <Link
+            href="/contact"
             className={`${isActive(
               "/characters"
-            )} transition-colors duration-200 text-2xl`}
+            )} transition-colors duration-200 text-md`}
           >
-            Characters
+            Contact
           </Link>
       </nav>
     </header>

@@ -36,10 +36,10 @@ export default function ActionButton({text, variant, stage}: ButtonProps) {
             onClick={handleClick}
             className={`
                 rounded-lg p-2
-                ${variant === 'primary' && 'bg-button-primary text-white hover:bg-green-500'}
+                ${variant === 'primary' && 'bg-button-card text-white  py-2 px-4 rounded hover:bg-button-primary/50'} 
                 ${variant === 'filter' && 'bg-button-primary text-white hover:bg-green-500'}
-                ${variant === 'navigation' && 'bg-button-primary border text-white hover:bg-green-500'}
-                ${variant === 'delete' && 'bg-button-delete text-white hover:bg-red-600'}
+                ${variant === 'navigation' && 'w-full bg-button-card  text-white hover:bg-button-primary/50'}
+                ${variant === 'delete' && ' bg-button-delete text-white hover:bg-red-600'}
                 ${variant === 'place-order' && 'bg-button-primary text-white hover:bg-green-500'}
             `}
         >

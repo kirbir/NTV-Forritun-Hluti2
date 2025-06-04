@@ -5,7 +5,6 @@ import { useOrder } from "../app/providers";
 import { OrderContext } from "../app/providers";
 import SelectionIcon from "./ui/icons/selection-icon";
 
-
 type SelectedCocktail = {
   quantity: number;
   isSelected: boolean;
@@ -20,37 +19,38 @@ const CocktailSelect = () => {
   >({});
   const { currentOrder, setCurrentOrder } = useContext(OrderContext)!;
 
-  const updateOrderWithDrinks = useCallback((
-    updatedSelectedCocktails: Record<string, SelectedCocktail>
-  ) => {
-    if (!currentOrder) return;
+  const updateOrderWithDrinks = useCallback(
+    (updatedSelectedCocktails: Record<string, SelectedCocktail>) => {
+      if (!currentOrder) return;
 
-    const selectedDrinks = Object.entries(updatedSelectedCocktails)
-      .filter(([_, value]) => value.isSelected)
-      .map(([id, value]) => {
-        const cocktail = cocktails?.find((c) => c.idDrink === id);
-        if (!cocktail) return null;
+      const selectedDrinks = Object.entries(updatedSelectedCocktails)
+        .filter(([_, value]) => value.isSelected)
+        .map(([id, value]) => {
+          const cocktail = cocktails?.find((c) => c.idDrink === id);
+          if (!cocktail) return null;
 
-        return {
-          idDrink: cocktail.idDrink,
-          strDrink: cocktail.strDrink,
-          strDrinkThumb: cocktail.strDrinkThumb,
-          strIngredients: [],
-          quantity: value.quantity,
-        };
-      })
-      .filter((drink): drink is NonNullable<typeof drink> => drink !== null);
+          return {
+            idDrink: cocktail.idDrink,
+            strDrink: cocktail.strDrink,
+            strDrinkThumb: cocktail.strDrinkThumb,
+            strIngredients: [],
+            quantity: value.quantity,
+          };
+        })
+        .filter((drink): drink is NonNullable<typeof drink> => drink !== null);
 
-    setCurrentOrder({
-      ...currentOrder,
-      drinks: selectedDrinks,
-    });
-      console.log("Global Order object with selected Dish and Cocktails:", {
-      ...currentOrder,
-      drinks: selectedDrinks
-    });
-    
-  }, [currentOrder, cocktails, setCurrentOrder]);
+      // Only update if the drinks array has actually changed
+      const drinksChanged = JSON.stringify(currentOrder.drinks) !== JSON.stringify(selectedDrinks);
+      
+      if (drinksChanged) {
+        setCurrentOrder({
+          ...currentOrder,
+          drinks: selectedDrinks,
+        });
+      }
+    },
+    [currentOrder, cocktails, setCurrentOrder]
+  );
 
   const getCocktails = useCallback(async () => {
     try {
@@ -65,22 +65,28 @@ const CocktailSelect = () => {
   useEffect(() => {
     console.log("running useEffect for getCocktails");
     getCocktails();
-
   }, [getCocktails]);
 
-  const handleCocktailSelect = useCallback((cocktail: Cocktails) => {
-    setSelectedCocktails((prev) => {
-      const updated = {
-        ...prev,
-        [cocktail.idDrink]: {
-          quantity: prev[cocktail.idDrink]?.quantity || 1,
-          isSelected: !prev[cocktail.idDrink]?.isSelected,
-        },
-      };
-      updateOrderWithDrinks(updated);
-      return updated;
-    });
-  }, [updateOrderWithDrinks]);
+  const handleCocktailSelect = useCallback(
+    (cocktail: Cocktails) => {
+      setSelectedCocktails((prev) => {
+        const updated = {
+          ...prev,
+          [cocktail.idDrink]: {
+            quantity: prev[cocktail.idDrink]?.quantity || 1,
+            isSelected: !prev[cocktail.idDrink]?.isSelected,
+          },
+        };
+        return updated;
+      });
+    },[]
+  );
+
+  useEffect(() => {
+    if (Object.keys(selectedCocktails).length > 0) {
+      updateOrderWithDrinks(selectedCocktails);
+    }
+  }, [selectedCocktails]);
 
   const filterCocktails =
     cocktails?.filter((cocktail) => {
@@ -113,7 +119,6 @@ const CocktailSelect = () => {
           quantity: newQuantity,
         },
       };
-      updateOrderWithDrinks(updated);
       return updated;
     });
   };
@@ -136,14 +141,15 @@ const CocktailSelect = () => {
                 {cocktail.strDrink}
               </h3>
               <div>
-                  {Array.from(
-                    { length: 15 },
-                    (_, i) =>
-                      cocktail[`strIngredient${i + 1}`] && (
-                        <span className="font-light text-sm" key={i}>{cocktail[`strIngredient${i + 1}`]}</span>
-                      )
-                  )}
-           
+                {Array.from(
+                  { length: 15 },
+                  (_, i) =>
+                    cocktail[`strIngredient${i + 1}`] && (
+                      <span className="font-light text-sm" key={i}>
+                        {cocktail[`strIngredient${i + 1}`]}
+                      </span>
+                    )
+                )}
               </div>
 
               <div className="flex items-center justify-between mt-4">

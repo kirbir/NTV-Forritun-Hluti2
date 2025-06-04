@@ -1,10 +1,10 @@
 "use client";
 
-import {  useState, useRef } from "react";
+import { useState, useRef } from "react";
 import api from "@/api/api";
 import Swiper from "@/components/ui/swiper";
 import { OrderStage, useOrder } from "./providers";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
@@ -77,24 +77,15 @@ export default function Home() {
   // };
 
   return (
-    <div className="flex flex-col mx-4 md:flex-row space-x-4 w-full max-w-[1200px] md:mx-auto justify-center h-full min-h-full">
+    <div className="flex flex-col  md:flex-row md:gap-2  w-full md:max-w-[1200px] md:mx-auto justify-center h-full min-h-full">
+     
+     <div className="w-[100%] md:w-[40%] -mt-[90px] md:mt-0 z-0">
+        <Swiper />
+      </div>
+     
       <div className="flex flex-col space-y-4 w-[100%] md:w-[40%]">
-        <div className="flex flex-col grow bg-card p-6 rounded-md">
-          <h1 className="text-[2.5rem] font-extrabold text-center">
-            Order now
-          </h1>
-          <p>
-            Make it a night to remember — book your table and indulge in our
-            curated food and cocktail menu.
-          </p>
-          <button
-            className="w-full bg-button-card text-white mt-auto py-2 px-4 rounded hover:bg-button-primary/50"
-          >
-            Order Now
-          </button>
-        </div>
 
-        <div className="flex flex-col gap-2 p-6 bg-card rounded-lg shadow-lg text-center">
+        <div className="flex flex-col order-2 gap-2 p-6 bg-card rounded-lg shadow-lg text-center">
           <h1 className="text-[2.5rem] font-extrabold">
             Already have an order?
           </h1>
@@ -109,14 +100,12 @@ export default function Home() {
             onClick={handleFindOrder}
             className="w-full bg-button-card text-white py-2 px-4 rounded hover:bg-button-primary/50"
           >
-            PUSH ME
+            Find my order
           </button>
         </div>
       </div>
 
-      <div className="w-[40%]">
-        <Swiper />
-      </div>
+
     </div>
   );
 }
