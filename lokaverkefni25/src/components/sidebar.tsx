@@ -25,30 +25,39 @@ const Sidebar = () => {
   const [orderProgress, setOrderProgress] = useState(0);
 
   const handlePlaceOrder = async () => {
-    if (!currentOrder || !orderEmail || !orderDate) return;
+    if (!currentOrder) return;
 
     try {
-      const createOrder = {
-        ...currentOrder,
-        email: orderEmail,
-        count: guestCount,
-        date: orderDate,
-      };
+      const isExistingOrder = currentOrder.id && currentOrder.id > 0;
 
-      const createdOrder = await api.createOrder(createOrder);
-      if (createdOrder) {
-        console.log('Success in confirming order');
-        setCurrentOrder(createdOrder);
-        setCurrentStage(OrderStage.RECEIPT_SCREEN);
 
+      if (isExistingOrder) {
+        const updatedOrders = await api.updateOrder(currentOrder);
+        // updateOrder returns an array, find the updated order
+        const updatedOrder = updatedOrders?.find(order => order.email === currentOrder.email);
+        if (updatedOrder) {
+          setCurrentOrder(updatedOrder);
+          setCurrentStage(OrderStage.RECEIPT_SCREEN);
+        }
+      } else {
+        const createdOrder = await api.createOrder(currentOrder);
+        if (createdOrder) {
+          setCurrentOrder(createdOrder);
+          setCurrentStage(OrderStage.RECEIPT_SCREEN);
+        }
       }
     } catch (error) {
-      console.error("Failed to create order:", error);
+      console.error("Failed to process order:", error);
     }
   };
 
   const handleDateSelect = (date: Date | undefined) => {
-    setOrderDate(date || null);
+    if (currentOrder) {
+      setCurrentOrder({
+        ...currentOrder,
+        date: date || new Date()
+      });
+    }
   };
 
   useEffect(() => {
@@ -67,6 +76,21 @@ const Sidebar = () => {
         break;
     }
   }, [currentStage]);
+
+  // Clean up state and webapp after order, reset.
+  useEffect(() => {
+    if (currentStage === OrderStage.RECEIPT_SCREEN) {
+      const timer = setTimeout(() => {
+        // Only reset if still on receipt screen (user hasn't navigated away)
+        if (currentStage === OrderStage.RECEIPT_SCREEN) {
+          setCurrentOrder(null);
+          setCurrentStage(OrderStage.SELECTING_DISH);
+        }
+      }, 3000);
+  
+      return () => clearTimeout(timer);
+    }
+  }, [currentStage, setCurrentOrder, setCurrentStage]);
 
   return (
     <div className="flex flex-col gap-2">
@@ -109,7 +133,7 @@ const Sidebar = () => {
         <div>
           <Calendar
             mode="single"
-            selected={orderDate || new Date()}
+            selected={!currentOrder?.date || new Date()}
             onSelect={handleDateSelect}
             className="rounded-md border shadow"
           />
@@ -121,7 +145,7 @@ const Sidebar = () => {
           <button
             onClick={handlePlaceOrder}
             className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
-            disabled={!orderEmail || !currentOrder}
+            disabled={!currentOrder?.email || !currentOrder}
           >
             Place Order
           </button>

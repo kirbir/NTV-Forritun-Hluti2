@@ -7,8 +7,18 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Link from "next/link";
+import { OrderStage, useOrder } from "@/app/providers";
+import router from "next/router";
 
 const SwiperComponent = () => {
+  const { setCurrentOrder, setCurrentStage,order } = useOrder();
+  
+  const handleNewOrder = () => {
+    setCurrentOrder(null);
+    setCurrentStage(OrderStage.SELECTING_DISH);
+    router.push('/order')
+  };
+
   return (
     <div className="relative">
       <Swiper
@@ -67,7 +77,7 @@ const SwiperComponent = () => {
           curated food and cocktail menu.
         </p>
         <div >
-        <Link href="/order">
+        <Link onClick={handleNewOrder} href={"/order"}>
         <button
           className="w-full max-w-md mx-auto  bg-button-card text-white mt-8 py-3 px-6 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer"
         >Order Now

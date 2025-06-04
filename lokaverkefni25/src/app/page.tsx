@@ -12,12 +12,17 @@ export default function Home() {
   const { setCurrentOrder, setCurrentStage } = useOrder();
   const emailRef = useRef<HTMLInputElement>(null);
 
+
+
   const handleFindOrder = async () => {
     const email = emailRef.current?.value;
     if (!email) return;
 
     try {
-      console.log("Making API call to:", `/api/order/${email}`);
+      console.log(
+        "Searching for existing order with API call to:",
+        `/api/order/${email}`
+      );
       const order = await api.getOrderByEmail(email);
       console.log("Response:", order);
       setCurrentOrder(order);
@@ -27,64 +32,14 @@ export default function Home() {
       console.log("Error details:", error);
     }
   };
-  // const [orders, setOrders] = useState<Order[]>([]);
-  // const [showOrders, setShowOrders] = useState(false);
-  // const [randomDish, setRandomDish] = useState<Dish | null>(null);
-  // const [cocktails, setCocktails] = useState<Cocktails | null>(null);
-
-  // const getOrders = useCallback(async () => {
-  //   try {
-  //     const ordersResponse = await api.getOrders();
-  //     setOrders(ordersResponse);
-  //     console.log("API Response:", ordersResponse);
-  //   } catch (error) {
-  //     console.error("Error in getOrders:", error);
-  //     window.alert(error);
-  //   }
-  // }, []);
-
-  // const getRandomDIsh = useCallback(async () => {
-  //   try {
-  //     const randomDishResponse = await api.getRandomDish();
-  //     setRandomDish(randomDishResponse);
-  //     console.log("Random Dish API Response:", randomDishResponse);
-  //   } catch (error) {
-  //     console.error("Error in getRandomDish:", error);
-  //     window.alert(error);
-  //   }
-  // }, []);
-  // const getCocktails = useCallback(async () => {
-  //   try {
-  //     const cocktailsResponse = await api.getCocktails();
-  //     setCocktails(cocktailsResponse);
-  //     console.log("Random Dish API Response:", cocktailsResponse);
-  //   } catch (error) {
-  //     console.error("Error in getCocktails:", error);
-  //     window.alert(error);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("running useEffect for getOrders");
-  //   getOrders();
-  //   getRandomDIsh();
-  // }, [getOrders, getRandomDIsh, getCocktails]);
-
-  // const handleClick = () => {
-  //   setShowOrders(true);
-  //   getOrders();
-  //   getRandomDIsh();
-  // };
 
   return (
     <div className="flex flex-col  md:flex-row md:gap-2  w-full md:max-w-[1200px] md:mx-auto justify-center h-full min-h-full">
-     
-     <div className="w-[100%] md:w-[40%] -mt-[90px] md:mt-0 z-0">
+      <div className="w-[100%] md:w-[40%] -mt-[90px] md:mt-0 z-0">
         <Swiper />
       </div>
-     
-      <div className="flex flex-col space-y-4 w-[100%] md:w-[40%]">
 
+      <div className="flex flex-col space-y-4 w-[100%] md:w-[40%]">
         <div className="flex flex-col order-2 gap-2 p-6 bg-card rounded-lg shadow-lg text-center">
           <h1 className="text-[2.5rem] font-extrabold">
             Already have an order?
@@ -104,8 +59,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-
-
     </div>
   );
 }

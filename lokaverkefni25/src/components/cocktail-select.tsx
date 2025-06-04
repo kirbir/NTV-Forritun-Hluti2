@@ -4,6 +4,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useOrder } from "../app/providers";
 import { OrderContext } from "../app/providers";
 import SelectionIcon from "./ui/icons/selection-icon";
+import Image from "next/image";
 
 type SelectedCocktail = {
   quantity: number;
@@ -40,8 +41,9 @@ const CocktailSelect = () => {
         .filter((drink): drink is NonNullable<typeof drink> => drink !== null);
 
       // Only update if the drinks array has actually changed
-      const drinksChanged = JSON.stringify(currentOrder.drinks) !== JSON.stringify(selectedDrinks);
-      
+      const drinksChanged =
+        JSON.stringify(currentOrder.drinks) !== JSON.stringify(selectedDrinks);
+
       if (drinksChanged) {
         setCurrentOrder({
           ...currentOrder,
@@ -67,20 +69,18 @@ const CocktailSelect = () => {
     getCocktails();
   }, [getCocktails]);
 
-  const handleCocktailSelect = useCallback(
-    (cocktail: Cocktails) => {
-      setSelectedCocktails((prev) => {
-        const updated = {
-          ...prev,
-          [cocktail.idDrink]: {
-            quantity: prev[cocktail.idDrink]?.quantity || 1,
-            isSelected: !prev[cocktail.idDrink]?.isSelected,
-          },
-        };
-        return updated;
-      });
-    },[]
-  );
+  const handleCocktailSelect = useCallback((cocktail: Cocktails) => {
+    setSelectedCocktails((prev) => {
+      const updated = {
+        ...prev,
+        [cocktail.idDrink]: {
+          quantity: prev[cocktail.idDrink]?.quantity || 1,
+          isSelected: !prev[cocktail.idDrink]?.isSelected,
+        },
+      };
+      return updated;
+    });
+  }, []);
 
   useEffect(() => {
     if (Object.keys(selectedCocktails).length > 0) {
@@ -126,27 +126,29 @@ const CocktailSelect = () => {
   return (
     <div>
       {cocktails && cocktails.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 pl-5">
+        <div className="grid grid-cols-2 gap-2 place-items-center max-w-[92%] m-2">
           {filterCocktails?.map((cocktail) => (
             <div
               key={cocktail.idDrink}
-              className="relative max-w-sm border border-gray-300 bg-white rounded-lg shadow-md p-4 shadow-black/20"
+              className=" items-center relative max-w-fit min-h-[400px] md:max-w-[500px] border border-gray-300 bg-white rounded-lg shadow-md p-2 shadow-black/20"
             >
-              <img
+              <Image
+                className="md:w-[400px] md:h-[400px] w-fit h-fit object-cover rounded-lg"
                 src={cocktail.strDrinkThumb}
                 alt={cocktail.strDrink}
-                className="w-full h-48 object-cover rounded-lg"
+                height={400}
+                width={400}
               />
-              <h3 className="mt-2 text-sm font-semibold">
+              <p className="mt-2 text-md font-semibold">
                 {cocktail.strDrink}
-              </h3>
-              <div>
+              </p>
+              <div className=" w-fit">
                 {Array.from(
                   { length: 15 },
                   (_, i) =>
                     cocktail[`strIngredient${i + 1}`] && (
-                      <span className="font-light text-sm" key={i}>
-                        {cocktail[`strIngredient${i + 1}`]}
+                      <span className="flex wrap-break-word font-light text-sm" key={i}>
+                        {cocktail[`strIngredient${i + 1}`]},&nbsp; 
                       </span>
                     )
                 )}
@@ -176,7 +178,7 @@ const CocktailSelect = () => {
                       }
                       className="px-2 py-1 border rounded hover:bg-gray-100"
                     >
-                      -
+                      ◀️
                     </button>
                     <span className="w-8 text-center">
                       {selectedCocktails[cocktail.idDrink]?.quantity || 1}
@@ -191,7 +193,7 @@ const CocktailSelect = () => {
                       }
                       className="px-2 py-1 border rounded hover:bg-gray-100"
                     >
-                      +
+                      ▶️
                     </button>
                   </div>
                 )}

@@ -3,11 +3,23 @@ import { useOrder} from "../app/providers";
 
 const ConfirmOrder = () => {
   const { 
-    orderEmail, 
-    setOrderEmail, 
-    guestCount, 
-    setGuestCount 
+    currentOrder,
+    setCurrentOrder,
   } = useOrder();
+
+  // if user has searched for existing order, work with that state in currentOrder state. Fallback is a new order.
+  const email = currentOrder?.email || ""; 
+  const guestCount = currentOrder?.count || 1;
+  const date = currentOrder?.date || new Date();
+
+  const updateOrderField = (field: string, value: any) => {
+    if (currentOrder) {
+      setCurrentOrder({
+        ...currentOrder,
+        [field]: value
+      });
+    }
+  };
 
   const [errors, setErrors] = useState({
     guestCount: "",
@@ -34,10 +46,7 @@ const ConfirmOrder = () => {
           min="1"
           max="10"
           value={guestCount}
-          onChange={(e) => {
-            setGuestCount(Number(e.target.value));
-            validateInput('guestCount', e.target.value);
-          }}
+          onChange={(e) => updateOrderField('count', Number(e.target.value))}
           className={`border p-2 rounded ${errors.guestCount ? "border-red-500" : ""}`}
         />
         {errors.guestCount && (
@@ -50,11 +59,8 @@ const ConfirmOrder = () => {
         <input
           id="email"
           type="email"
-          value={orderEmail}
-          onChange={(e) => {
-            setOrderEmail(e.target.value);
-            validateInput('email', e.target.value);
-          }}
+          value={email}
+          onChange={(e) => updateOrderField('email', e.target.value)}
           className={`border p-2 rounded ${errors.email ? "border-red-500" : ""}`}
         />
         {errors.email && (
