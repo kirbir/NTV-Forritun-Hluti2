@@ -1,9 +1,9 @@
 import type { Cocktails } from "@/types/types";
 import api from "@/api/api";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { useOrder } from "../app/providers";
-import { OrderContext } from "../app/providers";
-import SelectionIcon from "./ui/icons/selection-icon";
+import { useOrder } from "../../app/providers";
+import { OrderContext } from "../../app/providers";
+import SelectionIcon from "../ui/icons/selection-icon";
 import Image from "next/image";
 
 type SelectedCocktail = {
@@ -11,7 +11,7 @@ type SelectedCocktail = {
   isSelected: boolean;
 };
 
-const CocktailSelect = () => {
+const SelectCocktails = () => {
   const { searchValue, setSearchValue, searchIngredient, setSearchIngredient } =
     useOrder();
   const [cocktails, setCocktails] = useState<Cocktails[] | null>([]);
@@ -19,6 +19,7 @@ const CocktailSelect = () => {
     Record<string, SelectedCocktail>
   >({});
   const { currentOrder, setCurrentOrder } = useContext(OrderContext)!;
+  const randomPrice = Math.floor(Math.random() + (50 - 5 * 10)) + 10;
 
   const updateOrderWithDrinks = useCallback(
     (updatedSelectedCocktails: Record<string, SelectedCocktail>) => {
@@ -36,6 +37,7 @@ const CocktailSelect = () => {
             strDrinkThumb: cocktail.strDrinkThumb,
             strIngredients: [],
             quantity: value.quantity,
+            price:randomPrice
           };
         })
         .filter((drink): drink is NonNullable<typeof drink> => drink !== null);
@@ -51,7 +53,7 @@ const CocktailSelect = () => {
         });
       }
     },
-    [currentOrder, cocktails, setCurrentOrder]
+    [currentOrder, cocktails, setCurrentOrder,randomPrice]
   );
 
   const getCocktails = useCallback(async () => {
@@ -68,6 +70,22 @@ const CocktailSelect = () => {
     console.log("running useEffect for getCocktails");
     getCocktails();
   }, [getCocktails]);
+
+  useEffect(() => {
+    // Initialize selectedCocktails from existing order drinks
+    if (currentOrder?.drinks && currentOrder.drinks.length > 0 && cocktails) {
+      const initialSelectedCocktails: Record<string, SelectedCocktail> = {};
+      
+      currentOrder.drinks.forEach((drink) => {
+        initialSelectedCocktails[drink.idDrink] = {
+          quantity: drink.quantity,
+          isSelected: true,
+        };
+      });
+      
+      setSelectedCocktails(initialSelectedCocktails);
+    }
+  }, [currentOrder?.drinks, cocktails]); // Run when order drinks or cocktails change
 
   const handleCocktailSelect = useCallback((cocktail: Cocktails) => {
     setSelectedCocktails((prev) => {
@@ -90,12 +108,12 @@ const CocktailSelect = () => {
 
   const filterCocktails =
     cocktails?.filter((cocktail) => {
-      // Name filter
+      // Filter by drink name
       const nameMatch =
         searchValue === "" ||
         cocktail.strDrink.toLowerCase().includes(searchValue.toLowerCase());
 
-      // Ingredient filter -
+      // Filter by ingredient
       const ingredientMatch =
         searchIngredient === "" ||
         Array.from(
@@ -123,49 +141,59 @@ const CocktailSelect = () => {
     });
   };
 
+  // Add this helper function to highlight matching text
+  const highlightMatch = (text: string, searchTerm: string) => {
+    if (!searchTerm) return text;
+    
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    const parts = text.split(regex);
+    
+    return parts.map((part, i) => 
+      regex.test(part) ? 
+        <span key={i} className="bg-yellow-200">{part}</span> : 
+        part
+    );
+  };
+
   return (
     <div>
       {cocktails && cocktails.length > 0 ? (
-        <div className="grid grid-cols-2 gap-2 place-items-center max-w-[92%] m-2">
+        <div className="grid grid-cols-2 gap-4 ">
           {filterCocktails?.map((cocktail) => (
             <div
               key={cocktail.idDrink}
-              className=" items-center relative max-w-fit min-h-[400px] md:max-w-[500px] border border-gray-300 bg-white rounded-lg shadow-md p-2 shadow-black/20"
+              className="flex flex-col items-center w-full h-[400px] border border-gray-300 bg-white rounded-lg shadow-md p-2 shadow-black/20"
             >
               <Image
-                className="md:w-[400px] md:h-[400px] w-fit h-fit object-cover rounded-lg"
+                className="w-full h-64 object-cover rounded-lg flex-shrink-0"
                 src={cocktail.strDrinkThumb}
                 alt={cocktail.strDrink}
-                height={400}
-                width={400}
+                height={300}
+                width={300}
               />
-              <p className="mt-2 text-md font-semibold">
-                {cocktail.strDrink}
+              <p className="mt-2 text-md font-semibold text-center line-clamp-2">
+                {highlightMatch(cocktail.strDrink, searchValue)}
               </p>
-              <div className=" w-fit">
-                {Array.from(
-                  { length: 15 },
-                  (_, i) =>
-                    cocktail[`strIngredient${i + 1}`] && (
-                      <span className="flex wrap-break-word font-light text-sm" key={i}>
-                        {cocktail[`strIngredient${i + 1}`]},&nbsp; 
-                      </span>
-                    )
-                )}
+              <div className="w-full flex-1 overflow-hidden">
+                <div className="text-sm text-gray-600 line-clamp-3">
+                  {Array.from(
+                    { length: 15 },
+                    (_, i) =>
+                      cocktail[`strIngredient${i + 1}`] && (
+                        <span key={i}>
+                          {highlightMatch(
+                            cocktail[`strIngredient${i + 1}`] || '',
+                            searchIngredient
+                          )}
+                          {i < 14 && cocktail[`strIngredient${i + 2}`] ? ', ' : ''}
+                        </span>
+                      )
+                  )}
+                </div>
               </div>
 
-              <div className="flex items-center justify-between mt-4">
-                {/* Selection Icon on the left */}
-                <button
-                  onClick={() => handleCocktailSelect(cocktail)}
-                  className="flex items-center"
-                >
-                  <SelectionIcon
-                    isSelected={selectedCocktails[cocktail.idDrink]?.isSelected}
-                  />
-                </button>
-
-                {/* Quantity Input*/}
+              <div className="flex w-full flex-col items-center justify-between mt-4 gap-2">
+                {/* Quantity Input - Now above the selection button */}
                 {selectedCocktails[cocktail.idDrink]?.isSelected && (
                   <div className="flex items-center gap-2">
                     <button
@@ -176,7 +204,7 @@ const CocktailSelect = () => {
                             1
                         )
                       }
-                      className="px-2 py-1 border rounded hover:bg-gray-100"
+                      className="px-2 py-1 rounded hover:bg-gray-100"
                     >
                       ◀️
                     </button>
@@ -191,12 +219,22 @@ const CocktailSelect = () => {
                             1
                         )
                       }
-                      className="px-2 py-1 border rounded hover:bg-gray-100"
+                      className="px-2 py-1 rounded hover:bg-gray-100"
                     >
                       ▶️
                     </button>
                   </div>
                 )}
+
+                {/* Selection Icon */}
+                <button
+                  onClick={() => handleCocktailSelect(cocktail)}
+                  className={selectedCocktails[cocktail.idDrink]?.isSelected? "bg-red-900 p-2 rounded-sm w-full flex items-center":"bg-button-primary w-full p-2 rounded-sm flex items-center"}
+                >
+                  <SelectionIcon
+                    isSelected={selectedCocktails[cocktail.idDrink]?.isSelected}
+                  />
+                </button>
               </div>
             </div>
           ))}
@@ -208,4 +246,4 @@ const CocktailSelect = () => {
   );
 };
 
-export default CocktailSelect;
+export default SelectCocktails;

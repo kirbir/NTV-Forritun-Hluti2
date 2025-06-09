@@ -12,7 +12,7 @@ export type Order = {
     category:string,
     description:string,
     imageSource:string,
-    price:0,
+    price:number,
     area:string,
   };
 };
@@ -33,4 +33,5 @@ export type Cocktails = {
   [key: `strIngredient${number}`]: string | null;
   strIngredients: string[];
   quantity:number;
+  price:number;
 };

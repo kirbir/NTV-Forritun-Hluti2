@@ -1,74 +1,83 @@
-import React from 'react';
+import React from "react";
 
 type SelectionIconProps = {
-  isSelected:boolean
-}
+  isSelected: boolean;
+};
 
-const SelectionIcon = ({isSelected}: SelectionIconProps) => {
-  return (
-    isSelected ?   <div className='flex flex-row space-x-1'>
-      <svg
-      width="25"
-      height="25"
-      viewBox="0 0 1024 1024"
-      fill="green"
-      className="icon"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="#b0b0b0"
-        >
-      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
-      <g
-        id="SVGRepo_tracerCarrier"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="#CCCCCC"
-        strokeWidth="14.336000000000002"
-      />
-      <g id="SVGRepo_iconCarrier">
-        <path
-          d="M439.2 680c9.6 8.8 25.6 8.8 35.2-0.8l300-309.6C784 360 784 344 773.6 334.4c-9.6-9.6-25.6-9.6-35.2 0.8L438.4 644.8l35.2-0.8-182.4-167.2c-10.4-9.6-25.6-8.8-35.2 1.6-9.6 10.4-8.8 25.6 1.6 35.2L439.2 680z"
-          fill=""
-        />
-        <path
-          d="M515.2 1007.2c-276 0-500-224-500-500S239.2 7.2 515.2 7.2s500 224 500 500-224 500-500 500z m0-952C265.6 55.2 63.2 257.6 63.2 507.2s202.4 452 452 452 452-202.4 452-452S764.8 55.2 515.2 55.2z"
-          fill=""
-        />
-      </g>
-        </svg><span className="bg-button-delete text-white  px-4 rounded-sm">Remove</span>
-    </div>
-   : 
+const SelectionIcon = ({ isSelected }: SelectionIconProps) => {
+  return isSelected ? (
     <div className="flex flex-row space-x-1">
       <svg
-      width="25"
-      height="25"
-      viewBox="0 0 1024 1024"
-      fill="#b0b0b0"
-      className="icon"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="#b0b0b0"
-        >
-      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
-      <g
-        id="SVGRepo_tracerCarrier"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        stroke="#CCCCCC"
-        strokeWidth="14.336000000000002"
-      />
-      <g id="SVGRepo_iconCarrier">
-        <path
-          d="M439.2 680c9.6 8.8 25.6 8.8 35.2-0.8l300-309.6C784 360 784 344 773.6 334.4c-9.6-9.6-25.6-9.6-35.2 0.8L438.4 644.8l35.2-0.8-182.4-167.2c-10.4-9.6-25.6-8.8-35.2 1.6-9.6 10.4-8.8 25.6 1.6 35.2L439.2 680z"
-          fill=""
-        />
-        <path
-          d="M515.2 1007.2c-276 0-500-224-500-500S239.2 7.2 515.2 7.2s500 224 500 500-224 500-500 500z m0-952C265.6 55.2 63.2 257.6 63.2 507.2s202.4 452 452 452 452-202.4 452-452S764.8 55.2 515.2 55.2z"
-          fill=""
-        />
-      </g>
-        </svg>
-        <span className="bg-button-primary text-white  px-4 rounded-sm">Order</span>
+      className="ml-1"
+        width="25px"
+        height="25px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          {" "}
+          <path
+            d="M16 9L10 15M10.0002 9L16.0002 15M8 18L2 12L8 6C8 6 10 5.5 13.5 5.5C19.1685 5.5 20.5 5.5 20.5 12C20.5 18.5 19.2925 18.5 13.5 18.5C10 18.5 8 18 8 18Z"
+            stroke="#ffffff"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>{" "}
+        </g>
+      </svg>
+      <span className=" text-white  px-4 ">Remove drink</span>
+    </div>
+  ) : (
+    <div className="flex flex-row space-x-1">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="-2.4 -2.4 28.80 28.80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke=""
+      >
+        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke="#CCCCCC"
+          strokeWidth="2.112"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          {" "}
+          <path
+            d="M8 12H16"
+            stroke="#70b52c"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>{" "}
+          <path
+            d="M12 16V8"
+            stroke="#70b52c"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>{" "}
+          <path
+            d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+            stroke="#70b52c"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>{" "}
+        </g>
+      </svg>
+      <span className=" text-white  px-4 ">Add drink</span>
     </div>
   );
 };

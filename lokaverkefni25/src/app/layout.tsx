@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/ui/header";
+import Header from "@/components/layout/header";
 import { OrderProvider } from "./providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500","600","700","800"]
 });
 
 const geistMono = Geist_Mono({
@@ -27,13 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
+        className={`flex flex-col ${poppins.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
       >
         <OrderProvider>
-          <div className="w-full min-w-full">
+          <div className="w-screen min-w-screen">
             <Header />
           </div>
-          <div className="w-full">{children}</div>
+          <div className="mx-auto w-screen md:h-full md:max-w-[1280px] -mt-[50px]">
+            {children}
+          </div>
         </OrderProvider>
       </body>
     </html>

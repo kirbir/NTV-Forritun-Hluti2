@@ -1,11 +1,12 @@
 "use client";
-import { OrderStage, useOrder } from "../app/providers";
-import ActionButton from "./ui/action-button";
-import FilterCocktails from "./features/filter-cocktails";
-import { Calendar } from "./ui/calendar";
+import { OrderStage, useOrder } from "../../app/providers";
+import ActionButton from "../ui/action-button";
+import FilterCocktails from "../features/filter-cocktails";
+import { Calendar } from "../ui/calendar";
 import React, { useEffect, useState } from "react";
-import { Progress } from "./ui/progress";
+import { Progress } from "../ui/progress";
 import api from "@/api/api";
+
 const Sidebar = () => {
   // Get global variables from context component.
   const {
@@ -14,6 +15,7 @@ const Sidebar = () => {
     setCurrentOrder,
     currentStage,
     setCurrentStage,
+
   } = useOrder();
 
   const [orderProgress, setOrderProgress] = useState(0);
@@ -24,8 +26,10 @@ const Sidebar = () => {
     try {
       const isExistingOrder = currentOrder.id && currentOrder.id > 0;
 
+
       if (isExistingOrder) {
         const updatedOrders = await api.updateOrder(currentOrder);
+        // updateOrder returns an array, find the updated order
         const updatedOrder = updatedOrders?.find(order => order.email === currentOrder.email);
         if (updatedOrder) {
           setCurrentOrder(updatedOrder);
@@ -38,9 +42,8 @@ const Sidebar = () => {
           setCurrentStage(OrderStage.RECEIPT_SCREEN);
         }
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      window.alert("This email is already registered. Please use a different email address.");
+      console.error("Failed to process order:", error);
     }
   };
 
@@ -50,6 +53,7 @@ const Sidebar = () => {
       setCurrentOrder({
         ...currentOrder,
         date: selectedDate 
+      
       });
       setOrderDate(selectedDate);
     }
@@ -88,11 +92,11 @@ const Sidebar = () => {
   }, [currentStage, setCurrentOrder, setCurrentStage]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 ">
       <p>Order Status - {currentStage}</p>
 
       {currentStage === OrderStage.SELECTING_DISH && (
-        <div className="min-h-[20vh]">
+        <div className="min-h-[20vh] ">
           <ActionButton
             stage={OrderStage.SELECTING_COCKTAILS}
             variant={"navigation"}

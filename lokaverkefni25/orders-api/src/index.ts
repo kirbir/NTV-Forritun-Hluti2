@@ -171,7 +171,7 @@ api.get("/api/order/:email", (req, res) => {
 });
 
 // DELETE endpoint to delete order by id
-api.delete("/api/order/:id", (req, res) => {
+api.delete("/api/order/id/:id", (req, res) => {
   const orderId = Number.parseInt(req.params.id, 10);
   const order = orders.find((e) => e.id === orderId);
   if (order) {
@@ -189,7 +189,7 @@ api.delete("/api/order/:id", (req, res) => {
 });
 
 // DELETE endpoint to delete order by email
-api.delete("/api/order/:email", (req, res) => {
+api.delete("/api/order/email/:email", (req, res) => {
   const paramEmail = req.params.email;
   const order = orders.find((e) => e.email === paramEmail);
   if (order) {
@@ -201,7 +201,7 @@ api.delete("/api/order/:email", (req, res) => {
   } else {
     res.json({
       success: false,
-      error: `Could not find order with id=${paramEmail}`,
+      error: `Could not find order with email=${paramEmail}`,
     });
   }
 });

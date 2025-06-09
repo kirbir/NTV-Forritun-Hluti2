@@ -46,6 +46,8 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   const [guestCount, setGuestCount] = useState(1);
 
   const initializeOrder = (dish: Dish) => {
+    const randomPrice = Math.floor(Math.random()*(50 - 10 + 1)) +10;
+
     const newOrder: Order = {
       id: 0,
       email: "",
@@ -58,7 +60,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         category: dish.strCategory,
         description: dish.strInstructions,
         imageSource: dish.strMealThumb,
-        price: 0,
+        price: randomPrice,
         area: dish.strArea
       },
     };

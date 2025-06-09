@@ -1,10 +1,10 @@
 "use client";
-import { useOrder } from "../app/providers";
+import { useOrder } from "../providers";
 import { format } from "date-fns";
 import Image from "next/image";
 
 const Receipt = () => {
-  const { currentOrder, orderDate } = useOrder();
+  const { currentOrder } = useOrder();
 
   if (!currentOrder) {
     return <div>No order found</div>;
@@ -23,7 +23,7 @@ const Receipt = () => {
           <h2 className="text-lg font-semibold mb-2">Order Details</h2>
           <p><span className="font-medium">Order ID:</span> #{currentOrder.id}</p>
           <p><span className="font-medium">Email:</span> {currentOrder.email}</p>
-          <p><span className="font-medium">Date:</span> {orderDate ? format(orderDate, 'PPP') : 'Not specified'}</p>
+          <p><span className="font-medium">Date:</span> {currentOrder.date ? format(currentOrder.date, 'PPP') : 'Not specified'}</p>
           <p><span className="font-medium">Quantity:</span> {currentOrder.count}</p>
         </div>
 
@@ -42,7 +42,7 @@ const Receipt = () => {
             </div>
             <div>
               <h3 className="font-medium">{currentOrder.dish.name}</h3>
-              <p className="text-sm text-gray-600">{currentOrder.dish.category} - {currentOrder.dish.cousine}</p>
+              <p className="text-sm text-gray-600">{currentOrder.dish.category} - {currentOrder.dish.area}</p>
             </div>
           </div>
         </div>
@@ -64,6 +64,7 @@ const Receipt = () => {
                     />
                   </div>
                   <p className="font-medium">{drink.strDrink}</p>
+                  <p>Quantity: {drink.quantity}</p>
                 </div>
               ))}
             </div>
@@ -75,6 +76,7 @@ const Receipt = () => {
           <p className="text-lg font-semibold">
             Total Items: {currentOrder.drinks.length + 1}
           </p>
+          <p>Price: {currentOrder.dish.price + currentOrder.drinks[0].price + currentOrder.drinks[0].quantity * 1000}</p>
         </div>
       </div>
     </div>

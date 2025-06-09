@@ -29,15 +29,9 @@ const requestResponse = async <T, R extends RequestMethod = RequestMethod>(
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  if (response.status !== 200) {
-    console.log("here");
-    throw new Error(`Response status: ${response.status}`);
-  }
-
   const json: ServerResponse<T> = await response.json();
 
   if (!json.success) {
-    console.log("there");
     throw new Error(json.error);
   }
 
