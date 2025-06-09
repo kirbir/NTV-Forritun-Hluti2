@@ -31,10 +31,8 @@ export default function RootLayout({
         className={`flex flex-col ${poppins.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
       >
         <OrderProvider>
-          <div className="w-screen min-w-screen">
-            <Header />
-          </div>
-          <div className="mx-auto w-screen md:h-full md:max-w-[1280px] -mt-[50px]">
+          <Header />
+          <div className="mx-auto w-full md:h-full md:max-w-[1280px]">
             {children}
           </div>
         </OrderProvider>

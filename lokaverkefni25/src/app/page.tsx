@@ -32,14 +32,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden flex flex-col md:flex-row h-full md:w-full md:justify-center items-center  md:gap-2 md:mx-auto pt-20 ">
-      <div className="overflow-hidden w-full md:w-[50%] h-full md:h-[85%] md:rounded-lg absolute top-0 md:static md:mt-0">
+    <div className="overflow-hidden flex flex-col md:flex-row h-full md:w-full md:justify-center items-center  md:gap-8 md:mx-auto pt-20 ">
+      <div className="overflow-hidden w-full md:w-[50%] h-full md:h-[95%] md:rounded-lg absolute top-0 md:static md:mt-0">
         <Swiper />
       </div>
 
-      <div className="flex-col justify-between hidden md:flex  md:w-[30%] h-[85%] ">
-        <div className="order-1 flex hover:scale-98 ease-in-out hover:bg-card/85 transition-transform flex-col  gap-2 px-5 md:p-6 md:bg-card rounded-lg md:shadow-lg text-center">
-          <h1 className="hidden md:block text-[2.2rem] font-extrabold">
+      <div className="flex-col justify-between gap-2 hidden md:flex  md:w-[30%] h-[95%] ">
+        <div className="order-1  flex hover:scale-98 ease-in-out hover:bg-card/85 transition-transform flex-col  gap-2 px-5 md:p-6 md:bg-card rounded-lg md:shadow-lg text-center">
+          <h1 className="hidden md:block text-[1.5rem] font-extrabold">
           Book your table 
           </h1>
           <p>and indulge in our
