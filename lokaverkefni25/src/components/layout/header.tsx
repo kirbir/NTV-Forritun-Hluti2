@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full h-[50px] max-w-6xl flex flex-col items-center justify-center mx-auto px-2 md:mb-2 static md:sticky md:top-0 z-50">
+    <header className="w-full  h-[50px] max-w-6xl flex flex-col items-center justify-center mx-auto px-2 md:mb-2 static md:sticky md:top-0 z-50">
       <nav className="flex flex-row w-full justify-between items-center backdrop-blur-sm z-40 mx-0 gap-2 md:gap-10 text-card flex-nowrap ">
         {/* Mobile menu button */}
         <button 

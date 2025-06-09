@@ -47,25 +47,26 @@ const SwiperComponent = () => {
         centeredSlidesBounds={false}
         loop={true}
         scrollbar={{ draggable: true }}
+        updateOnWindowResize={true}
        
       >
-        <SwiperSlide className="relative">
+        <SwiperSlide className="relative h-screen">
           <img
-            className="object-cover  h-screen md:h-full  w-full  md:rounded-lg hover:cursor-grab"
+            className="object-cover md:object-contain h-screen md:h-fit w-full md:w-[100%]  md:rounded-lg hover:cursor-grab"
             src="/swiper/1.png"
             alt="sss"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="object-cover  h-screen md:h-full  w-full   md:rounded-lg hover:cursor-grab"
+            className="object-cover md:object-contain  h-screen md:h-fit w-full  md:w-[100%]  md:rounded-lg hover:cursor-grab"
             src="/swiper/2.png"
             alt="sss"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="object-cover  h-screen md:h-full   w-full md:rounded-lg hover:cursor-grab"
+            className="object-cover md:object-contain h-screen md:h-fit w-full md:w-[100%] md:rounded-lg hover:cursor-grab"
             src="/swiper/3.png"
             alt="sss"
           />

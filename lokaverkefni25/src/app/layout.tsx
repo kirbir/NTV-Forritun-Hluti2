@@ -26,15 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="">
       <body
-        className={`flex flex-col ${poppins.variable} ${geistMono.variable} antialiased mx-auto w-full h-full`}
+        className={`flex flex-col ${poppins.variable} ${geistMono.variable} antialiased w-full min-h-full`}
       >
         <OrderProvider>
           <Header />
-          <div className="mx-auto w-full md:h-full md:max-w-[1280px]">
+          <main className="flex-1 w-full md:max-w-[1280px] min-h-screen mx-auto">
             {children}
-          </div>
+          </main>
         </OrderProvider>
       </body>
     </html>
