@@ -1,16 +1,9 @@
 "use client";
 import type { Cocktails } from "@/types/types";
 import api from "@/api/api";
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  useMemo,
-} from "react";
-import { useOrder } from "../../providers";
-import { OrderContext } from "../../providers";
+import { useCallback, useContext, useEffect, useState, useMemo, useRef } from "react";
+import { useOrder } from "@/providers";
+import { OrderContext } from "@/providers";
 import SelectionIcon from "../ui/icons/selection-icon";
 import Image from "next/image";
 
@@ -26,8 +19,10 @@ const SelectCocktails = () => {
     Record<string, SelectedCocktail>
   >({});
   const { currentOrder, setCurrentOrder } = useContext(OrderContext)!;
-  const randomPrice = Math.floor(Math.random() + (50 - 5 * 10)) + 10;
   const cocktailsRef = useRef<HTMLDivElement>(null);
+  
+
+  const randomPrice = useMemo(() => Math.floor(Math.random() * (50 - 10 + 1)) + 10, []);
 
   const updateOrderWithDrinks = useCallback(
     (updatedSelectedCocktails: Record<string, SelectedCocktail>) => {
@@ -46,7 +41,7 @@ const SelectCocktails = () => {
             strDrinkThumb: cocktail.strDrinkThumb,
             strIngredients: [],
             quantity: value.quantity,
-            price: randomPrice,
+            price: randomPrice
           };
         })
         .filter((drink): drink is NonNullable<typeof drink> => drink !== null);

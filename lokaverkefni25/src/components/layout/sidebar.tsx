@@ -174,7 +174,7 @@ const Sidebar = () => {
               </svg>
               <span className="font-semibold">Choose date</span>
             </summary>
-            <div className="mt-4">
+            <div className="mt-4 bg-white rounded-lg p-4">
               <Calendar
                 mode="single"
                 selected={currentOrder?.date ? new Date(currentOrder.date): new Date()}
