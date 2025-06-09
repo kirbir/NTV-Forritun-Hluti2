@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOrder } from "../providers";
+import { useOrder } from "../../providers";
 import Image from "next/image";
 
 const ConfirmOrder = () => {

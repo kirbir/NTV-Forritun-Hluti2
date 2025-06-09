@@ -1,5 +1,5 @@
 "use client"
-import { OrderContext, OrderStage, useOrder } from '../../app/providers';
+import { OrderContext, OrderStage, useOrder } from '../../providers';
 import { useContext, useState } from "react"
 
 type ButtonVariant = 'primary' | 'navigation' | 'delete' | 'filter' | 'place-order';

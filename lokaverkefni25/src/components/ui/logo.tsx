@@ -1,12 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 // components/Silfurfat.tsx
 
 const Logo = () => (
-  <div className='flex-col items-center'>
+  <div className="flex-col items-center">
     <img
       alt="logo"
-className="aspect-auto h-[35px] md:h-[50px]"
+      className="aspect-auto h-[35px] md:h-[50px]"
       src="/lil_bits_logo_ landscape.png"
-  
     />
   </div>
 );

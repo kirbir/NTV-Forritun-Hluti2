@@ -1,4 +1,4 @@
-import { useOrder } from "../../app/providers";
+import { useOrder } from "../../providers";
 
 const FilterCocktails = () => {
   const { searchValue, setSearchValue, searchIngredient, setSearchIngredient } =

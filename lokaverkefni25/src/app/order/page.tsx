@@ -3,9 +3,9 @@ import { Dish } from "@/types/types";
 import api from "@/api/api";
 import Image from "next/image";
 import { useEffect, useCallback, useState } from "react";
-import { useOrder } from "../../app/providers";
-import ConfirmOrder from "@/app/order/confirm-order";
-import Receipt from "@/app/order/receipt-screen";
+import { useOrder } from "../../providers";
+import ConfirmOrder from "@/components/features/confirm-order";
+import Receipt from "@/components/features/receipt-screen";
 import SelectCocktails from "@/components/features/select-cocktails";
 import NextIcon from "@/components/ui/icons/next-icon";
 import CheckedIcon from "@/components/ui/icons/checked-icon";
@@ -76,8 +76,8 @@ const Order = () => {
               src={randomDish?.strMealThumb || "/placeholder-dish.png"}
               alt="Random dish from api"
             />
-            <div className="absolute bottom-0 p-1 m-1 rounded-md backdrop-blur-sm">
-              <h3 className="text-sm md:text-xl">
+            <div className=" p-1 m-1 rounded-md ">
+              <h3 className="text-sm md:text-xl text-button-primary">
                 {randomDish?.strInstructions?.slice(0, 100) || ""}
               </h3>
             </div>
@@ -90,8 +90,8 @@ const Order = () => {
                 onClick={getRandomDish}
                 className="text-right text-lg p-1 m-1 group"
               >
-                <span className="text-sm md:text-md font-semibold border rounded-full bg-blue-400/70 text-white text-shadow-2xs shadow-black p-1 flex items-center gap-1 transition-all duration-300 hover:bg-blue-500">
-                  Pick next dish
+                <span className="text-sm md:text-md font-semibold border rounded-full bg-sky-700/70 text-white text-shadow-2xs shadow-black p-1 flex items-center gap-1 transition-all duration-300 hover:bg-sky-500 ">
+                  See next dish
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                     <NextIcon />
                   </span>

@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Link from "next/link";
-import { OrderStage, useOrder } from "@/app/providers";
+import { OrderStage, useOrder } from "@/providers";
 import router from "next/router";
 import {
   Drawer,

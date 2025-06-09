@@ -1,5 +1,5 @@
 "use client"
-import { useOrder, OrderStage } from "@/app/providers";
+import { useOrder, OrderStage } from "@/providers";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import api from "@/api/api";
@@ -48,7 +48,7 @@ const FindOrder = () => {
             placeholder="example@email.com"
             ref={emailRef}
             type="text"
-            className="w-full text-gray-200 pr-12 pl-3 text-center placeholder:text-gray-400 py-2 border-2 rounded"
+            className="w-full text-gray-200 md:text-button-primary pr-12 pl-3 text-center placeholder:text-gray-400 py-2 border-2 rounded"
             onKeyDown={(e) => e.key === "Enter" && handleFindOrder()}
           />
           <button

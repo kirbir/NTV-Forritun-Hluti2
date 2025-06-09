@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
-import { OrderProvider } from "./providers";
+import { OrderProvider } from "../providers";
 
 const poppins = Poppins({
   variable: "--font-poppins",

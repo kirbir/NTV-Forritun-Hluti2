@@ -1,5 +1,5 @@
 "use client";
-import { useOrder } from "../providers";
+import { useOrder } from "../../providers";
 import { format } from "date-fns";
 import Image from "next/image";
 
