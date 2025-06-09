@@ -1,4 +1,4 @@
-import React from "react";
+
 
 type SelectionIconProps = {
   isSelected: boolean;
@@ -6,7 +6,7 @@ type SelectionIconProps = {
 
 const SelectionIcon = ({ isSelected }: SelectionIconProps) => {
   return isSelected ? (
-    <div className="flex flex-row space-x-1">
+    <div className="flex flex-row space-x-1 justify-around">
       <svg
       className="ml-1"
         width="25px"
@@ -32,10 +32,10 @@ const SelectionIcon = ({ isSelected }: SelectionIconProps) => {
           ></path>{" "}
         </g>
       </svg>
-      <span className=" text-white  px-4 ">Remove drink</span>
+      <span className=" text-white text-sm text-center font-bold px-1 ">Remove drink</span>
     </div>
   ) : (
-    <div className="flex flex-row space-x-1">
+    <div className="flex flex-row justify-evenly space-x-1">
       <svg
         width="25px"
         height="25px"
@@ -77,7 +77,7 @@ const SelectionIcon = ({ isSelected }: SelectionIconProps) => {
           ></path>{" "}
         </g>
       </svg>
-      <span className=" text-white  px-4 ">Add drink</span>
+      <span className="text-sm text-white text-center font-bold  px-1 ">Add drink</span>
     </div>
   );
 };

@@ -70,7 +70,7 @@ const ConfirmOrder = () => {
               />
             </div>
             <div>
-              <h3 className="font-medium">{currentOrder.dish.name}</h3>
+              <h1 className="font-medium">{currentOrder.dish.name}</h1>
               <p className="text-sm text-gray-600">
                 {currentOrder.dish.category} - {currentOrder.dish.area}
               </p>

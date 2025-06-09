@@ -12,7 +12,7 @@ type SelectedCocktail = {
 };
 
 const SelectCocktails = () => {
-  const { searchValue, setSearchValue, searchIngredient, setSearchIngredient } =
+  const { searchValue,  searchIngredient } =
     useOrder();
   const [cocktails, setCocktails] = useState<Cocktails[] | null>([]);
   const [selectedCocktails, setSelectedCocktails] = useState<
@@ -26,6 +26,7 @@ const SelectCocktails = () => {
       if (!currentOrder) return;
 
       const selectedDrinks = Object.entries(updatedSelectedCocktails)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .filter(([_, value]) => value.isSelected)
         .map(([id, value]) => {
           const cocktail = cocktails?.find((c) => c.idDrink === id);
@@ -104,6 +105,7 @@ const SelectCocktails = () => {
     if (Object.keys(selectedCocktails).length > 0) {
       updateOrderWithDrinks(selectedCocktails);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCocktails]);
 
   const filterCocktails =

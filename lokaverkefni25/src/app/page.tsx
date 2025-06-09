@@ -1,4 +1,3 @@
-
 "use client";
 import FindOrder from "@/components/features/find-order";
 import Swiper from "@/components/ui/swiper";
@@ -34,12 +33,12 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden flex flex-col md:flex-row h-full md:w-full md:justify-center items-center  md:gap-2 md:mx-auto pt-20 ">
-      <div className="overflow-hidden w-full md:w-[50%] h-full md:h-[85%] md:rounded-lg ">
+      <div className="overflow-hidden w-full md:w-[50%] h-full md:h-[85%] md:rounded-lg absolute top-0 md:static md:mt-0">
         <Swiper />
       </div>
 
       <div className="flex-col justify-between hidden md:flex  md:w-[30%] h-[85%] ">
-        <div className="order-1 flex  flex-col  gap-2 px-5 md:p-6 md:bg-card rounded-lg md:shadow-lg text-center">
+        <div className="order-1 flex hover:scale-98 ease-in-out hover:bg-card/85 transition-transform flex-col  gap-2 px-5 md:p-6 md:bg-card rounded-lg md:shadow-lg text-center">
           <h1 className="hidden md:block text-[2.2rem] font-extrabold">
           Book your table 
           </h1>
@@ -56,9 +55,9 @@ export default function Home() {
                 alt="Random dish from api"
               />
               <div className="w-30 absolute bottom-0 p-1 m-1 rounded-md backdrop-blur-sm">
-                <h3 className="">
+                <h1 className="text-gray-200">
                 {randomDish?.strMeal}
-                </h3>
+                </h1>
               </div>
             </div>
             <button className="w-xs  mx-auto shadow-md shadow-black bg-button-card text-white mt-8 py-3 px-2 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">

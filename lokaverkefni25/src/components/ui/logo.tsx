@@ -1,14 +1,12 @@
 // components/Silfurfat.tsx
-import Image from 'next/image';
 
 const Logo = () => (
-  <div className='h-[50px]'>
-    <Image
+  <div className='md:h-[50px] h-[20px]'>
+    <img
       alt="logo"
-      width={200}
-      height={50}
+className="aspect-auto h-[35px] md:h-[50px]"
       src="/lil_bits_logo_ landscape.png"
-   
+  
     />
   </div>
 );

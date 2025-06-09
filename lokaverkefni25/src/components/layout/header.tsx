@@ -3,64 +3,122 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "../ui/logo";
+import { useState } from "react";
 
 export default function Header() {
-
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   const isActive = (path: string) => {
     return pathname === path
       ? "text-black font-bold border-b-4 border-[#d06656]"
-      : "text-black hover:text-[#d06656] hover:border-b-2 hover:border-[#d06656]";
+      : "text-black hover:text-[#d06656] hover:border-b-4 hover:border-[#d06656]";
   };
 
   return (
-    <header className=" w-full h-[50px] max-w-6xl flex flex-col items-center justify-start pt-4 mx-auto px-2 md:mb-10">
-      <nav className="flex flex-row w-full justify-evenly items-center backdrop-blur-sm z-100 mx-0  py-2 gap-2 md:gap-10 text-card">
+    <header className="w-full h-[50px] max-w-6xl flex flex-col items-center justify-start pt-4 mx-auto px-2 md:mb-10 relative">
+      <nav className="flex flex-row w-full justify-between items-center backdrop-blur-sm z-40 mx-0 gap-2 md:gap-10 text-card flex-nowrap">
+        {/* Mobile menu button */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-black hover:text-[#d06656] z-50"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
 
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex flex-row w-full justify-evenly items-center">
+          <Link
+            href="/"
+            className={`${isActive("/")} transition-colors duration-200 text-md`}
+          >
+            Home
+          </Link>
+          <Link
+            href="/order"
+            className={`${isActive("/order")} transition-colors duration-200 text-md`}
+          >
+            Order
+          </Link>
+          <div className="max-w-24 md:max-w-50">
             <Link
               href="/"
-              className={`${isActive(
-                "/"
-              )} order-2 md:order-1 transition-colors duration-200 text-md `}
+              className="md:text-[4rem] text-[1rem] font-bold text-green-800 font-chicle"
+            >
+              <Logo />
+            </Link>
+          </div>
+          <Link
+            href="/my-orders"
+            className={`${isActive("/my-orders")} transition-colors duration-200 text-md`}
+          >
+            My orders
+          </Link>
+          <Link
+            href="/contact"
+            className={`${isActive("/contact")} transition-colors duration-200 text-md`}
+          >
+            Contact
+          </Link>
+        </div>
+
+        {/* Logo for mobile */}
+        <div className="md:hidden">
+          <Link href="/" className="text-[2rem] font-bold text-green-800 font-chicle">
+            <Logo />
+          </Link>
+        </div>
+      </nav>
+
+      {/* Mobile Navigation - Moved outside nav element */}
+      <div 
+        className={`md:hidden fixed top-0 left-0 w-full h-screen bg-white z-50 transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full pt-16">
+          <button 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="absolute top-4 right-4 p-2 text-black hover:text-[#d06656]"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="flex flex-col items-center space-y-8">
+            <Link
+              href="/"
+              className={`${isActive("/")} text-2xl transition-colors duration-200`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               href="/order"
-              className={`${isActive(
-                "/order"
-              )} order-3 transition-colors duration-200 text-md`}
+              className={`${isActive("/order")} text-2xl transition-colors duration-200`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Order
             </Link>
-            <div className="order-1 md:order-3 max-w-24 md:max-w-50">
-              <Link
-                href="/"
-                className="text-[4rem] font-bold text-green-800 font-chicle"
-              >
-                <Logo />
-              </Link>
-            </div>
             <Link
               href="/my-orders"
-              className={`${isActive(
-                "/my-orders"
-              )} order-3 md-order3 transition-colors duration-200 text-md`}
+              className={`${isActive("/my-orders")} text-2xl transition-colors duration-200`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               My orders
             </Link>
             <Link
               href="/contact"
-              className={`${isActive(
-                "/characters"
-              )} order-4 transition-colors duration-200 text-md`}
+              className={`${isActive("/contact")} text-2xl transition-colors duration-200`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact
             </Link>
-         
-      </nav>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

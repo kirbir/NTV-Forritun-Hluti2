@@ -43,7 +43,12 @@ const Sidebar = () => {
         }
       }
     } catch (error) {
-      console.error("Failed to process order:", error);
+      if (error instanceof Error) {
+        window.alert(error.message);
+      } else {
+       window.alert("An unexpected error occurred while processing your order.") 
+      }
+     return;
     }
   };
 
@@ -74,9 +79,9 @@ const Sidebar = () => {
         setOrderProgress(100);
         break;
     }
-  }, [currentStage]);
+  }, [currentStage,setOrderProgress]);
 
-  // Clean up state and webapp after order, reset.
+  // Clean up the state and webapp after order, reset.
   useEffect(() => {
     if (currentStage === OrderStage.RECEIPT_SCREEN) {
       const timer = setTimeout(() => {
@@ -93,10 +98,34 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col gap-2 ">
-      <p>Order Status - {currentStage}</p>
+      <div className="flex justify-between items-center mb-4">
+        {[
+          { stage: OrderStage.SELECTING_DISH, label: "Dish" },
+          { stage: OrderStage.SELECTING_COCKTAILS, label: "Drinks" },
+          { stage: OrderStage.CONFIRM_ORDER, label: "Confirm" },
+          { stage: OrderStage.RECEIPT_SCREEN, label: "Receipt" }
+        ].map((step, index) => (
+          <div key={step.stage} className="flex flex-col items-center">
+            <div 
+              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                currentStage === step.stage 
+                  ? 'bg-[#d06656] text-white scale-110 shadow-lg' 
+                  : 'bg-gray-200 text-gray-600'
+              }`}
+            >
+              {index + 1}
+            </div>
+            <span className={`text-sm mt-1 transition-colors duration-300 ${
+              currentStage === step.stage ? 'text-[#d06656] font-semibold' : 'text-gray-600'
+            }`}>
+              {step.label}
+            </span>
+          </div>
+        ))}
+      </div>
 
       {currentStage === OrderStage.SELECTING_DISH && (
-        <div className="min-h-[20vh] ">
+        <div className="flex flex-col gap-2 ">
           <ActionButton
             stage={OrderStage.SELECTING_COCKTAILS}
             variant={"navigation"}
@@ -130,18 +159,36 @@ const Sidebar = () => {
 
       {currentStage === OrderStage.CONFIRM_ORDER && (
         <div className="flex flex-col gap-2 justify-center items-center">
-          <Calendar
-            mode="single"
-            selected={currentOrder?.date ? new Date(currentOrder.date): new Date()}
-            onSelect={handleDateSelect}
-            className="rounded-md shadow w-fit"
-          />
+          <details className="group w-full" open={!!currentOrder?.email}>
+            <summary className="flex items-center gap-2 cursor-pointer hover:text-[#d06656] transition-colors duration-200 mb-2">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="group-open:rotate-180 transition-transform duration-200"
+              >
+                <path d="M8 2v4M16 2v4M3.5 9.5h17M21 19v-8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z" />
+              </svg>
+              <span className="font-semibold">Choose date</span>
+            </summary>
+            <div className="mt-4">
+              <Calendar
+                mode="single"
+                selected={currentOrder?.date ? new Date(currentOrder.date): new Date()}
+                onSelect={handleDateSelect}
+                className="rounded-md shadow w-fit"
+              />
+            </div>
+          </details>
           <button
             onClick={handlePlaceOrder}
             className="w-full bg-button-card text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
             disabled={!currentOrder?.email || !currentOrder}
           >
-            Place Order
+            {currentOrder?.id ? "Update Order" : "Place Order"}
           </button>
           <div className="flex flex-row mt-2 items-center space-x-1.5">
             <p>

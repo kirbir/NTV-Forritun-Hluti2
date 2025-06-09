@@ -4,7 +4,6 @@ import api from "@/api/api";
 import Image from "next/image";
 import { useEffect, useCallback, useState } from "react";
 import { useOrder } from "../../app/providers";
-import CocktailSelect from "@/components/features/select-cocktails";
 import ConfirmOrder from "@/app/order/confirm-order";
 import Receipt from "@/app/order/receipt-screen";
 import SelectCocktails from "@/components/features/select-cocktails";
@@ -52,7 +51,7 @@ const Order = () => {
         strMeal: currentOrder.dish.name,
         strCategory: currentOrder.dish.category,
         strArea: currentOrder.dish.area,
-        strInstructions: currentOrder.dish.description,
+        strInstructions: currentOrder.dish.description || "",
         strMealThumb: currentOrder.dish.imageSource,
       };
       setRandomDish(existingDish);
@@ -63,41 +62,31 @@ const Order = () => {
     <div className="">
       {currentStage === "SELECTING_DISH" && (
         <div className="relative  mx-auto p-6 bg-white rounded-lg shadow-lg">
-          <h2 className="mb-5 text-[2rem]">{randomDish?.strMeal}</h2>
-          <div className="flex flex-col  justify-center absolute top-0 right-0">
-            <button
-              onClick={getRandomDish}
-              className="text-right text-lg p-1 m-1 group"
-            >
-              <span className="text-md font-semibold border border-blue-500 rounded-full bg-blue-400 text-white pb-1 pt-1 pl-2 pr-2 flex items-center gap-1 transition-all duration-300 hover:bg-blue-500">
-                Next dish 
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-              </span>
-            </button>
-          </div>
+          <h2 className="mb-5 text-[1.5rem] md:text-[2rem]">{randomDish?.strMeal}</h2>
+
 
           <div className="relative w-[100%]">
             <Image
-              className="rounded-lg inset-shadow-2xs shadow-black/55"
+              className="rounded-lg  shadow-sm"
               width={600}
               height={600}
               src={randomDish?.strMealThumb || "/placeholder-dish.png"}
               alt="Random dish from api"
             />
-            <div className="absolute bottom-0 p-2 m-2 rounded-md backdrop-blur-sm">
-              <h3>{randomDish?.strInstructions.slice(0, 100)}</h3>
+            <div className="absolute bottom-0 p-1 m-1 rounded-md backdrop-blur-sm">
+              <h3 className="text-sm md:text-2xl">{randomDish?.strInstructions?.slice(0, 100) || ""}</h3>
             </div>
-            <div className="flex flex-row absolute top-5 left-5 pl-2 pr-2 pt-1 pb-1 bg-black/40 rounded-full">
+            <div className="flex flex-row absolute top-5 left-5 p-1 bg-black/40 rounded-full">
               <svg
-                width="30px"
-                height="30px"
+                width="25px"
+                height="25px"
                 viewBox="0 0 1024 1024"
                 className="icon"
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="#000000"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g
                   id="SVGRepo_tracerCarrier"
                   strokeLinecap="round"
@@ -116,6 +105,17 @@ const Order = () => {
               </svg>
               <p className="text-green-300 text-md pl-1">Selected dish</p>
             </div>
+            <div className="flex flex-col  justify-center absolute top-0 right-0">
+          <button
+              onClick={getRandomDish}
+              className="text-right text-lg p-1 m-1 group"
+            >
+              <span className="text-sm md:text-md font-semibold border border-blue-500 rounded-full bg-blue-400 text-white pb-0.5 pt-0.5 pl-2 pr-2 flex items-center gap-1 transition-all duration-300 hover:bg-blue-500">
+                Next dish 
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </span>
+            </button>
+          </div>
           </div>
         </div>
       )}

@@ -10,14 +10,15 @@ export type OrderData = {
     [key: `strIngredient${number}`]: string | null;
     strIngredients: string[];
     quantity: number;
+    price: number;
   }[];
   dish: {
-    idMeal: string;
-    strMeal: string;
-    strCategory: string;
-    strArea: string;
-    strInstructions: string;
-    strMealThumb: string;
-    price: number;
+    id: string;
+    name: string;
+    category: string;
+    description: string;
+    imageSource: string;
+    area: string;
+    price:number;
   };
 };

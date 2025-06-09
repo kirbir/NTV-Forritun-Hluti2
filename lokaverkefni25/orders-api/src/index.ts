@@ -8,32 +8,37 @@ let nextId = 2;
 let orders: OrderData[] = [
   {
     id: 1,
+    email: "gunnsteinnskula@gmail.com",
+    count: 5,
+    date: new Date("2025-06-10T00:00:00.000Z"),
     drinks: [
       {
-        idDrink: "some-uuid",
-        strDrink: "Gylltur",
-        strDrinkThumb: "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
+        idDrink: "11019",
+        strDrink: "Alfie Cocktail",
+        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/ypxsqy1483387829.jpg",
         strIngredients: [],
-        quantity: 1,
-        strIngredient1: "beer",
-        strIngredient2: "sugar",
-
+        quantity: 3,
+        price: 10
+      },
+      {
+        idDrink: "17834",
+        strDrink: "Abbey Cocktail",
+        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/mr30ob1582479875.jpg",
+        strIngredients: [],
+        quantity: 3,
+        price: 10
       }
     ],
-    email: "gunnsteinnskula@gmail.com",
-    count: 10,
-    date: new Date(),
     dish: {
-      idMeal: "53051",
-      strMeal: "Nasi lemak",
-      strCategory: "seafood",
-      strArea: "fuckery",
-      strInstructions: "In a medium saucepan over medium heat...",
-      strMealThumb: "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
-      price: 2500
-    },
-    
-  },
+      id: "52954",
+      name: "Hot and Sour Soup",
+      category: "Pork",
+      description: "STEP 1 - MAKING THE SOUP\r\nIn a wok add chicken broth and wait for it to boil.\r\nNext add salt, sugar, sesame seed oil, white pepper, hot pepper sauce, vinegar and soy sauce and stir for few seconds.\r\nAdd Tofu, mushrooms, black wood ear mushrooms to the wok.\r\nTo thicken the sauce, whisk together 1 Tablespoon of cornstarch and 2 Tablespoon of water in a bowl and slowly add to your soup until it's the right thickness.\r\nNext add 1 egg slightly beaten with a knife or fork and add it to the soup and stir for 8 seconds\r\nServe the soup in a bowl and add the bbq pork and sliced green onions on top.",
+      imageSource: "https://www.themealdb.com/images/media/meals/1529445893.jpg",
+      price: 27,
+      area: "Chinese"
+    }
+  }
 ];
 
 // Initialize api

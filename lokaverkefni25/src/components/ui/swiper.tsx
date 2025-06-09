@@ -31,7 +31,7 @@ const SwiperComponent = () => {
   };
 
   return (
-    <div className="relative h-full">
+    <div className="relative h-screen">
       <Swiper
         setWrapperSize={false}
         autoplay={{
@@ -40,7 +40,7 @@ const SwiperComponent = () => {
         }}
         autoHeight={false}
         modules={[Navigation, Pagination, Autoplay]}
-        navigation={true}
+        navigation={false}
         pagination={{ clickable: true }}
         slidesPerView={1}
         centeredSlides={false}
@@ -101,9 +101,9 @@ const SwiperComponent = () => {
                 </DrawerHeader>
                 <FindOrder/>
                 <DrawerFooter>
-                  {/* <Button className="">Submit</Button> */}
+  
                   <DrawerClose>
-                    {/* <Button variant="outline">Cancel</Button> */}
+         
                   </DrawerClose>
                 </DrawerFooter>
               </DrawerContent>
