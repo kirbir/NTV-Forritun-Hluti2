@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full h-[50px] max-w-6xl flex flex-col items-center justify-start pt-4 mx-auto px-2 md:mb-10 relative">
+    <header className="w-full h-[50px] max-w-6xl flex flex-col items-center justify-center  mx-auto px-2 md:mb-2 relative">
       <nav className="flex flex-row w-full justify-between items-center backdrop-blur-sm z-40 mx-0 gap-2 md:gap-10 text-card flex-nowrap">
         {/* Mobile menu button */}
         <button 
@@ -42,14 +42,14 @@ export default function Header() {
           >
             Order
           </Link>
-          <div className="max-w-24 md:max-w-50">
+   
             <Link
               href="/"
-              className="md:text-[4rem] text-[1rem] font-bold text-green-800 font-chicle"
+             
             >
               <Logo />
             </Link>
-          </div>
+    
           <Link
             href="/my-orders"
             className={`${isActive("/my-orders")} transition-colors duration-200 text-md`}

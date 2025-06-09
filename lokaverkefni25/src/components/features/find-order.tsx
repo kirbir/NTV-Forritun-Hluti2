@@ -42,18 +42,18 @@ const FindOrder = () => {
     <div className=" md:static  flex flex-col mx-auto space-y-4 w-[100%] md:w-[100%]">
       <div className="flex flex-col hover:scale-98 ease-in-out hover:bg-card/85 transition-transform order-2 gap-2 px-5 md:p-6 md:bg-card rounded-lg md:shadow-lg text-center">
         <h1 className="hidden md:block text-[2.2rem] font-extrabold">Already have an order?</h1>
-        <p className="text-gray-300">Type your e-mail to update existing order details.</p>
+        <p className="text-gray-300 md:text-button-primary">Type your e-mail to update existing order details.</p>
         <div className="relative mt-4">
           <input
-            placeholder="Input e-mail address"
+            placeholder="example@email.com"
             ref={emailRef}
             type="text"
-            className="w-full text-gray-200 pr-12 pl-3 text-center placeholder:text-gray-600 py-2 border-2 rounded"
+            className="w-full text-gray-200 pr-12 pl-3 text-center placeholder:text-gray-400 py-2 border-2 rounded"
             onKeyDown={(e) => e.key === "Enter" && handleFindOrder()}
           />
           <button
             onClick={handleFindOrder}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-300 hover:text-blue-500 hover:bg-gray-100 rounded"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 text-gray-300 md:text-gray-600 hover:text-blue-500 rounded"
           >
             <svg
               width="20"

@@ -48,13 +48,13 @@ export default function Home() {
 
             <div className="flex flex-col items-center relative">
               <Image
-                className="rounded-lg"
+                className="relative rounded-lg"
                 width={200}
                 height={200}
                 src={randomDish?.strMealThumb || "/placeholder-dish.png"}
                 alt="Random dish from api"
               />
-              <div className="w-30 absolute bottom-0 p-1 m-1 rounded-md backdrop-blur-sm">
+              <div className="w-[80%] absolute bottom-0 p-1 m-1 rounded-md backdrop-blur-sm">
                 <h1 className="text-gray-200">
                 {randomDish?.strMeal}
                 </h1>

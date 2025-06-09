@@ -164,7 +164,7 @@ const SelectCocktails = () => {
           {filterCocktails?.map((cocktail) => (
             <div
               key={cocktail.idDrink}
-              className="flex flex-col items-center w-full h-[400px] border border-gray-300 bg-white rounded-lg shadow-md p-2 shadow-black/20"
+              className="flex flex-col items-center w-full h-[400px] border border-gray-300 bg-white/40 backdrop-blur-2xl rounded-lg shadow-md p-2 shadow-black/20"
             >
               <Image
                 className="w-full h-64 object-cover rounded-lg flex-shrink-0"

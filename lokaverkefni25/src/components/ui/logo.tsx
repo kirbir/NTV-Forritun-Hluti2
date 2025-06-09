@@ -1,7 +1,7 @@
 // components/Silfurfat.tsx
 
 const Logo = () => (
-  <div className='md:h-[50px] h-[20px]'>
+  <div className='flex-col items-center'>
     <img
       alt="logo"
 className="aspect-auto h-[35px] md:h-[50px]"
