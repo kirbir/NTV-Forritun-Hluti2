@@ -31,47 +31,81 @@ const SwiperComponent = () => {
   };
 
   return (
-    <div className="relative h-screen">
-      <Swiper
-        setWrapperSize={false}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        autoHeight={false}
-        modules={[Navigation, Pagination, Autoplay]}
-        navigation={false}
-        pagination={{ clickable: true }}
-        slidesPerView={1}
-        centeredSlides={false}
-        centeredSlidesBounds={false}
-        loop={true}
-        scrollbar={{ draggable: true }}
-        updateOnWindowResize={true}
-       
-      >
-        <SwiperSlide className="relative h-screen">
-          <img
-            className="object-cover md:object-contain h-screen md:h-fit w-full md:w-[100%]  md:rounded-lg hover:cursor-grab"
-            src="/swiper/1.png"
-            alt="sss"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover md:object-contain  h-screen md:h-fit w-full  md:w-[100%]  md:rounded-lg hover:cursor-grab"
-            src="/swiper/2.png"
-            alt="sss"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="object-cover md:object-contain h-screen md:h-fit w-full md:w-[100%] md:rounded-lg hover:cursor-grab"
-            src="/swiper/3.png"
-            alt="sss"
-          />
-        </SwiperSlide>
-      </Swiper>
+    <div className="relative h-screen md:h-full w-full overflow-hidden">
+      {/* Mobile Swiper - hidden on desktop */}
+      <div className="block md:hidden w-full">
+        <Swiper
+          setWrapperSize={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          modules={[Navigation, Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          slidesPerView={1}
+          loop={true}
+          className="w-full"
+        >
+          <SwiperSlide className="w-full">
+            <img
+              className="object-cover h-screen w-full hover:cursor-grab"
+              src="/swiper/1.png"
+              alt="Mobile image 1"
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full">
+            <img
+              className="object-cover h-screen w-full hover:cursor-grab"
+              src="/swiper/2.png"
+              alt="Mobile image 2"
+            />
+          </SwiperSlide>
+          <SwiperSlide className="w-full">
+            <img
+              className="object-cover h-screen w-full hover:cursor-grab"
+              src="/swiper/3.png"
+              alt="Mobile image 3"
+            />
+          </SwiperSlide>
+        </Swiper>
+      </div>
+
+      {/* Desktop Swiper - hidden on mobile */}
+      <div className="hidden md:block w-screen -ml-[50vw] -mr-[50vw] relative left-1/2 right-1/2">
+        <Swiper
+          setWrapperSize={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          modules={[Navigation, Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          slidesPerView={1}
+          loop={true}
+        >
+          <SwiperSlide>
+            <img
+              className="object-cover h-full w-full hover:cursor-grab"
+              src="/swiper/4.jpg"
+              alt="Landscape image 4"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="object-cover h-full w-full hover:cursor-grab"
+              src="/swiper/5.jpg"
+              alt="Landscape image 5"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="object-cover h-full w-full hover:cursor-grab"
+              src="/swiper/6.jpg"
+              alt="Landscape image 6"
+            />
+          </SwiperSlide>
+        </Swiper>
+      </div>
 
       {/* Overlay content*/}
       <div className="absolute h-[50%] bottom-10 left-0 right-0 z-10 text-center p-4 rounded-b-lg ">

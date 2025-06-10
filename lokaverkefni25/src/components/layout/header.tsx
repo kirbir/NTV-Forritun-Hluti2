@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full  h-[50px] max-w-6xl flex flex-col items-center justify-center mx-auto px-2 md:mb-2 static md:sticky md:top-0 z-50">
+    <header className="w-full  h-[50px] max-w-6xl md:max-w-screen flex flex-col items-center justify-center mx-auto px-2 md:mb-2 static md:sticky md:top-0 z-50">
       <nav className="flex flex-row w-full justify-between items-center backdrop-blur-sm z-40 mx-0 gap-2 md:gap-10 text-card flex-nowrap ">
         {/* Mobile menu button */}
         <button 
@@ -32,13 +32,13 @@ export default function Header() {
         <div className="hidden md:flex flex-row w-full justify-evenly items-center">
           <Link
             href="/"
-            className={`${isActive("/")} transition-colors duration-200 text-md md:text-2xl md:font-extralight`}
+            className={`${isActive("/")} transition-colors duration-200 text-md md:text-md md:font-extralight`}
           >
             Home
           </Link>
           <Link
             href="/order"
-            className={`${isActive("/order")} transition-colors duration-200 text-md md:text-2xl md:font-extralight`}
+            className={`${isActive("/order")} transition-colors duration-200 text-md md:text-md md:font-extralight`}
           >
             Order
           </Link>
@@ -52,13 +52,13 @@ export default function Header() {
     
           <Link
             href="/my-orders"
-            className={`${isActive("/my-orders")} transition-colors duration-200 text-md md:text-2xl md:font-extralight`}
+            className={`${isActive("/my-orders")} transition-colors duration-200 text-md md:text-md md:font-extralight`}
           >
             My orders
           </Link>
           <Link
             href="/contact"
-            className={`${isActive("/contact")} transition-colors duration-200 text-md text-2xl md:font-extralight`}
+            className={`${isActive("/contact")} transition-colors duration-200 text-md md:text-md md:font-extralight`}
           >
             Contact
           </Link>

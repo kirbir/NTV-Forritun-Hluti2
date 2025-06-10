@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <OrderProvider>
           <Header />
-          <main className="flex-1 w-full md:max-w-[1280px] min-h-screen mx-auto">
+          <main className="flex-1 w-full md:max-w-[1280px] min-h-screen md:min-h-full ">
             {children}
           </main>
         </OrderProvider>
