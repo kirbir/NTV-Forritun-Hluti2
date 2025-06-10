@@ -19,6 +19,10 @@ const Sidebar = () => {
 
   const [orderProgress, setOrderProgress] = useState(0);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [errors, setErrors] = useState({
+    guestCount: "",
+    email: "",
+  });
 
   const handlePlaceOrder = async () => {
     if (!currentOrder) return;
@@ -67,6 +71,31 @@ const Sidebar = () => {
         date: selectedDate,
       });
       setOrderDate(selectedDate);
+    }
+  };
+
+  const validateInput = (name: string, value: string | number) => {
+    if (name === "guestCount" && (Number(value) < 1 || Number(value) > 10)) {
+      setErrors((prev) => ({
+        ...prev,
+        guestCount: "Guest count must be between 1 and 10",
+      }));
+    } else if (name === "email") {
+      const emailValue = String(value);
+      // Basic email format validation
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+        setErrors((prev) => ({
+          ...prev,
+          email: "Please enter a valid email address",
+        }));
+      } else {
+        // Clear any existing email errors if the format is valid
+        setErrors((prev) => ({ ...prev, email: "" }));
+        // Open the calendar when email is valid
+        setIsCalendarOpen(true);
+      }
+    } else {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -159,9 +188,8 @@ const Sidebar = () => {
         <div className="flex flex-col gap-2 justify-center items-center">
           <details
             className="group w-full"
-            open={isCalendarOpen}
+            open={!!currentOrder?.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentOrder.email)}
             onToggle={(e) => {
-              // This ensures the state stays in sync with the details element
               setIsCalendarOpen(e.currentTarget.open);
             }}
           >
@@ -196,9 +224,7 @@ const Sidebar = () => {
             <div className="mt-4 rounded-lg p-4">
               <Calendar
                 mode="single"
-                selected={
-                  currentOrder?.date ? new Date(currentOrder.date) : new Date()
-                }
+                selected={currentOrder?.date ? new Date(currentOrder.date) : new Date()}
                 onSelect={handleDateSelect}
                 className="mx-auto rounded-md bg-transparent shadow w-fit"
               />
@@ -206,7 +232,7 @@ const Sidebar = () => {
           </details>
           <button
             onClick={handlePlaceOrder}
-            className="w-full bg-button-card text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
+            className="w-full bg-button-card hover:bg-button-primary/50 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
             disabled={
               !currentOrder?.email ||
               !currentOrder ||
@@ -221,7 +247,7 @@ const Sidebar = () => {
       {currentStage === OrderStage.RECEIPT_SCREEN && (
         <div>
           <p>Thank you for your order!</p>
-          <Link href="/">Click here to return.</Link>
+          <Link className="underline" href="/">Click here to return.</Link>
         </div>
       )}
     </div>

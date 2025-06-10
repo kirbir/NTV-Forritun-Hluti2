@@ -46,7 +46,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   const [guestCount, setGuestCount] = useState(1);
 
   const initializeOrder = (dish: Dish) => {
-    const randomPrice = Math.floor(Math.random()*(50 - 10 + 1)) +10;
+    const randomPrice = Math.floor(Math.random()*(521 - 10 + 1)) + 5000;
 
     const newOrder: Order = {
       id: 0,

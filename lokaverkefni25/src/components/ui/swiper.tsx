@@ -31,8 +31,8 @@ const SwiperComponent = () => {
   };
 
   return (
-    <div className=" relative h-screen  overflow-hidden">
-      <div className="w-full  md:h-full ">
+    <div className=" relative h-screen md:h-[80vh] overflow-hidden">
+      <div className="w-full ">
         <Swiper
           setWrapperSize={false}
           autoplay={{
@@ -49,21 +49,21 @@ const SwiperComponent = () => {
         >
           <SwiperSlide className="w-full">
             <img
-              className="object-cover h-screen md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
+              className="object-cover md:object-top h-screen md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
               src="/swiper/1.png"
               alt="Mobile image 1"
             />
           </SwiperSlide>
           <SwiperSlide className="w-full">
             <img
-              className="object-cover h-screen md:h-[60%] md:w-[100%] w-full  hover:cursor-grab"
+              className="object-cover md:object-top h-screen md:h-[60%] md:w-[100%] w-full  hover:cursor-grab"
               src="/swiper/2.png"
               alt="Mobile image 2"
             />
           </SwiperSlide>
           <SwiperSlide className="w-full">
             <img
-              className="object-cover h-screen  md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
+              className="object-cover md:object-top h-screen  md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
               src="/swiper/3.png"
               alt="Mobile image 3"
             />
@@ -72,38 +72,39 @@ const SwiperComponent = () => {
       </div>
 
       {/* Overlay content*/}
-      <div className="absolute h-[50%] bottom-10 left-0 right-0 z-10 text-center p-4 rounded-b-lg ">
-        {/* <h1 className="text-[2rem] font-extrabold text-white">Order now</h1> */}
-        <p className="text-white mt-2 text-4xl  text-shadow-green-950 text-shadow-lg md:text-[2.2rem] font-extrabold max-w-2xl mx-auto">
+      <div className="absolute  bottom-0 md:bottom-10 left-0 right-0 z-10 text-center md:m-10 m-4 rounded-b-lg pb-10">
+        <p className="text-white mt-2 text-4xl  text-shadow-green-950 text-shadow-lg md:text-[2.2rem] font-extrabold max-w-2xl ">
           Make it a night to remember
         </p>
         <p className="text-white mt-2 text-xl">
           book your table and indulge in our curated food and cocktail menu.
         </p>
-        <div className="flex flex-col justify-center items-center">
-          <Link className="w-xs" onClick={handleNewOrder} href={"/order"}>
-            <button className="w-xs  mx-auto shadow-md shadow-black bg-button-card text-white mt-8 py-3 px-2 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
-              Order Now
-            </button>
-          </Link>
+        <div className="flex flex-col justify-center items-center ">
+          <div className="flex flex-col md:flex-row gap-4 mt-8 ">
+            <Link className="" onClick={handleNewOrder} href={"/order"}>
+              <button className="w-[170px]  shadow-xs shadow-black/40 bg-button-card text-white  md:py-2 py-3 px-2 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
+                Order Now
+              </button>
+            </Link>
 
-          <Drawer>
-            <DrawerTrigger className="w-xs  max-w-md mx-auto border-2 bg-black/40 border-button-card text-white mt-2 py-3 px-6 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
-              Already ordered?
-            </DrawerTrigger>
-            <DrawerContent className="bg-[#211b1c] fixed bottom-0 left-0 right-0 z-[100] max-h-[80vh] rounded-t-lg">
-              <DrawerHeader>
-                <DrawerTitle className="text-white text-center">
-                  Enter your order e-mail
-                </DrawerTitle>
-                <DrawerDescription></DrawerDescription>
-              </DrawerHeader>
-              <FindOrder />
-              <DrawerFooter>
-                <DrawerClose></DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+            <Drawer>
+              <DrawerTrigger className="w-[170px]  bg-black/40  text-white px-2 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
+                Already ordered?
+              </DrawerTrigger>
+              <DrawerContent className="bg-[#211b1c] py-3 md:py-3 fixed bottom-0 left-0 right-0 z-[100] max-h-[80vh] rounded-t-lg">
+                <DrawerHeader>
+                  <DrawerTitle className="text-white text-center">
+                    Enter your order e-mail
+                  </DrawerTitle>
+                  <DrawerDescription></DrawerDescription>
+                </DrawerHeader>
+                <FindOrder />
+                <DrawerFooter>
+                  <DrawerClose></DrawerClose>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
+          </div>
         </div>
       </div>
     </div>

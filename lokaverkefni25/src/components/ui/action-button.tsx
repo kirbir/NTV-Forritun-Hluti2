@@ -11,22 +11,14 @@ type ButtonProps = {
 }
 
 export default function ActionButton({text, variant, stage}: ButtonProps) {
-    const { submitOrderForm, setCurrentStage } = useOrder();
+    const {setCurrentStage } = useOrder();
     const context = useContext(OrderContext)
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     if (!context) return null;
 
     const handleClick = async () => {
-        if (variant === 'place-order' && typeof submitOrderForm === 'function') {
-            if (isSubmitting) return;
-            setIsSubmitting(true);
-            try {
-                await submitOrderForm();
-            } finally {
-                setIsSubmitting(false);
-            }
-        } else if (stage) {
+        if (stage) {
             setCurrentStage(stage);
         }
     };

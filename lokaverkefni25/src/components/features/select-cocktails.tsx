@@ -20,7 +20,7 @@ const SelectCocktails = () => {
   >({});
   const { currentOrder, setCurrentOrder } = useContext(OrderContext)!;
   const cocktailsRef = useRef<HTMLDivElement>(null);
-  
+
 
   const randomPrice = useMemo(() => Math.floor(Math.random() * (50 - 10 + 1)) + 10, []);
 
@@ -87,7 +87,13 @@ const SelectCocktails = () => {
         };
       });
 
-      setSelectedCocktails(initialSelectedCocktails);
+      // Only update if the cocktails are different
+      const currentCocktailIds = Object.keys(initialSelectedCocktails).sort().join(',');
+      const existingCocktailIds = Object.keys(selectedCocktails).sort().join(',');
+
+      if (currentCocktailIds !== existingCocktailIds) {
+        setSelectedCocktails(initialSelectedCocktails);
+      }
     }
   }, [currentOrder?.drinks, cocktails]); // Run when order drinks or cocktails change
 
@@ -180,7 +186,7 @@ const SelectCocktails = () => {
       {filterCocktails?.map((cocktail) => (
         <div
           key={cocktail.idDrink}
-          className="cocktail-card flex flex-col items-center w-full h-[400px] border border-gray-300 bg-white/40 backdrop-blur-2xl rounded-lg shadow-md p-2 shadow-black/20"
+          className="cocktail-card flex flex-col hover:shadow-lg hover:border-lime-200 cursor-pointer hover:border-2 hover:shadow-white/20 transition-shadow duration-300 items-center w-full h-[400px] border border-gray-300 bg-white/40 backdrop-blur-2xl rounded-lg shadow-xs p-2 shadow-black/20"
         >
           <Image
             className="w-full h-64 object-cover rounded-lg flex-shrink-0"

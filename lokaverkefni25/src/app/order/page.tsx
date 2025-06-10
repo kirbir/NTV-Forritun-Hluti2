@@ -61,20 +61,20 @@ const Order = () => {
   }, [currentOrder, initializeOrder]);
 
   return (
-    <div className="">
+    <div>
       {currentStage === "SELECTING_DISH" && (
-        <div className="relative  mx-auto p-6  rounded-lg bg-white/40 backdrop-blur-2xl shadow-lg">
+        <div className="relative  mx-auto p-6 rounded-lg bg-white/40 backdrop-blur-2xl shadow-lg">
           <h2 className="mb-5 text-button-card text-center text-[1.5rem] md:text-[2rem]">
             {randomDish?.strMeal}
           </h2>
 
-          <div className="relative w-[100%]">
-            <Image
-              className="rounded-lg  shadow-sm"
-              width={600}
-              height={600}
+          <div className="mx-auto relative md:w-[60%]  md:max-h-[80vh] overflow-y-auto">
+            <img
+              className="max-w-[100%] object-cover rounded-lg  shadow-sm"
+         
+              
               src={randomDish?.strMealThumb || "/placeholder-dish.png"}
-              priority={true}
+           
               alt="Random dish from api"
             />
             <div className=" p-1 m-1 rounded-md ">

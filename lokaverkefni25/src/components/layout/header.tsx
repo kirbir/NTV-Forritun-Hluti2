@@ -50,56 +50,62 @@ export default function Header() {
         </button>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          <Link
-            href="/"
-            className={`${isActive(
-              "/"
-            )} transition-colors duration-200 text-md md:text-md md:font-extralight`}
-          >
-            Home
-          </Link>
-          <Link
-            href="/order"
-            className={`${isActive(
-              "/order"
-            )} transition-colors duration-200 text-md md:text-md md:font-extralight`}
-          >
-            Order
-          </Link>
+        <div className="hidden md:flex items-center justify-center w-full">
+          <div className="flex items-center space-x-8">
+            <Link
+              href="/"
+              className={`${isActive(
+                "/"
+              )} transition-colors duration-200 text-md md:text-md md:font-semibold`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/order"
+              className={`${isActive(
+                "/order"
+              )} transition-colors duration-200 text-md md:text-md md:font-semibold`}
+            >
+              Order
+            </Link>
+          </div>
 
-          <Link href="/">
-            <Logo />
-          </Link>
+          <div className="mx-8">
+            <Link href="/">
+              <Logo />
+            </Link>
+          </div>
 
-          <Drawer>
-            <DrawerTrigger className={`${isActive(
-              "/my-orders"
-            )} transition-colors duration-200 text-md md:text-md md:font-extralight`}>
-              My orders
-            </DrawerTrigger>
-            <DrawerContent className="bg-[#211b1c] fixed bottom-0 left-0 right-0 z-[100] max-h-[80vh] rounded-t-lg">
-              <DrawerHeader>
-                <DrawerTitle className="text-white text-center">
-                  Enter your order e-mail
-                </DrawerTitle>
-                <DrawerDescription></DrawerDescription>
-              </DrawerHeader>
-              <FindOrder />
-              <DrawerFooter>
-                <DrawerClose></DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+          <div className="flex items-center space-x-8">
+            <Drawer>
+              <DrawerTrigger className={`${isActive(
+                "/my-orders"
+              )} transition-colors duration-200 text-md md:text-md md:font-semibold`}>
+                My orders
+              </DrawerTrigger>
+              <DrawerContent className="bg-[#211b1c] fixed bottom-0 left-0 right-0 z-[100] max-h-[80vh] rounded-t-lg">
+                <DrawerHeader>
+                  <DrawerTitle className="text-white text-center">
+                    Enter your order e-mail
+                  </DrawerTitle>
+                  <DrawerDescription></DrawerDescription>
+                </DrawerHeader>
+                <FindOrder />
+                <DrawerFooter>
+                  <DrawerClose></DrawerClose>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
 
-          <Link
-            href="/contact"
-            className={`${isActive(
-              "/contact"
-            )} transition-colors duration-200 text-md md:text-md md:font-extralight`}
-          >
-            Contact
-          </Link>
+            <Link
+              href="/contact"
+              className={`${isActive(
+                "/contact"
+              )} transition-colors duration-200 text-md md:text-md md:font-semibold`}
+            >
+              Contact
+            </Link>
+          </div>
         </div>
 
         {/* Logo for mobile */}

@@ -90,14 +90,11 @@ const Receipt = () => {
 
         {/* Total */}
         <div className="text-right">
-          <p className="text-lg font-semibold">
-            Total Items: {currentOrder.drinks.length + 1}
-          </p>{" "}
           <p>
             Price:{" "}
             {currentOrder.dish.price +
               currentOrder.drinks.reduce(
-                (total, drink) => total + drink.price * drink.quantity,
+                (total, drink) => total + drink.price * drink.quantity + currentOrder.dish.price, 
                 0
               )}{" "}
             kr

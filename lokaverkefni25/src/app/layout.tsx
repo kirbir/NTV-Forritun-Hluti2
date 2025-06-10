@@ -28,11 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="">
       <body
-        className={`flex flex-col ${poppins.variable} ${geistMono.variable} antialiased w-full min-h-full`}
+        className={`flex flex-col ${poppins.variable} ${geistMono.variable} antialiased w-full min-h-screen `}
       >
         <OrderProvider>
           <Header />
-          <main className=" w-full md:max-w-[1280px] md:mx-auto min-h-screen md:min-h-full ">
+          <main className="w-full md:max-w-[1280px] md:mx-auto min-h-[100%] md:min-h-full ">
             {children}
           </main>
         </OrderProvider>
