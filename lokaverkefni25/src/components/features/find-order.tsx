@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useOrder, OrderStage } from "@/providers";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -39,10 +39,11 @@ const FindOrder = () => {
   };
 
   return (
-    <div className="flex flex-col mx-auto space-y-4 w-[100%] md:w-[100%]">
-      <div className="flex flex-col hover:scale-98 ease-in-out hover:bg-card/85 transition-transform order-2 gap-2 px-5 md:p-6 md:bg-card rounded-lg md:shadow-lg text-center">
-        <h1 className="hidden md:block text-[1.5rem] font-extrabold">Existing order?</h1>
-        <p className="text-gray-300 md:text-button-primary">Type your e-mail to update existing order details.</p>
+    <div className="flex flex-col items-center mx-auto space-y-4 w-[100%] md:w-[100%]">
+      <div className="flex flex-col order-2 gap-2 px-5 md:p-6 md:w-[400px] rounded-lg md:shadow-lg text-center">
+        <p className="text-gray-300 ">
+          Type your e-mail to update existing order details.
+        </p>
         <div className="relative mt-4">
           <input
             placeholder="example@email.com"

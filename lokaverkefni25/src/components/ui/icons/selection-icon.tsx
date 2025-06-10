@@ -6,7 +6,7 @@ type SelectionIconProps = {
 
 const SelectionIcon = ({ isSelected }: SelectionIconProps) => {
   return isSelected ? (
-    <div className="flex flex-row space-x-1 justify-around">
+    <div className="flex flex-row md:text-center items-center justify-center">
       <svg
       className="ml-1"
         width="25px"

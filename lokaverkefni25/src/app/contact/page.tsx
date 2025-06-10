@@ -51,7 +51,7 @@ export default  function Contact() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-button-card "
                 placeholder="Your name"
               />
             </div>
@@ -70,7 +70,7 @@ export default  function Contact() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 ring-button-card"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -89,7 +89,7 @@ export default  function Contact() {
                 required
                 value={formData.subject}
                 onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 ring-button-card"
                 placeholder="What's this about?"
               />
             </div>
@@ -108,7 +108,7 @@ export default  function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 ring-button-card"
                 placeholder="Your message here..."
               />
             </div>
@@ -117,7 +117,7 @@ export default  function Contact() {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-button-primary hover:bg-button-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-button-primary hover:bg-button-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-button-card"
             >
               Send Message
             </button>

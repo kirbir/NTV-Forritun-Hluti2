@@ -53,7 +53,7 @@ const ConfirmOrder = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 relative max-w-2xl mx-auto p-6 bg-white/60 backdrop-blur-2xl rounded-lg shadow-lg mb-20">
+    <div className="flex flex-col gap-4 relative max-w-2xl mx-auto p-6 bg-white/60 backdrop-blur-2xl rounded-lg shadow-lg min-h-[1200px] overflow-y-auto">
       <div className="border-b pb-4">
         <h2>Your selection</h2>
 
@@ -105,7 +105,9 @@ const ConfirmOrder = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="guestCount">How many guests?</label>
+        <label className="font-bold" htmlFor="guestCount">
+          How many guests?
+        </label>
         <input
           id="guestCount"
           type="number"
@@ -122,8 +124,10 @@ const ConfirmOrder = () => {
         )}
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email">Email address</label>
+      <div className="flex flex-col gap-2 mb-[100px]">
+        <label className="font-bold" htmlFor="email">
+          Email address
+        </label>
         <input
           id="email"
           type="email"

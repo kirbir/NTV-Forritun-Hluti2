@@ -7,7 +7,7 @@ import { OrderProvider } from "../providers";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500","600","700","800"]
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <OrderProvider>
           <Header />
-          <main className="flex-1 w-full md:max-w-[1280px] min-h-screen md:min-h-full ">
+          <main className=" w-full md:max-w-[1280px] md:mx-auto min-h-screen md:min-h-full ">
             {children}
           </main>
         </OrderProvider>

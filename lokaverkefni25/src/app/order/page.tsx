@@ -64,7 +64,7 @@ const Order = () => {
     <div className="">
       {currentStage === "SELECTING_DISH" && (
         <div className="relative  mx-auto p-6  rounded-lg bg-white/40 backdrop-blur-2xl shadow-lg">
-          <h2 className="mb-5 text-[1.5rem] md:text-[2rem]">
+          <h2 className="mb-5 text-button-card text-center text-[1.5rem] md:text-[2rem]">
             {randomDish?.strMeal}
           </h2>
 
@@ -74,6 +74,7 @@ const Order = () => {
               width={600}
               height={600}
               src={randomDish?.strMealThumb || "/placeholder-dish.png"}
+              priority={true}
               alt="Random dish from api"
             />
             <div className=" p-1 m-1 rounded-md ">
@@ -90,7 +91,7 @@ const Order = () => {
                 onClick={getRandomDish}
                 className="text-right text-lg p-1 m-1 group"
               >
-                <span className="text-sm md:text-md font-semibold border rounded-full bg-sky-700/70 text-white text-shadow-2xs shadow-black p-1 flex items-center gap-1 transition-all duration-300 hover:bg-sky-500 ">
+                <span className="text-sm md:text-md font-semibold border rounded-full bg-sky-700/70 text-white text-shadow-2xs shadow-black p-1 flex items-center gap-1 transition-all duration-300 ">
                   See next dish
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                     <NextIcon />

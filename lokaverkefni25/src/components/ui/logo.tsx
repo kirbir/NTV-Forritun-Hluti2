@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-// components/Silfurfat.tsx
 
 const Logo = () => (
-  <div className="flex-col items-center">
+  <div className="flex-col items-center mt-1">
     <img
       alt="logo"
       className="aspect-auto h-[35px] md:h-[50px]"

@@ -4,8 +4,8 @@ import ActionButton from "../ui/action-button";
 import FilterCocktails from "../features/filter-cocktails";
 import { Calendar } from "../ui/calendar";
 import React, { useEffect, useState } from "react";
-import { Progress } from "../ui/progress";
 import api from "@/api/api";
+import Link from "next/link";
 
 const Sidebar = () => {
   // Get global variables from context component.
@@ -15,10 +15,10 @@ const Sidebar = () => {
     setCurrentOrder,
     currentStage,
     setCurrentStage,
-
   } = useOrder();
 
   const [orderProgress, setOrderProgress] = useState(0);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const handlePlaceOrder = async () => {
     if (!currentOrder) return;
@@ -26,11 +26,12 @@ const Sidebar = () => {
     try {
       const isExistingOrder = currentOrder.id && currentOrder.id > 0;
 
-
       if (isExistingOrder) {
         const updatedOrders = await api.updateOrder(currentOrder);
         // updateOrder returns an array, find the updated order
-        const updatedOrder = updatedOrders?.find(order => order.email === currentOrder.email);
+        const updatedOrder = updatedOrders?.find(
+          (order) => order.email === currentOrder.email
+        );
         if (updatedOrder) {
           setCurrentOrder(updatedOrder);
           setCurrentStage(OrderStage.RECEIPT_SCREEN);
@@ -46,19 +47,24 @@ const Sidebar = () => {
       if (error instanceof Error) {
         window.alert(error.message);
       } else {
-       window.alert("An unexpected error occurred while processing your order.") 
+        window.alert(
+          "An unexpected error occurred while processing your order."
+        );
       }
-     return;
+      return;
     }
   };
 
   const handleDateSelect = (date: Date | undefined) => {
+    if (date && date < new Date()) {
+      window.alert("Please select a future date");
+      return;
+    }
     const selectedDate = date || new Date();
     if (currentOrder) {
       setCurrentOrder({
         ...currentOrder,
-        date: selectedDate 
-      
+        date: selectedDate,
       });
       setOrderDate(selectedDate);
     }
@@ -79,7 +85,7 @@ const Sidebar = () => {
         setOrderProgress(100);
         break;
     }
-  }, [currentStage,setOrderProgress]);
+  }, [currentStage, setOrderProgress]);
 
   // Clean up the state and webapp after order, reset.
   useEffect(() => {
@@ -91,7 +97,7 @@ const Sidebar = () => {
           setCurrentStage(OrderStage.SELECTING_DISH);
         }
       }, 20000);
-  
+
       return () => clearTimeout(timer);
     }
   }, [currentStage, setCurrentOrder, setCurrentStage]);
@@ -103,21 +109,25 @@ const Sidebar = () => {
           { stage: OrderStage.SELECTING_DISH, label: "Dish" },
           { stage: OrderStage.SELECTING_COCKTAILS, label: "Drinks" },
           { stage: OrderStage.CONFIRM_ORDER, label: "Confirm" },
-          { stage: OrderStage.RECEIPT_SCREEN, label: "Receipt" }
+          { stage: OrderStage.RECEIPT_SCREEN, label: "Receipt" },
         ].map((step, index) => (
           <div key={step.stage} className="flex flex-col items-center">
-            <div 
+            <div
               className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                currentStage === step.stage 
-                  ? 'bg-[#d06656] text-white scale-110 shadow-lg' 
-                  : 'bg-gray-200 text-gray-600'
+                currentStage === step.stage
+                  ? "bg-[#d06656] text-white scale-110 shadow-lg"
+                  : "bg-gray-200 text-gray-600"
               }`}
             >
               {index + 1}
             </div>
-            <span className={`text-sm mt-1 transition-colors duration-300 ${
-              currentStage === step.stage ? 'text-[#d06656] font-semibold' : 'text-gray-600'
-            }`}>
+            <span
+              className={`text-sm mt-1 transition-colors duration-300 ${
+                currentStage === step.stage
+                  ? "text-[#d06656] font-semibold"
+                  : "text-gray-600"
+              }`}
+            >
               {step.label}
             </span>
           </div>
@@ -131,12 +141,6 @@ const Sidebar = () => {
             variant={"navigation"}
             text="Select Cocktails"
           />
-          <div className="flex flex-row mt-2 items-center space-x-1.5">
-            <p>
-              <strong>1/4</strong>
-            </p>
-            <Progress value={orderProgress} />
-          </div>
         </div>
       )}
 
@@ -148,66 +152,76 @@ const Sidebar = () => {
             variant={"navigation"}
             text="Confirm Order"
           />
-          <div className="flex flex-row mt-2 items-center space-x-1.5">
-            <p>
-              <strong>2/4</strong>
-            </p>
-            <Progress value={orderProgress} />
-          </div>
         </div>
       )}
 
       {currentStage === OrderStage.CONFIRM_ORDER && (
         <div className="flex flex-col gap-2 justify-center items-center">
-          <details className="group w-full" open={!!currentOrder?.email}>
+          <details
+            className="group w-full"
+            open={isCalendarOpen}
+            onToggle={(e) => {
+              // This ensures the state stays in sync with the details element
+              setIsCalendarOpen(e.currentTarget.open);
+            }}
+          >
             <summary className="flex items-center gap-2 cursor-pointer hover:text-[#d06656] transition-colors duration-200 mb-2">
               <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
+                width="25px"
+                height="25px"
+                viewBox="0 0 1024 1024"
                 className="group-open:rotate-180 transition-transform duration-200"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#000000"
               >
-                <path d="M8 2v4M16 2v4M3.5 9.5h17M21 19v-8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2Z" />
+                <path
+                  d="M897.9 369.2H205c-33.8 0-61.4-27.6-61.4-61.4s27.6-61.4 61.4-61.4h692.9c33.8 0 61.4 27.6 61.4 61.4s-27.6 61.4-61.4 61.4z"
+                  fill="#FFB89A"
+                />
+                <path
+                  d="M807 171H703.3c-16.6 0-30 13.4-30 30s13.4 30 30 30H807c31.6 0 57.4 24 57.4 53.4v42.3H125.2v-42.3c0-29.5 25.7-53.4 57.4-53.4H293c16.6 0 30-13.4 30-30s-13.4-30-30-30H182.5c-64.7 0-117.4 50.9-117.4 113.4v527.7c0 62.5 52.7 113.4 117.4 113.4H807c64.7 0 117.4-50.9 117.4-113.4V284.5c0-62.6-52.7-113.5-117.4-113.5z m0 694.6H182.5c-31.6 0-57.4-24-57.4-53.4V386.8h739.2v425.4c0.1 29.5-25.7 53.4-57.3 53.4z"
+                  fill="#45484C"
+                />
+                <path
+                  d="M447.6 217.1c-12.4-6.1-27-2.8-35.7 7.1-2.2-6.7-4-16.2-4-28.1 0-13 2.2-23 4.6-29.8 9.5 8.1 23.5 9.6 34.9 2.8 14.2-8.5 18.8-27 10.3-41.2-15.5-25.9-35.9-29.7-46.6-29.7-36.6 0-63.1 41.2-63.1 97.8s26.4 98 63 98c20.6 0 39-13.4 50.4-36.7 7.3-14.9 1.1-32.9-13.8-40.2zM635.9 218.5c-12.4-6.1-27-2.8-35.7 7.1-2.2-6.7-4-16.2-4-28.1 0-13 2.2-23 4.6-29.8 9.5 8.1 23.5 9.6 34.9 2.8 14.2-8.5 18.8-27 10.3-41.2-15.5-25.9-35.9-29.7-46.6-29.7-36.6 0-63.1 41.2-63.1 97.8s26.5 97.8 63.1 97.8c20.6 0 39-13.4 50.4-36.7 7.1-14.7 0.9-32.7-13.9-40z"
+                  fill="#45484C"
+                />
+                <path
+                  d="M700.2 514.5H200.5c-16.6 0-30 13.4-30 30s13.4 30 30 30h499.7c16.6 0 30-13.4 30-30s-13.5-30-30-30zM668.4 689.8h-74c-16.6 0-30 13.4-30 30s13.4 30 30 30h74c16.6 0 30-13.4 30-30s-13.4-30-30-30zM479.3 689.8H200.5c-16.6 0-30 13.4-30 30s13.4 30 30 30h278.8c16.6 0 30-13.4 30-30s-13.4-30-30-30z"
+                  fill="#33CC99"
+                />
               </svg>
               <span className="font-semibold">Choose date</span>
             </summary>
-            <div className="mt-4 bg-white rounded-lg p-4">
+            <div className="mt-4 rounded-lg p-4">
               <Calendar
                 mode="single"
-                selected={currentOrder?.date ? new Date(currentOrder.date): new Date()}
+                selected={
+                  currentOrder?.date ? new Date(currentOrder.date) : new Date()
+                }
                 onSelect={handleDateSelect}
-                className="rounded-md shadow w-fit"
+                className="mx-auto rounded-md bg-transparent shadow w-fit"
               />
             </div>
           </details>
           <button
             onClick={handlePlaceOrder}
             className="w-full bg-button-card text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-gray-400"
-            disabled={!currentOrder?.email || !currentOrder}
+            disabled={
+              !currentOrder?.email ||
+              !currentOrder ||
+              !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(currentOrder.email)
+            }
           >
             {currentOrder?.id ? "Update Order" : "Place Order"}
           </button>
-          <div className="flex flex-row mt-2 items-center space-x-1.5">
-            <p>
-              <strong>3/4</strong>
-            </p>
-            <Progress value={orderProgress} />
-          </div>
         </div>
       )}
 
       {currentStage === OrderStage.RECEIPT_SCREEN && (
         <div>
           <p>Thank you for your order!</p>
-          <div className="flex flex-row mt-2 items-center space-x-1.5">
-            <p>
-              <strong>4/4</strong>
-            </p>
-            <Progress value={orderProgress} />
-          </div>
+          <Link href="/">Click here to return.</Link>
         </div>
       )}
     </div>

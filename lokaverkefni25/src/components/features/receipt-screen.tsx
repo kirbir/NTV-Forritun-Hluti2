@@ -11,10 +11,10 @@ const Receipt = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg min-h-[800px] overflow-y-auto">
+    <div className="max-w-2xl mx-auto p-6 bg-white/60 rounded-lg shadow-lg min-h-[800px] overflow-y-auto">
       <div className="text-center mb-8">
         <h1 className="text-2xl font-bold text-gray-800">Order Receipt</h1>
-        <p className="text-gray-600">Thank you for your order!</p>
+        <span className="text-gray-600">Thank you for your order!</span>
       </div>
 
       <div className="space-y-6">
@@ -34,7 +34,8 @@ const Receipt = () => {
               : "Not specified"}
           </p>
           <p>
-            <span className="font-medium">Quantity:</span> {currentOrder.count}
+            <span className="font-medium">Number of guests:</span>{" "}
+            {currentOrder.count}
           </p>
         </div>
 

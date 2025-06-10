@@ -22,7 +22,7 @@ import {
 import FindOrder from "../features/find-order";
 
 const SwiperComponent = () => {
-  const { setCurrentOrder, setCurrentStage, } = useOrder();
+  const { setCurrentOrder, setCurrentStage } = useOrder();
 
   const handleNewOrder = () => {
     setCurrentOrder(null);
@@ -31,11 +31,10 @@ const SwiperComponent = () => {
   };
 
   return (
-    <div className="relative h-screen md:h-full w-full overflow-hidden">
-      {/* Mobile Swiper - hidden on desktop */}
-      <div className="block md:hidden w-full">
+    <div className=" relative h-screen  overflow-hidden">
+      <div className="w-full  md:h-full ">
         <Swiper
-          setWrapperSize={true}
+          setWrapperSize={false}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -44,64 +43,29 @@ const SwiperComponent = () => {
           pagination={{ clickable: true }}
           slidesPerView={1}
           loop={true}
-          className="w-full"
+          centeredSlides={false}
+          autoHeight={false}
+          navigation={true}
         >
           <SwiperSlide className="w-full">
             <img
-              className="object-cover h-screen w-full hover:cursor-grab"
+              className="object-cover h-screen md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
               src="/swiper/1.png"
               alt="Mobile image 1"
             />
           </SwiperSlide>
           <SwiperSlide className="w-full">
             <img
-              className="object-cover h-screen w-full hover:cursor-grab"
+              className="object-cover h-screen md:h-[60%] md:w-[100%] w-full  hover:cursor-grab"
               src="/swiper/2.png"
               alt="Mobile image 2"
             />
           </SwiperSlide>
           <SwiperSlide className="w-full">
             <img
-              className="object-cover h-screen w-full hover:cursor-grab"
+              className="object-cover h-screen  md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
               src="/swiper/3.png"
               alt="Mobile image 3"
-            />
-          </SwiperSlide>
-        </Swiper>
-      </div>
-
-      {/* Desktop Swiper - hidden on mobile */}
-      <div className="hidden md:block w-screen -ml-[50vw] -mr-[50vw] relative left-1/2 right-1/2">
-        <Swiper
-          setWrapperSize={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          modules={[Navigation, Pagination, Autoplay]}
-          pagination={{ clickable: true }}
-          slidesPerView={1}
-          loop={true}
-        >
-          <SwiperSlide>
-            <img
-              className="object-cover h-full w-full hover:cursor-grab"
-              src="/swiper/4.jpg"
-              alt="Landscape image 4"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              className="object-cover h-full w-full hover:cursor-grab"
-              src="/swiper/5.jpg"
-              alt="Landscape image 5"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              className="object-cover h-full w-full hover:cursor-grab"
-              src="/swiper/6.jpg"
-              alt="Landscape image 6"
             />
           </SwiperSlide>
         </Swiper>
@@ -114,32 +78,32 @@ const SwiperComponent = () => {
           Make it a night to remember
         </p>
         <p className="text-white mt-2 text-xl">
-        book your table and indulge in our
-        curated food and cocktail menu.
+          book your table and indulge in our curated food and cocktail menu.
         </p>
-        <div className="flex flex-col justify-center items-center" >
+        <div className="flex flex-col justify-center items-center">
           <Link className="w-xs" onClick={handleNewOrder} href={"/order"}>
-            <button className="w-xs md:hidden mx-auto shadow-md shadow-black bg-button-card text-white mt-8 py-3 px-2 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
+            <button className="w-xs  mx-auto shadow-md shadow-black bg-button-card text-white mt-8 py-3 px-2 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
               Order Now
             </button>
           </Link>
 
-            <Drawer>
-              <DrawerTrigger className="w-xs md:hidden max-w-md mx-auto border-2 bg-black/40 border-button-card text-white mt-2 py-3 px-6 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">Already ordered?</DrawerTrigger>
-              <DrawerContent className="bg-[#211b1c] fixed bottom-0 left-0 right-0 z-[100] max-h-[80vh] rounded-t-lg">
-                <DrawerHeader>
-                  <DrawerTitle className="text-white text-center">Enter your order e-mail</DrawerTitle>
-                  <DrawerDescription>
-                  </DrawerDescription>
-                </DrawerHeader>
-                <FindOrder/>
-                <DrawerFooter>
-                  <DrawerClose>
-                  </DrawerClose>
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
-
+          <Drawer>
+            <DrawerTrigger className="w-xs  max-w-md mx-auto border-2 bg-black/40 border-button-card text-white mt-2 py-3 px-6 rounded-lg hover:bg-button-primary/50 text-lg font-semibold cursor-pointer">
+              Already ordered?
+            </DrawerTrigger>
+            <DrawerContent className="bg-[#211b1c] fixed bottom-0 left-0 right-0 z-[100] max-h-[80vh] rounded-t-lg">
+              <DrawerHeader>
+                <DrawerTitle className="text-white text-center">
+                  Enter your order e-mail
+                </DrawerTitle>
+                <DrawerDescription></DrawerDescription>
+              </DrawerHeader>
+              <FindOrder />
+              <DrawerFooter>
+                <DrawerClose></DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
         </div>
       </div>
     </div>

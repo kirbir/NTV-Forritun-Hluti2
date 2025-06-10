@@ -221,7 +221,7 @@ const SelectCocktails = () => {
                       (selectedCocktails[cocktail.idDrink]?.quantity || 1) - 1
                     )
                   }
-                  className="px-2 py-1 rounded hover:bg-gray-100"
+                  className="px-2 py-1 rounded hover:bg-gray-100/50"
                 >
                   ◀️
                 </button>
@@ -235,7 +235,7 @@ const SelectCocktails = () => {
                       (selectedCocktails[cocktail.idDrink]?.quantity || 1) + 1
                     )
                   }
-                  className="px-2 py-1 rounded hover:bg-gray-100"
+                  className="px-2 py-1 rounded hover:bg-gray-100/50"
                 >
                   ▶️
                 </button>
@@ -247,8 +247,8 @@ const SelectCocktails = () => {
               onClick={() => handleCocktailSelect(cocktail)}
               className={
                 selectedCocktails[cocktail.idDrink]?.isSelected
-                  ? "bg-red-900 p-2 rounded-sm w-full flex items-center"
-                  : "bg-button-primary w-full p-2 rounded-sm flex items-center"
+                  ? "bg-red-900 p-2 rounded-sm w-full flex items-center justify-center"
+                  : "bg-button-primary w-full p-2 rounded-sm flex items-center justify-center"
               }
             >
               <SelectionIcon

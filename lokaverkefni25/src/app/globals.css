@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "react-day-picker/dist/style.css";
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -90,12 +90,12 @@
 }
 
 @theme {
-    --color-button-primary: #3E6053;
-    --color-button-card: #d06656;
-    --color-button-delete: #d06656;
+  --color-button-primary: #3E6053;
+  --color-button-card: #d06656;
+  --color-button-delete: #d06656;
 
 
-  }
+}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -144,31 +144,34 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 
   h2 {
-    font-size:1.5rem;
+    font-size: 1.5rem;
     font-weight: 800;
   }
 
   h3 {
-    font-size:1.2rem;
+    font-size: 1.2rem;
     font-weight: 600;
     font-style: italic;
-    color:white;
+    color: white;
     text-shadow: #424e46;
     text-shadow: 0svb;
     text-shadow: 1px 0px #424e46;
   }
-input {
-  
-}
+
+  input {}
+
   input:focus {
-    @apply outline-none border-button-card ring-2 ring-[#ea7665] border-4 
+    @apply outline-none border-button-card ring-2 ring-[#ea7665] border-4
   }
+
   button:hover {
     @apply cursor-pointer text-black
   }
+
 }
