@@ -31,7 +31,7 @@ const SwiperComponent = () => {
   };
 
   return (
-    <div className=" relative h-screen md:h-[80vh] overflow-hidden">
+    <div className=" relative h-screen md:h-[90vh] overflow-hidden">
       <div className="w-full ">
         <Swiper
           setWrapperSize={false}
@@ -49,21 +49,21 @@ const SwiperComponent = () => {
         >
           <SwiperSlide className="w-full">
             <img
-              className="object-cover md:object-top h-screen md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
+              className="object-cover md:object-top h-screen md:h-[90%] md:w-[100%] w-full hover:cursor-grab"
               src="/swiper/1.png"
               alt="Mobile image 1"
             />
           </SwiperSlide>
           <SwiperSlide className="w-full">
             <img
-              className="object-cover md:object-top h-screen md:h-[60%] md:w-[100%] w-full  hover:cursor-grab"
+              className="object-cover md:object-top h-screen md:h-[90%] md:w-[100%] w-full  hover:cursor-grab"
               src="/swiper/2.png"
               alt="Mobile image 2"
             />
           </SwiperSlide>
           <SwiperSlide className="w-full">
             <img
-              className="object-cover md:object-top h-screen  md:h-[60%] md:w-[100%] w-full hover:cursor-grab"
+              className="object-cover md:object-top h-screen  md:h-[90%] md:w-[100%] w-full hover:cursor-grab"
               src="/swiper/3.png"
               alt="Mobile image 3"
             />

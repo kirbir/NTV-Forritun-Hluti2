@@ -25,6 +25,7 @@ const Sidebar = () => {
   });
 
   const handlePlaceOrder = async () => {
+    console.log("currentOrder state at beginning of handlePlaceOrder: ", currentOrder);
     if (!currentOrder) return;
 
     try {

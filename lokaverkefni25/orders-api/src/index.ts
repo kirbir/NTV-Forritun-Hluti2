@@ -121,6 +121,7 @@ api.post("/api/create-order", (req: Request<OrderData>, res) => {
 
 // PUT endpoint to update orders
 api.put("/api/update-order", (req: Request<OrderData>, res) => {
+  console.log("Update order request received: ", orders);
   const emailDoesNotExist = () => {
     if (!req.body.email) {
       return false;
@@ -146,13 +147,14 @@ api.put("/api/update-order", (req: Request<OrderData>, res) => {
   }
 
   // Map over each item, if the item has the same email as the email in the body, update the order with the new order changes
-  orders.map((o) => {
+  orders = orders.map((o) => {
     if (o.email === req.body.email) {
       return req.body;
     }
     return o;
   });
 
+  console.log("orders state after update: ", orders);
   return res.json({
     success: true,
     order: req.body,
