@@ -157,7 +157,7 @@ api.put("/api/update-order", (req: Request<OrderData>, res) => {
   console.log("orders state after update: ", orders);
   return res.json({
     success: true,
-    order: req.body,
+    response: orders
   });
 });
 

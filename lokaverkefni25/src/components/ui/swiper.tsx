@@ -46,6 +46,7 @@ const SwiperComponent = () => {
           centeredSlides={false}
           autoHeight={false}
           navigation={true}
+          className="overflow-hidden"
         >
           <SwiperSlide className="w-full">
             <img

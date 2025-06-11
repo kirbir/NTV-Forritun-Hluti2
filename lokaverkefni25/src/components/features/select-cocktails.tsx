@@ -95,6 +95,7 @@ const SelectCocktails = () => {
         setSelectedCocktails(initialSelectedCocktails);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentOrder?.drinks, cocktails]); // Run when order drinks or cocktails change
 
   const handleCocktailSelect = useCallback((cocktail: Cocktails) => {

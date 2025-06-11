@@ -111,6 +111,7 @@ const ConfirmOrder = () => {
         <input
           id="guestCount"
           type="number"
+          inputMode="numeric"
           min="1"
           max="10"
           value={guestCount}
@@ -133,7 +134,9 @@ const ConfirmOrder = () => {
           type="email"
           value={email}
           onChange={(e) => updateOrderField("email", e.target.value)}
-          onBlur={(e) => validateInput("email", e.target.value)}
+          onBlur={(e) => {
+            validateInput("email", e.target.value);
+          }}
           className={`border p-2 rounded ${
             errors.email ? "border-red-500" : ""
           }`}

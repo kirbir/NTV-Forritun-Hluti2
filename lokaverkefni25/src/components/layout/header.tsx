@@ -27,7 +27,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full h-[50px] max-w-6xl md:max-w-screen flex flex-col items-center justify-center mx-auto px-2 md:mb-2 static md:sticky md:top-0 z-50">
+    <header className="w-full h-[50px] md:sticky max-w-6xl md:max-w-screen flex flex-col items-center justify-center mx-auto px-2 md:mb-2 static md:top-0 z-50">
       <nav className="flex flex-row md:py-2 w-full justify-between md:justify-around items-center backdrop-blur-sm z-40 mx-0 gap-2 md:gap-10 text-card flex-nowrap">
         {/* Mobile menu button */}
         <button
@@ -35,7 +35,7 @@ export default function Header() {
           className="md:hidden p-2 text-black hover:text-[#d06656] z-50"
         >
           <svg
-            className="w-6 h-6"
+            className="w-8 h-8"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ export default function Header() {
                 "/order"
               )} transition-colors duration-200 text-md md:text-md md:font-semibold`}
             >
-              Order
+              Order now
             </Link>
           </div>
 

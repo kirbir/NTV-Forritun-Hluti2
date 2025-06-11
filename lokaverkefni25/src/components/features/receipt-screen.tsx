@@ -11,7 +11,7 @@ const Receipt = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white/60 rounded-lg shadow-lg min-h-[800px] overflow-y-auto">
+    <div className="max-w-2xl mx-auto p-6 bg-white/60 rounded-lg shadow-lg min-h-[1200px] overflow-y-auto">
       <div className="text-center mb-8">
         <h1 className="text-2xl font-bold text-gray-800">Order Receipt</h1>
         <span className="text-gray-600">Thank you for your order!</span>

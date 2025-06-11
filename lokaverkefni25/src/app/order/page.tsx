@@ -61,18 +61,20 @@ const Order = () => {
   }, [currentOrder, initializeOrder]);
 
   return (
-    <div>
+    <div className="overflow-visible">
       {currentStage === "SELECTING_DISH" && (
-        <div className="relative  mx-auto p-6 rounded-lg bg-white/40 backdrop-blur-2xl shadow-lg">
-          <h2 className="mb-5 text-button-card text-center text-[1.5rem] md:text-[2rem]">
+        <div className="relative  md:min-h-[600px] mx-auto p-6 rounded-lg bg-white/40 backdrop-blur-2xl shadow-lg">
+          <h2 className="mb-5 z-500 text-button-card text-center text-[1.5rem] md:text-[2rem]">
             {randomDish?.strMeal}
           </h2>
 
-          <div className="mx-auto relative md:w-[60%]  md:max-h-[80vh] overflow-y-auto">
-            <img
-              className="max-w-[100%] object-cover rounded-lg  shadow-sm"
-         
-              
+          <div className=" mx-auto relative md:w-[60%] h-full  overflow-y-auto">
+
+            <Image
+              className=" max-w-[100%] object-cover rounded-lg  shadow-sm"
+              height={500}
+              width={500}
+     
               src={randomDish?.strMealThumb || "/placeholder-dish.png"}
            
               alt="Random dish from api"
@@ -82,16 +84,16 @@ const Order = () => {
                 {randomDish?.strInstructions?.slice(0, 100) || ""}
               </h3>
             </div>
-            <div className="flex flex-row absolute top-0 left-0 p-1 m-2 bg-black/40 rounded-full">
+            <div className="flex flex-row absolute top-0 left-0 pr-1 py-0 m-2 bg-black/40 rounded-full">
               <CheckedIcon />
               <p className="text-green-300 text-md pl-1">Selected dish</p>
             </div>
-            <div className="flex flex-col  justify-center absolute top-0 right-0">
+            <div className="flex flex-col justify-center absolute top-0 right-0">
               <button
                 onClick={getRandomDish}
                 className="text-right text-lg p-1 m-1 group"
               >
-                <span className="text-sm md:text-md font-semibold border rounded-full bg-sky-700/70 text-white text-shadow-2xs shadow-black p-1 flex items-center gap-1 transition-all duration-300 ">
+                <span className="text-sm md:text-md font-semibold  rounded-full bg-sky-700/70 text-white text-shadow-2xs shadow-black px-1 py-0 flex items-center gap-1 transition-all duration-300 ">
                   See next dish
                   <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                     <NextIcon />
